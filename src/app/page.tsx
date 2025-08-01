@@ -7,6 +7,7 @@ import {
   DropdownMenuItem,
   DropdownMenuTrigger,
 } from "@/components/ui/dropdown-menu";
+import { cn } from "@/lib/utils";
 import { ChevronDown, Sparkles } from "lucide-react";
 import Image from "next/image";
 
@@ -132,10 +133,17 @@ export default function Home() {
             <h2 className="text-center text-lg font-semibold text-muted-foreground">
             Reconnu par les meilleures entreprises du monde
             </h2>
-            <div className="mt-8 flex justify-center items-center gap-16">
-                {logos.map((logo) => (
-                    <span key={logo.name} className="text-2xl font-bold tracking-widest text-muted-foreground">{logo.name}</span>
-                ))}
+            <div className="mt-8 border-y border-border">
+                <div className="flex justify-around items-center">
+                    {logos.map((logo, index) => (
+                        <div key={logo.name} className={cn(
+                            "flex-1 flex justify-center items-center p-8",
+                            index < logos.length - 1 && "border-r border-border"
+                        )}>
+                            <span className="text-2xl font-bold tracking-widest text-muted-foreground">{logo.name}</span>
+                        </div>
+                    ))}
+                </div>
             </div>
         </div>
       </section>
