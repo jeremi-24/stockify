@@ -331,7 +331,7 @@ export default function Home() {
               <span className="rounded-full bg-primary/20 p-1 text-primary">
                 <Sparkles className="h-4 w-4 fill-primary" />
               </span>
-              <span className="text-foreground">NOUVEAU</span> Intégration de l'IA pour prédire vos ventes
+              <span className="text-foreground">NOUVEAU</span> Intégration de l'IA pour vos rapports
             </motion.div>
 
             <motion.h1 variants={fadeInUp} className="text-5xl font-bold tracking-tighter md:text-7xl">
