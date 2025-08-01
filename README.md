@@ -33,7 +33,7 @@ Pour lancer le projet en local, suivez ces étapes :
     npm run dev
     ```
 
-Ouvrez [http://localhost:9002](http://localhost:9002) dans votre navigateur pour voir le résultat.
+Ouvrez [http://localhost:3000](http://localhost:3000) dans votre navigateur pour voir le résultat.
 
 ## Structure du projet
 
