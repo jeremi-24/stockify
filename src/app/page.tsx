@@ -14,7 +14,8 @@ import { ChevronDown, Sparkles, Twitter, Linkedin, Facebook } from "lucide-react
 import Image from "next/image";
 import { Card, CardContent } from "@/components/ui/card";
 import { Avatar, AvatarFallback, AvatarImage } from "@/components/ui/avatar";
-import React from "react";
+import React, { useRef } from "react";
+import { motion, useScroll, useTransform } from "framer-motion";
 
 
 function LogoIcon(props: React.SVGProps<SVGSVGElement>) {
@@ -73,64 +74,48 @@ const testimonials = [
     },
 ];
 
-const TestimonialCard = ({ testimonial, index, scrollY }: { testimonial: (typeof testimonials)[0], index: number, scrollY: number }) => {
-    const cardProgress = scrollY - index;
-    const isVisible = cardProgress > -1 && cardProgress <= 1;
-    
-    // Animate from bottom (100%) to center (0) when it's the next card
-    // Start animation when the previous card is halfway through its own animation
-    const translateY = (1 - Math.min(1, Math.max(0, cardProgress))) * 80;
-    const opacity = isVisible ? 1 : 0;
-    const scale = 1 - (index - scrollY) * 0.05;
+const TestimonialCard = ({ testimonial, index, scrollYProgress }: { testimonial: (typeof testimonials)[0], index: number, scrollYProgress: any }) => {
+    const scale = useTransform(scrollYProgress, [index * 0.25, (index + 1) * 0.25], [0.8, 1]);
+    const translateY = useTransform(scrollYProgress, [index * 0.25, (index + 1) * 0.25], [100, 0]);
+    const opacity = useTransform(scrollYProgress, [index * 0.25, (index + 1) * 0.25], [0, 1]);
 
     return (
-      <Card
+      <motion.div
         style={{
-          transform: `translateY(${translateY}%) scale(${Math.max(0.8, scale)})`,
-          opacity: opacity,
-          transition: 'transform 0.5s ease-out, opacity 0.5s ease-out',
-          zIndex: testimonials.length - index, // Higher index cards are on top
+          scale,
+          translateY,
+          opacity,
+          zIndex: index,
         }}
         className={cn(
           "w-full max-w-2xl absolute top-1/2 -translate-y-[calc(50%_-_100px)]"
         )}
       >
-        <CardContent className="p-8">
-          <p className="text-lg text-muted-foreground mb-6">"{testimonial.text}"</p>
-          <div className="flex items-center gap-4">
-            <Avatar>
-              <AvatarImage src={testimonial.avatar} alt={testimonial.name} />
-              <AvatarFallback>{testimonial.name.charAt(0)}</AvatarFallback>
-            </Avatar>
-            <div>
-              <p className="font-semibold text-foreground">{testimonial.name}</p>
-              <p className="text-sm text-muted-foreground">{testimonial.title}</p>
+        <Card>
+          <CardContent className="p-8">
+            <p className="text-lg text-muted-foreground mb-6">"{testimonial.text}"</p>
+            <div className="flex items-center gap-4">
+              <Avatar>
+                <AvatarImage src={testimonial.avatar} alt={testimonial.name} />
+                <AvatarFallback>{testimonial.name.charAt(0)}</AvatarFallback>
+              </Avatar>
+              <div>
+                <p className="font-semibold text-foreground">{testimonial.name}</p>
+                <p className="text-sm text-muted-foreground">{testimonial.title}</p>
+              </div>
             </div>
-          </div>
-        </CardContent>
-      </Card>
+          </CardContent>
+        </Card>
+      </motion.div>
     );
 };
 
 export default function Home() {
-    const [scrollY, setScrollY] = React.useState(0);
-    const sectionRef = React.useRef<HTMLDivElement>(null);
-
-    React.useEffect(() => {
-        const handleScroll = () => {
-            if (sectionRef.current) {
-                const { top, height } = sectionRef.current.getBoundingClientRect();
-                const viewportHeight = window.innerHeight;
-                const scrollableHeight = height - viewportHeight;
-                const scrollProgress = Math.max(0, Math.min(1, -top / scrollableHeight));
-                
-                setScrollY(scrollProgress * (testimonials.length));
-            }
-        };
-
-        window.addEventListener('scroll', handleScroll, { passive: true });
-        return () => window.removeEventListener('scroll', handleScroll);
-    }, []);
+    const sectionRef = useRef(null);
+    const { scrollYProgress } = useScroll({
+      target: sectionRef,
+      offset: ["start start", "end end"]
+    });
 
   return (
     <div className="relative min-h-screen w-full bg-background text-foreground">
@@ -336,18 +321,18 @@ export default function Home() {
         </div>
       </section>
 
-      <section ref={sectionRef} className="relative" style={{ height: `${(testimonials.length + 1) * 50}vh` }}>
-        <div className="sticky top-0 h-screen flex flex-col items-center justify-center overflow-hidden">
-            <h2 className="text-center text-3xl md:text-4xl mb-10 font-bold tracking-tight ">
+      <section ref={sectionRef} className="relative h-[400vh]">
+        <div className="sticky top-0 h-screen flex flex-col items-center justify-start pt-24 overflow-hidden">
+            <h2 className="text-center text-3xl md:text-4xl mb-10 font-bold tracking-tight">
                 Ce que nos clients disent de nous
             </h2>
-            <div className="relative w-full  flex items-center justify-center">
+            <div className="relative w-full h-96 flex items-start justify-center">
                 {testimonials.map((testimonial, index) => (
                     <TestimonialCard 
                         key={index} 
                         testimonial={testimonial} 
                         index={index} 
-                        scrollY={scrollY}
+                        scrollYProgress={scrollYProgress}
                     />
                 ))}
             </div>
