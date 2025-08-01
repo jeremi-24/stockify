@@ -79,28 +79,28 @@ export default function PropertyPage({ params }: PropertyPageProps) {
                 <BedDouble className="h-6 w-6 text-primary" />
                 <div>
                   <div className="font-bold">{property.bedrooms}</div>
-                  <div className="text-sm text-muted-foreground">Bedrooms</div>
+                  <div className="text-sm text-muted-foreground">Chambres</div>
                 </div>
               </div>
               <div className="flex items-center gap-2">
                 <Bath className="h-6 w-6 text-primary" />
                 <div>
                   <div className="font-bold">{property.bathrooms}</div>
-                  <div className="text-sm text-muted-foreground">Bathrooms</div>
+                  <div className="text-sm text-muted-foreground">Salles de bain</div>
                 </div>
               </div>
               <div className="flex items-center gap-2 col-span-2">
                 <SquareGanttChart className="h-6 w-6 text-primary" />
                 <div>
-                  <div className="font-bold">{property.area.toLocaleString()} sqft</div>
-                  <div className="text-sm text-muted-foreground">Area</div>
+                  <div className="font-bold">{property.area.toLocaleString()} pi²</div>
+                  <div className="text-sm text-muted-foreground">Superficie</div>
                 </div>
               </div>
             </CardContent>
           </Card>
           <Card>
             <CardHeader>
-              <CardTitle className="font-headline text-2xl">Features</CardTitle>
+              <CardTitle className="font-headline text-2xl">Caractéristiques</CardTitle>
             </CardHeader>
             <CardContent className="flex flex-wrap gap-2">
               {property.features.map(feature => (

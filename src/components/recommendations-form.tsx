@@ -22,12 +22,12 @@ function SubmitButton() {
       {pending ? (
         <>
           <Loader2 className="mr-2 h-4 w-4 animate-spin" />
-          Getting Recommendations...
+          Obtention des recommandations...
         </>
       ) : (
         <>
           <Lightbulb className="mr-2 h-4 w-4" />
-          Get Recommendations
+          Obtenir des recommandations
         </>
       )}
     </Button>
@@ -46,15 +46,15 @@ export function RecommendationsForm() {
       <form action={formAction} className="w-full">
         <Card className="w-full">
           <CardHeader>
-            <CardTitle className="font-headline text-2xl">AI Property Recommendations</CardTitle>
+            <CardTitle className="font-headline text-2xl">Recommandations de propriétés par IA</CardTitle>
             <CardDescription>
-              Describe what you're looking for in a property, and our AI will suggest the best matches for you.
+              Décrivez ce que vous recherchez dans une propriété, et notre IA vous suggérera les meilleures correspondances.
             </CardDescription>
           </CardHeader>
           <CardContent className="space-y-6">
             <div className="space-y-2">
-              <Label htmlFor="prompt">Your ideal property</Label>
-              <Textarea id="prompt" name="prompt" placeholder="e.g., 'I'm looking for a quiet place in the suburbs with a big yard for my dog' or 'A modern apartment close to nightlife'" rows={4} />
+              <Label htmlFor="prompt">Votre propriété idéale</Label>
+              <Textarea id="prompt" name="prompt" placeholder="Ex: 'Je cherche un endroit calme en banlieue avec un grand jardin pour mon chien' ou 'Un appartement moderne proche de la vie nocturne'" rows={4} />
               {state.errors?.prompt && <p className="text-sm text-destructive">{state.errors.prompt[0]}</p>}
             </div>
           </CardContent>
@@ -68,7 +68,7 @@ export function RecommendationsForm() {
       {state.reasoning && (
         <Card className="w-full mt-8 animate-fade-in">
             <CardHeader>
-                <CardTitle className="font-headline text-2xl text-accent">AI Reasoning</CardTitle>
+                <CardTitle className="font-headline text-2xl text-accent">Raisonnement de l'IA</CardTitle>
             </CardHeader>
             <CardContent>
                 <p className="text-lg whitespace-pre-wrap font-body">{state.reasoning}</p>
@@ -78,7 +78,7 @@ export function RecommendationsForm() {
 
       {recommendedProperties.length > 0 && (
         <div className="mt-8 animate-fade-in">
-          <h2 className="font-headline text-3xl font-bold text-primary mb-6">Here are your recommendations:</h2>
+          <h2 className="font-headline text-3xl font-bold text-primary mb-6">Voici vos recommandations:</h2>
           <div className="grid grid-cols-1 gap-6 sm:grid-cols-2 lg:grid-cols-3">
             {recommendedProperties.map(property => (
               <PropertyCard key={property.id} property={property} />

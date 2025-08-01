@@ -34,14 +34,14 @@ const prompt = ai.definePrompt({
   name: 'enhancePropertyDescriptionPrompt',
   input: {schema: EnhancePropertyDescriptionInputSchema},
   output: {schema: EnhancePropertyDescriptionOutputSchema},
-  prompt: `You are an expert real estate copywriter. Enhance the following property description to make it more appealing to potential buyers. Consider the property type, location, and key features to create a compelling and informative description.
+  prompt: `Vous êtes un rédacteur immobilier expert. Améliorez la description de la propriété suivante pour la rendre plus attrayante pour les acheteurs potentiels. Tenez compte du type de propriété, de l'emplacement et des caractéristiques clés pour créer une description convaincante et informative. Rédigez en français.
 
-Original Description: {{{description}}}
-Property Type: {{{propertyType}}}
-Location: {{{location}}}
-Key Features: {{{keyFeatures}}}
+Description originale: {{{description}}}
+Type de propriété: {{{propertyType}}}
+Emplacement: {{{location}}}
+Caractéristiques clés: {{{keyFeatures}}}
 
-Enhanced Description:`,
+Description améliorée:`,
 });
 
 const enhancePropertyDescriptionFlow = ai.defineFlow(

@@ -37,16 +37,16 @@ const promptTemplate = ai.definePrompt({
     }),
   },
   output: {schema: GetPropertyRecommendationsOutputSchema},
-  prompt: `You are a real estate agent helping a user find a property.
-Based on the user's request, recommend up to 3 properties from the following list.
-Provide the reasoning for your recommendation.
+  prompt: `Vous êtes un agent immobilier qui aide un utilisateur à trouver une propriété.
+En fonction de la demande de l'utilisateur, recommandez jusqu'à 3 propriétés de la liste suivante.
+Fournissez le raisonnement de votre recommandation. La réponse doit être en français.
 
-User's request: {{{prompt}}}
+Demande de l'utilisateur: {{{prompt}}}
 
-Available properties (JSON format):
+Propriétés disponibles (format JSON):
 {{{properties}}}
 
-Please return a list of property IDs for your recommendations.
+Veuillez retourner une liste d'ID de propriété pour vos recommandations.
 `,
 });
 

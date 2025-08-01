@@ -14,7 +14,7 @@ export default function FavoritesPage() {
   return (
     <div className="container mx-auto px-4 py-12">
       <h1 className="font-headline text-4xl font-bold text-primary mb-8">
-        Your Favorite Properties
+        Vos propriétés favorites
       </h1>
       {favoriteProperties.length > 0 ? (
         <div className="grid grid-cols-1 gap-6 sm:grid-cols-2 lg:grid-cols-3 xl:grid-cols-4">
@@ -26,13 +26,13 @@ export default function FavoritesPage() {
         <div className="flex flex-col items-center justify-center text-center py-24 border-2 border-dashed rounded-lg">
           <Heart className="h-16 w-16 text-muted-foreground mb-4" />
           <h2 className="font-headline text-2xl font-bold text-primary">
-            You have no favorites yet.
+            Vous n'avez pas encore de favoris.
           </h2>
           <p className="text-muted-foreground mt-2 mb-6">
-            Click the heart icon on any property to save it here.
+            Cliquez sur l'icône du cœur sur n'importe quelle propriété pour l'enregistrer ici.
           </p>
           <Button asChild>
-            <Link href="/">Browse Properties</Link>
+            <Link href="/recommendations">Parcourir les propriétés</Link>
           </Button>
         </div>
       )}

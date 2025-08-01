@@ -21,12 +21,12 @@ function SubmitButton() {
       {pending ? (
         <>
           <Loader2 className="mr-2 h-4 w-4 animate-spin" />
-          Enhancing...
+          Amélioration...
         </>
       ) : (
         <>
           <Sparkles className="mr-2 h-4 w-4" />
-          Enhance with AI
+          Améliorer avec l'IA
         </>
       )}
     </Button>
@@ -40,30 +40,30 @@ export function EnhanceDescriptionForm() {
     <form action={formAction}>
       <Card className="w-full max-w-2xl">
         <CardHeader>
-          <CardTitle className="font-headline text-2xl">AI Description Enhancer</CardTitle>
+          <CardTitle className="font-headline text-2xl">Améliorateur de description IA</CardTitle>
           <CardDescription>
-            Provide some details about a property, and our AI will craft a compelling description for you.
+            Fournissez quelques détails sur une propriété, et notre IA rédigera une description convaincante pour vous.
           </CardDescription>
         </CardHeader>
         <CardContent className="space-y-6">
           <div className="space-y-2">
-            <Label htmlFor="propertyType">Property Type</Label>
-            <Input id="propertyType" name="propertyType" placeholder="e.g., House, Apartment, Condo" />
+            <Label htmlFor="propertyType">Type de propriété</Label>
+            <Input id="propertyType" name="propertyType" placeholder="Ex: Maison, Appartement, Condo" />
             {state.errors?.propertyType && <p className="text-sm text-destructive">{state.errors.propertyType[0]}</p>}
           </div>
           <div className="space-y-2">
-            <Label htmlFor="location">Location</Label>
-            <Input id="location" name="location" placeholder="e.g., Green Valley, Metropolis" />
+            <Label htmlFor="location">Emplacement</Label>
+            <Input id="location" name="location" placeholder="Ex: Green Valley, Metropolis" />
             {state.errors?.location && <p className="text-sm text-destructive">{state.errors.location[0]}</p>}
           </div>
           <div className="space-y-2">
-            <Label htmlFor="keyFeatures">Key Features (comma-separated)</Label>
-            <Input id="keyFeatures" name="keyFeatures" placeholder="e.g., Large Backyard, Fireplace, City View" />
+            <Label htmlFor="keyFeatures">Caractéristiques clés (séparées par des virgules)</Label>
+            <Input id="keyFeatures" name="keyFeatures" placeholder="Ex: Grand jardin, Cheminée, Vue sur la ville" />
             {state.errors?.keyFeatures && <p className="text-sm text-destructive">{state.errors.keyFeatures[0]}</p>}
           </div>
           <div className="space-y-2">
-            <Label htmlFor="description">Original Description</Label>
-            <Textarea id="description" name="description" placeholder="Enter the current property description..." rows={6} />
+            <Label htmlFor="description">Description originale</Label>
+            <Textarea id="description" name="description" placeholder="Entrez la description actuelle de la propriété..." rows={6} />
             {state.errors?.description && <p className="text-sm text-destructive">{state.errors.description[0]}</p>}
           </div>
         </CardContent>
@@ -76,7 +76,7 @@ export function EnhanceDescriptionForm() {
       {state.enhancedDescription && (
         <Card className="w-full max-w-2xl mt-8 animate-fade-in">
           <CardHeader>
-            <CardTitle className="font-headline text-2xl text-accent">Enhanced Description</CardTitle>
+            <CardTitle className="font-headline text-2xl text-accent">Description améliorée</CardTitle>
           </CardHeader>
           <CardContent>
             <p className="text-lg whitespace-pre-wrap font-body">{state.enhancedDescription}</p>

@@ -5,10 +5,10 @@ import { enhancePropertyDescription } from '@/ai/flows/enhance-property-descript
 import { getPropertyRecommendations } from '@/ai/flows/get-property-recommendations';
 
 const EnhanceFormSchema = z.object({
-  description: z.string().min(10, 'Description must be at least 10 characters.'),
-  propertyType: z.string().min(1, 'Property type is required.'),
-  location: z.string().min(1, 'Location is required.'),
-  keyFeatures: z.string().min(1, 'Please list at least one key feature.'),
+  description: z.string().min(10, 'La description doit comporter au moins 10 caractères.'),
+  propertyType: z.string().min(1, 'Le type de propriété est requis.'),
+  location: z.string().min(1, "L'emplacement est requis."),
+  keyFeatures: z.string().min(1, 'Veuillez lister au moins une caractéristique clé.'),
 });
 
 export type EnhanceFormState = {
@@ -35,7 +35,7 @@ export async function enhanceDescriptionAction(
 
   if (!validatedFields.success) {
     return {
-      message: 'Failed to enhance description. Please check the fields.',
+      message: "Échec de l'amélioration de la description. Veuillez vérifier les champs.",
       errors: validatedFields.error.flatten().fieldErrors,
     };
   }
@@ -43,19 +43,19 @@ export async function enhanceDescriptionAction(
   try {
     const result = await enhancePropertyDescription(validatedFields.data);
     return {
-      message: 'Description enhanced successfully!',
+      message: 'Description améliorée avec succès!',
       enhancedDescription: result.enhancedDescription,
     };
   } catch (error) {
-    console.error('AI enhancement failed:', error);
+    console.error("L'amélioration par IA a échoué:", error);
     return {
-      message: 'An unexpected error occurred. Please try again later.',
+      message: 'Une erreur inattendue est survenue. Veuillez réessayer plus tard.',
     };
   }
 }
 
 const RecommendationFormSchema = z.object({
-  prompt: z.string().min(10, 'Prompt must be at least 10 characters.'),
+  prompt: z.string().min(10, 'Le prompt doit comporter au moins 10 caractères.'),
 });
 
 export type RecommendationFormState = {
@@ -77,7 +77,7 @@ export async function getRecommendationsAction(
 
   if (!validatedFields.success) {
     return {
-      message: 'Failed to get recommendations. Please check the prompt.',
+      message: 'Impossible d\'obtenir des recommandations. Veuillez vérifier le prompt.',
       errors: validatedFields.error.flatten().fieldErrors,
     };
   }
@@ -85,14 +85,14 @@ export async function getRecommendationsAction(
   try {
     const result = await getPropertyRecommendations(validatedFields.data);
     return {
-      message: 'Recommendations generated successfully!',
+      message: 'Recommandations générées avec succès!',
       recommendations: result.recommendations,
       reasoning: result.reasoning,
     };
   } catch (error) {
-    console.error('AI recommendation failed:', error);
+    console.error('La recommandation par IA a échoué:', error);
     return {
-      message: 'An unexpected error occurred. Please try again later.',
+      message: 'Une erreur inattendue est survenue. Veuillez réessayer plus tard.',
     };
   }
 }

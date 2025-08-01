@@ -51,7 +51,7 @@ export function PropertyFilters({ filters, setFilters }: PropertyFiltersProps) {
         <div className="relative">
           <Search className="absolute left-3 top-1/2 -translate-y-1/2 h-5 w-5 text-muted-foreground" />
           <Input
-            placeholder="Search by location..."
+            placeholder="Rechercher par lieu..."
             value={filters.location}
             onChange={handleLocationChange}
             className="pl-10 text-base"
@@ -59,18 +59,18 @@ export function PropertyFilters({ filters, setFilters }: PropertyFiltersProps) {
         </div>
         <Select value={filters.type} onValueChange={handleTypeChange}>
           <SelectTrigger className="text-base">
-            <SelectValue placeholder="All Property Types" />
+            <SelectValue placeholder="Tous types de biens" />
           </SelectTrigger>
           <SelectContent>
-            <SelectItem value="All">All Property Types</SelectItem>
-            <SelectItem value="House">House</SelectItem>
-            <SelectItem value="Apartment">Apartment</SelectItem>
-            <SelectItem value="Condo">Condo</SelectItem>
+            <SelectItem value="All">Tous types de biens</SelectItem>
+            <SelectItem value="House">Maison</SelectItem>
+            <SelectItem value="Apartment">Appartement</SelectItem>
+            <SelectItem value="Condo">Copropriété</SelectItem>
           </SelectContent>
         </Select>
         <div className="space-y-3">
           <label className="block text-sm font-medium text-foreground">
-            Price Range: {isClient ? `$${filters.priceRange[0].toLocaleString()} - $${filters.priceRange[1].toLocaleString()}${filters.priceRange[1] === MAX_PRICE ? '+' : ''}` : 'Loading...'}
+            Fourchette de prix: {isClient ? `$${filters.priceRange[0].toLocaleString()} - $${filters.priceRange[1].toLocaleString()}${filters.priceRange[1] === MAX_PRICE ? '+' : ''}` : 'Chargement...'}
           </label>
           <Slider
             min={0}
@@ -82,7 +82,7 @@ export function PropertyFilters({ filters, setFilters }: PropertyFiltersProps) {
           />
         </div>
         <Button onClick={() => setFilters({ location: '', type: 'All', priceRange: [0, MAX_PRICE] })} variant="outline" className="h-full">
-          Reset Filters
+          Réinitialiser les filtres
         </Button>
       </div>
     </div>

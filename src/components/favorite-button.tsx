@@ -30,7 +30,7 @@ export function FavoriteButton({ propertyId, className }: FavoriteButtonProps) {
       size="icon"
       className={cn('h-8 w-8 rounded-full bg-white/80 hover:bg-white', className)}
       onClick={toggleFavorite}
-      aria-label={isFav ? 'Remove from favorites' : 'Add to favorites'}
+      aria-label={isFav ? 'Retirer des favoris' : 'Ajouter aux favoris'}
     >
       <Heart
         className={cn(

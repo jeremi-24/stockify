@@ -1,4 +1,3 @@
-
 'use client';
 
 import Image from 'next/image';
@@ -18,8 +17,15 @@ export function PropertyCard({ property }: PropertyCardProps) {
   const [formattedPrice, setFormattedPrice] = useState<string | null>(null);
 
   useEffect(() => {
-    setFormattedPrice(property.price.toLocaleString());
+    // navigator.language can be used here to determined the user's locale
+    setFormattedPrice(new Intl.NumberFormat(undefined, {
+      style: 'currency',
+      currency: 'USD',
+      minimumFractionDigits: 0,
+      maximumFractionDigits: 0,
+    }).format(property.price));
   }, [property.price]);
+
 
   return (
     <Link href={`/property/${property.id}`} className="group block">
@@ -49,20 +55,20 @@ export function PropertyCard({ property }: PropertyCardProps) {
           </h3>
           <p className="text-sm text-muted-foreground mb-2">{property.location}</p>
           <p className="font-headline text-2xl font-bold text-accent mb-4">
-            {formattedPrice ? `$${formattedPrice}` : '...'}
+            {formattedPrice ? formattedPrice : '...'}
           </p>
           <div className="flex justify-between border-t pt-3 text-sm text-muted-foreground">
             <div className="flex items-center gap-2">
               <BedDouble className="h-4 w-4" />
-              <span>{property.bedrooms} Beds</span>
+              <span>{property.bedrooms} Ch.</span>
             </div>
             <div className="flex items-center gap-2">
               <Bath className="h-4 w-4" />
-              <span>{property.bathrooms} Baths</span>
+              <span>{property.bathrooms} Sdb.</span>
             </div>
             <div className="flex items-center gap-2">
               <SquareGanttChart className="h-4 w-4" />
-              <span>{property.area.toLocaleString()} sqft</span>
+              <span>{property.area.toLocaleString()} pi²</span>
             </div>
           </div>
         </CardContent>

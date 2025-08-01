@@ -42,9 +42,9 @@ export function PropertyListings({ initialProperties }: PropertyListingsProps) {
         </div>
       ) : (
         <div className="text-center py-16">
-          <h2 className="font-headline text-2xl font-bold">No Properties Found</h2>
+          <h2 className="font-headline text-2xl font-bold">Aucune propriété trouvée</h2>
           <p className="text-muted-foreground mt-2">
-            Try adjusting your filters to find more properties.
+            Essayez d'ajuster vos filtres pour trouver plus de propriétés.
           </p>
         </div>
       )}
