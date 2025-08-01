@@ -387,34 +387,36 @@ export default function Home() {
                     Rejoignez des milliers de commerçants qui font confiance à Stockify pour optimiser leur business.
                 </p>
             </div>
-            <Card className="bg-card/80 backdrop-blur-sm border-border/50 text-card-foreground shadow-2xl">
-                <CardHeader>
-                    <CardTitle className="text-2xl font-bold">Plan Pro</CardTitle>
-                    <CardDescription>La solution complète pour les entreprises en croissance.</CardDescription>
-                </CardHeader>
-                <CardContent className="space-y-6">
-                    <div className="text-4xl font-bold">
-                        29€ <span className="text-lg font-normal text-muted-foreground">/mois</span>
-                    </div>
-                    <ul className="space-y-3 text-sm text-muted-foreground">
-                        <li className="flex items-center gap-2">
-                            <Check className="h-4 w-4 text-red-500" />
-                            <span>Toutes les fonctionnalités de base</span>
-                        </li>
-                        <li className="flex items-center gap-2">
-                            <Check className="h-4 w-4 text-red-500" />
-                            <span>Support prioritaire</span>
-                        </li>
-                        <li className="flex items-center gap-2">
-                            <Check className="h-4 w-4 text-red-500" />
-                            <span>Analyses avancées</span>
-                        </li>
-                    </ul>
-                    <Button size="lg" className="w-full mt-4 rounded-full bg-red-500 px-8 text-lg font-semibold text-white transition-colors hover:bg-red-600">
-                        Passez à l'action
-                    </Button>
-                </CardContent>
-            </Card>
+             <div className="flex justify-center md:justify-end">
+                <Card className="bg-card/80 backdrop-blur-sm border-border/50 text-card-foreground shadow-2xl w-full max-w-md">
+                    <CardHeader>
+                        <CardTitle className="text-2xl font-bold">Plan Pro</CardTitle>
+                        <CardDescription>La solution complète pour les entreprises en croissance.</CardDescription>
+                    </CardHeader>
+                    <CardContent className="space-y-6">
+                        <div className="text-4xl font-bold">
+                            29€ <span className="text-lg font-normal text-muted-foreground">/mois</span>
+                        </div>
+                        <ul className="space-y-3 text-sm text-muted-foreground">
+                            <li className="flex items-center gap-2">
+                                <Check className="h-4 w-4 text-red-500" />
+                                <span>Toutes les fonctionnalités de base</span>
+                            </li>
+                            <li className="flex items-center gap-2">
+                                <Check className="h-4 w-4 text-red-500" />
+                                <span>Support prioritaire</span>
+                            </li>
+                            <li className="flex items-center gap-2">
+                                <Check className="h-4 w-4 text-red-500" />
+                                <span>Analyses avancées</span>
+                            </li>
+                        </ul>
+                        <Button size="lg" className="w-full mt-4 rounded-full bg-red-500 px-8 text-lg font-semibold text-white transition-colors hover:bg-red-600">
+                            Passez à l'action
+                        </Button>
+                    </CardContent>
+                </Card>
+            </div>
         </div>
       </section>
 
