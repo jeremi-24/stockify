@@ -264,7 +264,7 @@ export default function Home() {
         <div className="absolute inset-0 -z-10 bg-[radial-gradient(ellipse_at_center,rgba(214,40,40,0.15),transparent_80%)]"></div>
         <div className="text-center mb-12">
             <Badge variant="secondary" className="text-base px-6 py-2 mb-4">Fonctionnalités</Badge>
-            <h2 className="text-3xl md:text-4xl font-bold tracking-tight">Une plateforme, un contrôle total</h2>
+            <h2 className="text-3xl md:text-4xl font-bold tracking-tight">Une plateforme, un <span className="relative inline-block">contrôle<svg className="absolute -bottom-1 left-0 w-full h-2 text-red-500" viewBox="0 0 100 8" preserveAspectRatio="none"><path d="M0.7,7.03c11.53-2.06,23.73-3.3,35.73-4.52c11.4-1.16,22.99-2.25,34.36-3.32c11.48-1.08,23.08-2.09,34.58-3.1" fill="none" stroke="currentColor" strokeWidth="2" strokeLinecap="round"></path></svg></span> total</h2>
             <p className="mt-4 max-w-2xl mx-auto text-lg text-muted-foreground">
                 De la gestion de stock au point de vente, en passant par le suivi de commande, tout est conçu pour fonctionner ensemble.
             </p>
