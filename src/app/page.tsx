@@ -1,3 +1,4 @@
+
 "use client";
 
 import { Badge } from "@/components/ui/badge";
@@ -305,14 +306,13 @@ export default function Home() {
             </div>
 
             <div className="relative w-full flex justify-center items-center">
-                <div className="absolute top-1/2 left-0 w-full h-0.5 bg-border -translate-y-1/2"></div>
                 <div className="relative z-10 flex items-center justify-center w-full max-w-4xl gap-8">
                     <Image
                         src="https://placehold.co/300x300.png"
                         alt="Commande 1"
                         width={300}
                         height={300}
-                        className="rounded-2xl shadow-2xl bg-background p-2"
+                        className="rounded-2xl shadow-2xl bg-background p-2 transition-all duration-300 hover:shadow-red-500/50 hover:shadow-2xl"
                         data-ai-hint="order management interface"
                     />
                     <Image
@@ -320,7 +320,7 @@ export default function Home() {
                         alt="Commande 2"
                         width={300}
                         height={300}
-                        className="rounded-2xl shadow-2xl bg-background p-2"
+                        className="rounded-2xl shadow-2xl bg-background p-2 transition-all duration-300 hover:shadow-red-500/50 hover:shadow-2xl"
                         data-ai-hint="order details screen"
                     />
                     <Image
@@ -328,7 +328,7 @@ export default function Home() {
                         alt="Commande 3"
                         width={300}
                         height={300}
-                        className="rounded-2xl shadow-2xl bg-background p-2"
+                        className="rounded-2xl shadow-2xl bg-background p-2 transition-all duration-300 hover:shadow-red-500/50 hover:shadow-2xl"
                         data-ai-hint="customer order history"
                     />
                 </div>
