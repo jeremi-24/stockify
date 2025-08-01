@@ -77,14 +77,12 @@ const testimonials = [
 const TestimonialCard = ({ testimonial, index, scrollYProgress }: { testimonial: (typeof testimonials)[0], index: number, scrollYProgress: any }) => {
     const scale = useTransform(scrollYProgress, [index * 0.25, (index + 1) * 0.25], [0.8, 1]);
     const translateY = useTransform(scrollYProgress, [index * 0.25, (index + 1) * 0.25], [100, 0]);
-    const opacity = useTransform(scrollYProgress, [index * 0.25, (index + 1) * 0.25], [0, 1]);
 
     return (
       <motion.div
         style={{
           scale,
           translateY,
-          opacity,
           zIndex: index,
         }}
         className={cn(
