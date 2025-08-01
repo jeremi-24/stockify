@@ -1,6 +1,6 @@
 # Stockify - Gestion de stock simplifiée
 
-Ce projet est une application web moderne construite avec Next.js et stylisée avec Tailwind CSS. Elle offre une interface élégante et animée pour présenter un logiciel de gestion de stock fictif nommé "Stockify".
+Ce projet est une  Landing page   moderne construite avec Next.js et stylisée avec Tailwind CSS. Elle offre une interface élégante et animée pour présenter un logiciel de gestion de stock fictif nommé "Stockify".
 
 ## Stack technique
 
