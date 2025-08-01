@@ -10,7 +10,7 @@ import {
   DropdownMenuTrigger,
 } from "@/components/ui/dropdown-menu";
 import { cn } from "@/lib/utils";
-import { ChevronDown, Sparkles, Twitter, Linkedin, Facebook, Star } from "lucide-react";
+import { ChevronDown, Sparkles, Twitter, Linkedin, Facebook, Star, CheckCircle2 } from "lucide-react";
 import Image from "next/image";
 import { Card, CardContent } from "@/components/ui/card";
 import { Avatar, AvatarFallback, AvatarImage } from "@/components/ui/avatar";
@@ -73,6 +73,31 @@ const testimonials = [
       text: "En tant que startup, nous avions besoin d'une solution tout-en-un. Stockify nous a permis de centraliser nos commandes et de nous concentrer sur notre croissance.",
     },
 ];
+
+const BentoCard = ({ className, children }: { className?: string, children: React.ReactNode }) => (
+    <div className={cn("relative rounded-xl border border-border/50 bg-secondary/20 shadow-lg backdrop-blur-sm p-6 overflow-hidden", className)}>
+        {children}
+    </div>
+);
+
+const BentoContent = ({ title, text, className, children }: { title: string, text: string, className?: string, children?: React.ReactNode }) => (
+    <div className={cn("relative z-10 flex flex-col h-full", className)}>
+        <h3 className="text-xl font-bold">{title}</h3>
+        <p className="text-sm text-muted-foreground mt-2 flex-1">{text}</p>
+        {children}
+    </div>
+);
+
+const BentoImage = ({ src, alt, hint }: { src: string, alt: string, hint: string }) => (
+    <Image
+        src={src}
+        alt={alt}
+        fill
+        className="absolute inset-0 object-cover opacity-10 -z-10"
+        data-ai-hint={hint}
+    />
+);
+
 
 const TestimonialCard = ({ testimonial, index, scrollYProgress }: { testimonial: (typeof testimonials)[0], index: number, scrollYProgress: any }) => {
     const totalCards = testimonials.length;
@@ -217,41 +242,61 @@ export default function Home() {
         />
       </section>
       
-      <section className="container mx-auto px-4 md:px-6 py-16 md:py-24 space-y-24">
-        <div className="grid md:grid-cols-2 gap-12 items-center">
-          <div>
-            <Badge variant="secondary" className="text-base px-6 py-2 mb-4">Inventaire</Badge>
-            <h2 className="text-3xl md:text-4xl font-bold tracking-tight">Gérez votre inventaire avec précision</h2>
-            <p className="mt-4 text-lg text-muted-foreground">
-              Suivez vos niveaux de stock en temps réel, recevez des alertes de stock bas et automatisez vos processus de réapprovisionnement pour ne jamais manquer une vente.
+      <section className="container mx-auto px-4 md:px-6 py-16 md:py-24">
+        <div className="text-center mb-12">
+            <Badge variant="secondary" className="text-base px-6 py-2 mb-4">Fonctionnalités</Badge>
+            <h2 className="text-3xl md:text-4xl font-bold tracking-tight">Une plateforme, un contrôle total</h2>
+            <p className="mt-4 max-w-2xl mx-auto text-lg text-muted-foreground">
+                De la gestion de stock au point de vente, en passant par le suivi de commande, tout est conçu pour fonctionner ensemble.
             </p>
-          </div>
-          <Image
-            src="https://placehold.co/600x400.png"
-            alt="Gestion d'inventaire"
-            width={600}
-            height={400}
-            className="rounded-xl shadow-2xl"
-            data-ai-hint="inventory management"
-          />
         </div>
 
-        <div className="grid md:grid-cols-2 gap-12 items-center">
-          <Image
-            src="https://placehold.co/600x400.png"
-            alt="Point de Vente"
-            width={600}
-            height={400}
-            className="rounded-xl shadow-2xl md:order-last"
-            data-ai-hint="point of sale system"
-          />
-          <div>
-            <Badge variant="secondary" className="text-base px-6 py-2 mb-4">Point de Vente</Badge>
-            <h2 className="text-3xl md:text-4xl font-bold tracking-tight">Un système de point de vente intégré</h2>
-            <p className="mt-4 text-lg text-muted-foreground">
-              Acceptez les paiements en ligne et en magasin avec un système POS complet, synchronisé automatiquement avec votre inventaire.
-            </p>
-          </div>
+        <div className="grid grid-cols-1 md:grid-cols-3 lg:grid-cols-4 gap-6">
+            <BentoCard className="md:col-span-2 lg:col-span-2 row-span-2">
+                <BentoContent 
+                    title="Vue d'ensemble de votre activité" 
+                    text="Obtenez une vision claire et en temps réel de tous les aspects de votre commerce depuis une interface unique."
+                />
+                <BentoImage src="https://placehold.co/800x600.png" alt="Dashboard" hint="business dashboard"/>
+            </BentoCard>
+            <BentoCard>
+                <BentoContent
+                    title="Inventaire précis"
+                    text="Suivez vos stocks en temps réel. Ne manquez plus jamais une vente."
+                />
+                <BentoImage src="https://placehold.co/400x300.png" alt="Inventaire" hint="inventory product"/>
+            </BentoCard>
+            <BentoCard>
+                <BentoContent
+                    title="Point de Vente (POS)"
+                    text="Acceptez les paiements en ligne et en magasin. Le tout synchronisé."
+                />
+                <BentoImage src="https://placehold.co/400x300.png" alt="Point de Vente" hint="point of sale"/>
+            </BentoCard>
+            <BentoCard className="lg:col-span-2">
+                 <BentoContent
+                    title="Commandes centralisées"
+                    text="Gérez les commandes de tous vos canaux de vente depuis une seule interface."
+                />
+                <BentoImage src="https://placehold.co/800x300.png" alt="Commandes" hint="order management"/>
+            </BentoCard>
+             <BentoCard className="md:col-span-2 lg:col-span-2">
+                <BentoContent
+                    title="Préparation optimisée"
+                    text="Organisez votre entrepôt et accélérez la préparation de vos colis grâce à la gestion de cartons."
+                >
+                     <div className="mt-4 flex flex-col gap-2 text-sm text-foreground">
+                        <div className="flex items-center gap-2">
+                            <CheckCircle2 className="h-4 w-4 text-red-500" />
+                            <span>Listes de prélèvement intelligentes</span>
+                        </div>
+                        <div className="flex items-center gap-2">
+                            <CheckCircle2 className="h-4 w-4 text-red-500" />
+                            <span>Emballage rapide et sans erreur</span>
+                        </div>
+                    </div>
+                </BentoContent>
+            </BentoCard>
         </div>
       </section>
 
@@ -276,24 +321,6 @@ export default function Home() {
       </section>
 
        <section className="container mx-auto px-4 md:px-6 py-16 md:py-24 space-y-24">
-        <div className="grid md:grid-cols-2 gap-12 items-center">
-          <div>
-            <Badge variant="secondary" className="text-base px-6 py-2 mb-4">Gestion de Cartons</Badge>
-            <h2 className="text-3xl md:text-4xl font-bold tracking-tight">Optimisez la préparation des commandes</h2>
-            <p className="mt-4 text-lg text-muted-foreground">
-              Organisez votre entrepôt, générez des listes de prélèvement et emballez vos commandes plus rapidement avec notre module de gestion de cartons.
-            </p>
-          </div>
-          <Image
-            src="https://placehold.co/600x400.png"
-            alt="Gestion de Cartons"
-            width={600}
-            height={400}
-            className="rounded-xl shadow-2xl"
-            data-ai-hint="warehouse shipping boxes"
-          />
-        </div>
-
         <div className="flex flex-col items-center text-center gap-8">
             <div className="flex flex-col items-center gap-4">
                 <Badge variant="secondary" className="text-base px-6 py-2">Commande</Badge>
