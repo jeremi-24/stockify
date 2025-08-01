@@ -92,7 +92,7 @@ const TestimonialCard = ({ testimonial, index, scrollY }: { testimonial: (typeof
           zIndex: testimonials.length - index, // Higher index cards are on top
         }}
         className={cn(
-          "w-full max-w-2xl absolute top-1/2 -translate-y-1/2"
+          "w-full max-w-2xl absolute top-1/2 -translate-y-[calc(50%_-_100px)]"
         )}
       >
         <CardContent className="p-8">
@@ -312,7 +312,7 @@ export default function Home() {
                         alt="Commande 1"
                         width={300}
                         height={300}
-                        className="rounded-2xl shadow-2xl transition-all duration-300 hover:shadow-red-500/50 hover:shadow-2xl"
+                        className="rounded-2xl shadow-xl transition-all duration-300 hover:shadow-red-500/50 hover:shadow-2xl"
                         data-ai-hint="order management interface"
                     />
                     <Image
@@ -320,7 +320,7 @@ export default function Home() {
                         alt="Commande 2"
                         width={300}
                         height={300}
-                        className="rounded-2xl shadow-2xl transition-all duration-300 hover:shadow-red-500/50 hover:shadow-2xl"
+                        className="rounded-2xl shadow-xl transition-all duration-300 hover:shadow-red-500/50 hover:shadow-2xl"
                         data-ai-hint="order details screen"
                     />
                     <Image
@@ -328,7 +328,7 @@ export default function Home() {
                         alt="Commande 3"
                         width={300}
                         height={300}
-                        className="rounded-2xl shadow-2xl transition-all duration-300 hover:shadow-red-500/50 hover:shadow-2xl"
+                        className="rounded-2xl shadow-xl transition-all duration-300 hover:shadow-red-500/50 hover:shadow-2xl"
                         data-ai-hint="customer order history"
                     />
                 </div>
@@ -336,7 +336,7 @@ export default function Home() {
         </div>
       </section>
 
-      <section ref={sectionRef} className="relative" style={{ height: `${(testimonials.length + 1) * 100}vh` }}>
+      <section ref={sectionRef} className="relative" style={{ height: `${(testimonials.length + 1) * 50}vh` }}>
         <div className="sticky top-0 h-screen flex flex-col items-center justify-center overflow-hidden">
             <h2 className="text-center text-3xl md:text-4xl mb-10 font-bold tracking-tight ">
                 Ce que nos clients disent de nous
@@ -351,6 +351,26 @@ export default function Home() {
                     />
                 ))}
             </div>
+        </div>
+      </section>
+      
+      <section className="relative w-full py-24 md:py-32 overflow-hidden">
+        <Image
+          src="https://placehold.co/1920x1080.png"
+          alt="CTA Background"
+          fill
+          className="absolute inset-0 object-cover -z-20"
+          data-ai-hint="abstract background texture"
+        />
+        <div className="absolute inset-0 bg-black/60 -z-10"></div>
+        <div className="container mx-auto px-4 md:px-6 text-center text-white relative z-10">
+          <h2 className="text-3xl md:text-5xl font-bold tracking-tight">Prêt à transformer votre gestion ?</h2>
+          <p className="mt-4 max-w-xl mx-auto text-lg text-white/80">
+            Rejoignez des milliers de commerçants qui font confiance à Stockify pour optimiser leur business.
+          </p>
+          <Button size="lg" className="mt-8 rounded-full bg-red-500 px-8 text-lg font-semibold text-white transition-colors hover:bg-red-600">
+            Passez à l'action
+          </Button>
         </div>
       </section>
 
