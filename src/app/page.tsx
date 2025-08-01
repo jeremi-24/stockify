@@ -14,11 +14,8 @@ import { ChevronDown, Sparkles, Twitter, Linkedin, Facebook, Star, CheckCircle2,
 import Image from "next/image";
 import { Card, CardContent, CardHeader, CardTitle, CardDescription } from "@/components/ui/card";
 import { Avatar, AvatarFallback, AvatarImage } from "@/components/ui/avatar";
-import React, { useRef } from "react";
-import { motion, useScroll, useTransform } from "framer-motion";
-import { Carousel, CarouselContent, CarouselItem } from "@/components/ui/carousel";
-import Autoplay from "embla-carousel-autoplay";
-
+import React, { useState, useEffect, useRef } from "react";
+import { motion, useScroll, useTransform, AnimatePresence } from "framer-motion";
 
 function LogoIcon(props: React.SVGProps<SVGSVGElement>) {
   return (
@@ -77,12 +74,9 @@ const testimonials = [
 ];
 
 const carouselImages = [
-    { src: "/order.svg", alt: "Order management interface", hint: "order management interface" },
-    { src: "/order2.svg", alt: "Order details screen", hint: "order details screen" },
-    { src: "/order3.svg", alt: "Customer order history", hint: "customer order history" },
-    { src: "/order1.svg", alt: "Order management interface", hint: "order management interface" },
-    { src: "/order2.svg", alt: "Order details screen", hint: "order details screen" },
-    { src: "/order3.svg", alt: "Customer order history", hint: "customer order history" },
+    { src: "https://placehold.co/1200x600.png", alt: "Order management interface", hint: "order management interface" },
+    { src: "https://placehold.co/1200x600.png", alt: "Order details screen", hint: "order details screen" },
+    { src: "https://placehold.co/1200x600.png", alt: "Customer order history", hint: "customer order history" },
 ];
 
 const BentoCard = ({ className, children }: { className?: string, children: React.ReactNode }) => (
@@ -166,9 +160,17 @@ export default function Home() {
       offset: ["start start", "end end"]
     });
     
-    const autoplayPlugin = useRef(
-      Autoplay({ delay: 2000, stopOnInteraction: true })
-    );
+    const [currentImageIndex, setCurrentImageIndex] = useState(0);
+
+    useEffect(() => {
+        const timer = setTimeout(() => {
+            setCurrentImageIndex((prevIndex) =>
+                prevIndex === carouselImages.length - 1 ? 0 : prevIndex + 1
+            );
+        }, 3000);
+
+        return () => clearTimeout(timer);
+    }, [currentImageIndex]);
 
   return (
     <div className="relative min-h-screen w-full bg-background text-foreground">
@@ -345,32 +347,25 @@ export default function Home() {
                 </p>
             </div>
 
-            <div className="w-full">
-                 <Carousel
-                    plugins={[autoplayPlugin.current]}
-                    opts={{
-                        align: "center",
-                        loop: true,
-                    }}
-                    className="w-full max-w-4xl mx-auto"
-                >
-                    <CarouselContent>
-                        {carouselImages.map((image, index) => (
-                            <CarouselItem key={index} className="md:basis-1/2 lg:basis-1/3 flex justify-center items-center">
-                                <div className="p-1">
-                                    <Image
-                                        src={image.src}
-                                        alt={image.alt}
-                                        width={300}
-                                        height={300}
-                                        className="rounded-2xl object-cover shadow-xl transition-all duration-300 hover:scale-110 hover:shadow-red-500/50 hover:shadow-2xl"
-                                        data-ai-hint={image.hint}
-                                    />
-                                </div>
-                            </CarouselItem>
-                        ))}
-                    </CarouselContent>
-                </Carousel>
+            <div className="w-full max-w-[1200px] h-[600px] relative overflow-hidden rounded-2xl shadow-xl">
+                 <AnimatePresence>
+                    <motion.div
+                        key={currentImageIndex}
+                        initial={{ opacity: 0 }}
+                        animate={{ opacity: 1 }}
+                        exit={{ opacity: 0 }}
+                        transition={{ duration: 0.5 }}
+                        className="absolute inset-0"
+                    >
+                        <Image
+                            src={carouselImages[currentImageIndex].src}
+                            alt={carouselImages[currentImageIndex].alt}
+                            layout="fill"
+                            objectFit="cover"
+                            data-ai-hint={carouselImages[currentImageIndex].hint}
+                        />
+                    </motion.div>
+                </AnimatePresence>
             </div>
         </div>
       </section>
