@@ -45,7 +45,7 @@ export function RecommendationsForm({ formAction, state, className }: Recommenda
               name="prompt"
               placeholder="Ex: 'Je cherche un endroit calme en banlieue avec un grand jardin pour mon chien' ou 'Un appartement moderne proche de la vie nocturne'"
               rows={3}
-              className="w-full text-base border-2 rounded-xl focus-visible:ring-accent pr-20 py-4 pl-4"
+              className="w-full text-base border-2 rounded-xl focus-visible:ring-accent pr-20 py-4 pl-4 resize-none"
               aria-label="Votre propriété idéale"
             />
             <SubmitButton />
