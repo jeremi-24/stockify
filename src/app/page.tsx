@@ -11,6 +11,10 @@ import {
 import { cn } from "@/lib/utils";
 import { ChevronDown, Sparkles } from "lucide-react";
 import Image from "next/image";
+import { Card, CardContent } from "@/components/ui/card";
+import { Avatar, AvatarFallback, AvatarImage } from "@/components/ui/avatar";
+import React from "react";
+
 
 function LogoIcon(props: React.SVGProps<SVGSVGElement>) {
   return (
@@ -40,6 +44,62 @@ const logos = [
   { name: 'ECHO' },
   { name: 'QUANTUM' },
 ];
+
+const testimonials = [
+    {
+      name: "Jean Dupont",
+      title: "Gérant de e-commerce",
+      avatar: "https://placehold.co/100x100.png",
+      text: "Stockify a transformé ma gestion des stocks. Je gagne un temps précieux et j'ai réduit mes erreurs de 50%. C'est un outil indispensable pour tout commerçant.",
+    },
+    {
+      name: "Marie Curie",
+      title: "Directrice des opérations",
+      avatar: "https://placehold.co/100x100.png",
+      text: "L'intégration du point de vente avec l'inventaire est un véritable game-changer. Tout est synchronisé en temps réel, c'est incroyablement efficace.",
+    },
+    {
+      name: "Pierre Martin",
+      title: "Responsable d'entrepôt",
+      avatar: "https://placehold.co/100x100.png",
+      text: "La fonctionnalité de gestion des cartons a optimisé notre processus de préparation de commandes comme jamais auparavant. Nos clients sont livrés plus vite.",
+    },
+    {
+      name: "Sophie Leroy",
+      title: "Fondatrice de startup",
+      avatar: "https://placehold.co/100x100.png",
+      text: "En tant que startup, nous avions besoin d'une solution tout-en-un. Stockify nous a permis de centraliser nos commandes et de nous concentrer sur notre croissance.",
+    },
+];
+
+const TestimonialCard = ({ testimonial, index }: { testimonial: (typeof testimonials)[0], index: number }) => {
+    return (
+        <Card
+            style={{
+                transform: `scale(${1 - (testimonials.length - 1 - index) * 0.05}) translateY(${(testimonials.length - 1 - index) * -10}px)`,
+                opacity: 1 - (testimonials.length - 1 - index) * 0.1,
+            }}
+            className={cn(
+                "w-full max-w-2xl absolute top-1/2 -translate-y-1/2 transition-transform duration-500 ease-in-out",
+                "group-data-[scroll=end]:opacity-0 group-data-[scroll=end]:-translate-y-1/2 group-data-[scroll=end]:scale-90"
+            )}
+        >
+            <CardContent className="p-8">
+                <p className="text-lg text-muted-foreground mb-6">"{testimonial.text}"</p>
+                <div className="flex items-center gap-4">
+                    <Avatar>
+                        <AvatarImage src={testimonial.avatar} alt={testimonial.name} />
+                        <AvatarFallback>{testimonial.name.charAt(0)}</AvatarFallback>
+                    </Avatar>
+                    <div>
+                        <p className="font-semibold text-foreground">{testimonial.name}</p>
+                        <p className="text-sm text-muted-foreground">{testimonial.title}</p>
+                    </div>
+                </div>
+            </CardContent>
+        </Card>
+    );
+};
 
 export default function Home() {
   return (
@@ -128,7 +188,7 @@ export default function Home() {
           data-ai-hint="dashboard screenshot"
         />
       </section>
-
+      
       <section className="container mx-auto px-4 md:px-6 py-16 md:py-24 space-y-24">
         <div className="grid md:grid-cols-2 gap-12 items-center">
           <div>
@@ -224,6 +284,40 @@ export default function Home() {
           </div>
         </div>
       </section>
+
+      <section className="container mx-auto px-4 md:px-6 py-16 md:py-24">
+          <h2 className="text-center text-3xl md:text-4xl font-bold tracking-tight mb-12">
+              Ce que nos clients disent de nous
+          </h2>
+          <div className="relative h-[250vh]">
+              <div className="sticky top-0 h-screen flex flex-col items-center justify-center gap-4">
+                  {testimonials.map((testimonial, index) => {
+                      const groupNumber = Math.floor(index);
+                      return (
+                          <div
+                              key={index}
+                              className="group w-full"
+                              style={{
+                                  transform: `translateY(${index * 100}vh)`,
+                                  position: 'absolute',
+                                  top: 0,
+                                  left: 0,
+                                  right: 0,
+                                  bottom: 0,
+                                  height: '100vh'
+                              }}
+                              data-scroll={index === testimonials.length - 1 ? "end" : ""}
+                          >
+                              <div className="sticky top-0 h-screen flex items-center justify-center">
+                                 <TestimonialCard testimonial={testimonial} index={index}/>
+                              </div>
+                          </div>
+                      );
+                  })}
+              </div>
+          </div>
+      </section>
+
     </div>
   );
 }
