@@ -16,6 +16,9 @@ export default {
       },
     },
     extend: {
+      rotate: {
+        '6': '6deg',
+      },
       fontFamily: {
         body: ['Roboto', 'sans-serif'],
         headline: ['Montserrat', 'sans-serif'],

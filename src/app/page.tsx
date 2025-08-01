@@ -161,6 +161,7 @@ export default function Home() {
     });
     
     const [currentImageIndex, setCurrentImageIndex] = useState(0);
+    const [isScrolled, setIsScrolled] = useState(false);
 
     useEffect(() => {
         const timer = setTimeout(() => {
@@ -172,60 +173,76 @@ export default function Home() {
         return () => clearTimeout(timer);
     }, [currentImageIndex]);
 
+    useEffect(() => {
+      const handleScroll = () => {
+        setIsScrolled(window.scrollY > 50);
+      };
+      window.addEventListener("scroll", handleScroll);
+      return () => window.removeEventListener("scroll", handleScroll);
+    }, []);
+
   return (
     <div className="relative min-h-screen w-full bg-background text-foreground">
       <div className="absolute inset-0 -z-10 h-full w-full bg-[radial-gradient(#3e3e3e_1px,transparent_1px)] [background-size:16px_16px]"></div>
        <div className="absolute inset-0 -z-20 h-full w-full bg-gradient-to-br from-background via-indigo-950/40 to-background"></div>
 
-      <header className="container mx-auto flex h-20 items-center justify-between px-4 md:px-6">
-        <div className="flex items-center gap-6">
-          <a href="#" className="flex items-center gap-2">
-            <LogoIcon className="h-6 w-6" />
-            <span className="text-xl font-bold">Stockify</span>
-          </a>
-          <nav className="hidden items-center gap-6 md:flex">
-            <DropdownMenu>
-              <DropdownMenuTrigger className="flex items-center gap-1 text-sm font-medium text-muted-foreground outline-none transition-colors hover:text-foreground">
-                Fonctionnalités <ChevronDown className="h-4 w-4" />
-              </DropdownMenuTrigger>
-              <DropdownMenuContent>
-                <DropdownMenuItem>Gestion des stocks</DropdownMenuItem>
-                <DropdownMenuItem>Commandes</DropdownMenuItem>
-              </DropdownMenuContent>
-            </DropdownMenu>
-            <DropdownMenu>
-              <DropdownMenuTrigger className="flex items-center gap-1 text-sm font-medium text-muted-foreground outline-none transition-colors hover:text-foreground">
-                Cas d'usage <ChevronDown className="h-4 w-4" />
-              </DropdownMenuTrigger>
-              <DropdownMenuContent>
-                <DropdownMenuItem>Pour les PME</DropdownMenuItem>
-                <DropdownMenuItem>Pour les e-commerçants</DropdownMenuItem>
-              </DropdownMenuContent>
-            </DropdownMenu>
-            <a
-              href="#"
-              className="text-sm font-medium text-muted-foreground transition-colors hover:text-foreground"
-            >
-              Nouveautés
+       <header className={cn(
+        "fixed top-0 left-0 right-0 z-50 flex items-center justify-between transition-all duration-300",
+        isScrolled 
+          ? "h-16 bg-background/80 backdrop-blur-lg border-b border-border/20 shadow-sm"
+          : "h-20 bg-transparent"
+        )}>
+        <div className="container mx-auto flex items-center justify-between">
+          <div className="flex items-center gap-6">
+            <a href="#" className="flex items-center gap-2">
+              <LogoIcon className="h-6 w-6" />
+              <span className="text-xl font-bold">Stockify</span>
             </a>
-            <a
-              href="#"
-              className="text-sm font-medium text-muted-foreground transition-colors hover:text-foreground"
-            >
-              Tarifs
-            </a>
-          </nav>
-        </div>
-        <div className="flex items-center gap-4">
-          <Button variant="ghost">Connexion</Button>
-          <Button className="rounded-full bg-red-500 px-6 font-semibold text-white transition-colors hover:bg-red-600">
-            Inscription
-          </Button>
+            <nav className="hidden items-center gap-6 md:flex">
+              <DropdownMenu>
+                <DropdownMenuTrigger className="flex items-center gap-1 text-sm font-medium text-muted-foreground outline-none transition-colors hover:text-foreground">
+                  Fonctionnalités <ChevronDown className="h-4 w-4" />
+                </DropdownMenuTrigger>
+                <DropdownMenuContent>
+                  <DropdownMenuItem>Gestion des stocks</DropdownMenuItem>
+                  <DropdownMenuItem>Commandes</DropdownMenuItem>
+                </DropdownMenuContent>
+              </DropdownMenu>
+              <DropdownMenu>
+                <DropdownMenuTrigger className="flex items-center gap-1 text-sm font-medium text-muted-foreground outline-none transition-colors hover:text-foreground">
+                  Cas d'usage <ChevronDown className="h-4 w-4" />
+                </DropdownMenuTrigger>
+                <DropdownMenuContent>
+                  <DropdownMenuItem>Pour les PME</DropdownMenuItem>
+                  <DropdownMenuItem>Pour les e-commerçants</DropdownMenuItem>
+                </DropdownMenuContent>
+              </DropdownMenu>
+              <a
+                href="#"
+                className="text-sm font-medium text-muted-foreground transition-colors hover:text-foreground"
+              >
+                Nouveautés
+              </a>
+              <a
+                href="#"
+                className="text-sm font-medium text-muted-foreground transition-colors hover:text-foreground"
+              >
+                Tarifs
+              </a>
+            </nav>
+          </div>
+          <div className="flex items-center gap-4">
+            <Button variant="ghost">Connexion</Button>
+            <Button className="rounded-full bg-red-500 px-6 font-semibold text-white transition-colors hover:bg-red-600">
+              Inscription
+            </Button>
+          </div>
         </div>
       </header>
 
-      <main className="container mx-auto flex flex-col items-center justify-center px-4 pt-24 pb-12 text-center md:px-6 md:pt-32 md:pb-16 relative">
-        <div className="absolute inset-x-0 top-1/2 -translate-y-1/2 -z-10 bg-[radial-gradient(ellipse_at_center,rgba(214,40,40,0.15),transparent_60%)] h-64"></div>
+      <main className="container relative mx-auto flex flex-col items-center justify-center px-4  pb-12 text-center md:px-6 pt-28 md:pt-40 md:pb-16 relative">
+        <div className="absolute -z-10 -top-20 left-1/2 -translate-x-1/2 w-full max-w-4xl h-96 bg-[radial-gradient(ellipse_at_center,rgba(214,40,40,0.15),transparent_80%)]"></div>
+
         <div className="mb-8 flex items-center gap-2 rounded-full bg-secondary/70 px-4 py-1.5 text-sm font-medium text-muted-foreground backdrop-blur-sm">
           <span className="rounded-full bg-primary/20 p-1 text-primary">
             <Sparkles className="h-4 w-4 fill-primary" />
@@ -261,10 +278,10 @@ export default function Home() {
       </section>
       
       <section className="container mx-auto px-4 md:px-6 py-16 md:py-24 relative">
-        <div className="absolute inset-0 -z-10 bg-[radial-gradient(ellipse_at_center,rgba(214,40,40,0.15),transparent_80%)]"></div>
+        <div className="absolute inset-0 -z-10 top-1/2 left-1/2 -translate-x-1/2 -translate-y-1/2 w-full h-full max-w-6xl bg-[radial-gradient(ellipse_at_center,rgba(214,40,40,0.1),transparent_80%)]"></div>
         <div className="text-center mb-12">
             <Badge variant="secondary" className="text-base px-6 py-2 mb-4">Fonctionnalités</Badge>
-            <h2 className="text-3xl md:text-4xl font-bold tracking-tight">Une plateforme, un <span className="relative inline-block">contrôle<svg className="absolute -bottom-1 left-1 w-full h-3 text-red-500 transform rotate-10 translate-y-1" viewBox="0 0 100 8" preserveAspectRatio="none"><path d="M0.7,7.03c11.53-2.06,23.73-3.3,35.73-4.52c11.4-1.16,22.99-2.25,34.36-3.32c11.48-1.08,23.08-2.09,34.58-3.1" fill="none" stroke="currentColor" strokeWidth="2" strokeLinecap="round"></path></svg></span> total</h2>
+            <h2 className="text-3xl md:text-4xl font-bold tracking-tight">Une plateforme, un <span className="relative inline-block">contrôle<svg className="absolute -bottom-1 left-0 w-full h-3 text-red-500 transform rotate-12 translate-y-3" viewBox="0 0 100 8" preserveAspectRatio="none"><path d="M0.7,7.03c11.53-2.06,23.73-3.3,35.73-4.52c11.4-1.16,22.99-2.25,34.36-3.32c11.48-1.08,23.08-2.09,34.58-3.1" fill="none" stroke="currentColor" strokeWidth="2" strokeLinecap="round"></path></svg></span> total</h2>
             <p className="mt-4 max-w-2xl mx-auto text-lg text-muted-foreground">
                 De la gestion de stock au point de vente, en passant par le suivi de commande, tout est conçu pour fonctionner ensemble.
             </p>
@@ -492,5 +509,3 @@ export default function Home() {
   );
 
     
-
-
