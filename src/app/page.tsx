@@ -9,7 +9,7 @@ import { PropertyCard } from '@/components/property-card';
 import { properties } from '@/lib/properties';
 import { RecommendationFormState, getRecommendationsAction } from '@/lib/actions';
 import { Card, CardContent, CardHeader, CardTitle } from '@/components/ui/card';
-import { CheckCircle } from 'lucide-react';
+import { CheckCircle, MessageSquare, Search, Users } from 'lucide-react';
 
 const initialState: RecommendationFormState = {
   message: '',
@@ -32,7 +32,7 @@ export default function Home() {
 
   return (
     <div className="flex flex-col">
-      <section id="ai-search" className="w-full py-20 md:py-32 bg-transparent relative overflow-hidden">
+      <section id="ai-search" className="w-full py-20 md:py-32 bg-transparent relative overflow-hidden px-4 md:px-6">
         <div className="absolute inset-0 z-0">
           <div className="absolute top-0 left-0 w-64 h-64 bg-accent/10 rounded-full-squircle animate-pulse"></div>
           <div className="absolute bottom-0 right-0 w-96 h-96 bg-primary/10 rounded-full-squircle animate-pulse-slow"></div>
@@ -55,7 +55,7 @@ export default function Home() {
       </section>
 
       {(state.reasoning || recommendedProperties.length > 0) && (
-        <section className="w-full py-16 md:py-24 bg-card/80 backdrop-blur-sm">
+        <section className="w-full py-16 md:py-24 bg-card/80 backdrop-blur-sm px-4 md:px-6">
           <div className="container mx-auto px-4 md:px-6">
             {state.reasoning && (
               <div className="w-full max-w-4xl mx-auto mb-12 animate-fade-in">
@@ -84,7 +84,7 @@ export default function Home() {
         </section>
       )}
 
-      <section className="w-full py-20 md:py-32 bg-transparent my-16">
+      <section className="w-full py-20 md:py-32 bg-transparent my-16 px-4 md:px-6">
         <div className="container mx-auto px-4 md:px-6 grid md:grid-cols-2 gap-12 items-center">
             <div className="space-y-6 max-w-lg">
                 <h2 className="text-4xl font-bold tracking-tight text-primary sm:text-5xl">Toutes vos annonces au même endroit.</h2>
@@ -118,37 +118,60 @@ export default function Home() {
         </div>
       </section>
 
-      <section className="w-full py-20 md:py-32 bg-card/80 backdrop-blur-sm my-16">
-        <div className="container mx-auto px-4 md:px-6 grid md:grid-cols-2 gap-12 items-center">
-             <div className="relative aspect-square rounded-xl overflow-hidden shadow-2xl md:order-2">
-                 <Image
-                    src="https://placehold.co/600x600.png"
-                    alt="Smartphone showing a WhatsApp conversation"
+      <section className="w-full py-20 md:py-32 bg-card/80 backdrop-blur-sm my-16 px-4 md:px-6">
+        <div className="container mx-auto px-4 md:px-6">
+          <div className="text-center mb-12">
+            <h2 className="text-4xl font-bold tracking-tight text-primary sm:text-5xl">Des fonctionnalités conçues pour vous</h2>
+            <p className="mt-4 text-lg text-muted-foreground max-w-3xl mx-auto">
+              Nous avons créé des outils puissants pour simplifier votre recherche immobilière et améliorer votre expérience.
+            </p>
+          </div>
+          <div className="grid grid-cols-1 md:grid-cols-3 md:grid-rows-2 gap-6">
+            <Card className="md:col-span-2 md:row-span-2 p-8 flex flex-col justify-between bg-primary/10">
+              <div>
+                <CardHeader>
+                  <Search className="h-12 w-12 text-primary mb-4" />
+                  <CardTitle className="text-3xl font-bold text-primary">Recherche Intelligente</CardTitle>
+                </CardHeader>
+                <CardContent>
+                  <p className="text-lg text-muted-foreground">
+                    Notre IA analyse vos besoins pour vous proposer des biens qui vous correspondent vraiment. Décrivez votre recherche et laissez-vous surprendre par la pertinence des résultats.
+                  </p>
+                </CardContent>
+              </div>
+              <div className="relative aspect-video rounded-xl overflow-hidden mt-6">
+                <Image
+                    src="https://placehold.co/600x400.png"
+                    alt="Recherche intelligente"
                     layout="fill"
                     objectFit="cover"
-                    data-ai-hint="whatsapp conversation"
+                    data-ai-hint="modern abstract"
                 />
-            </div>
-            <div className="space-y-6 md:order-1 max-w-lg">
-                <h2 className="text-4xl font-bold tracking-tight text-primary sm:text-5xl">Contact direct et rapide via WhatsApp.</h2>
-                <p className="text-lg text-muted-foreground">
-                    Fini les longs délais d'attente. Contactez directement les propriétaires ou les locataires potentiels via WhatsApp pour des échanges fluides et instantanés.
+              </div>
+            </Card>
+            <Card className="p-8 flex flex-col justify-between bg-accent/10">
+              <CardHeader>
+                <MessageSquare className="h-10 w-10 text-accent-dark mb-4" />
+                <CardTitle className="text-2xl font-bold text-accent-dark">Contact Direct</CardTitle>
+              </CardHeader>
+              <CardContent>
+                <p className="text-md text-muted-foreground">
+                  Contactez directement les propriétaires via WhatsApp pour des échanges rapides et fluides.
                 </p>
-                 <ul className="space-y-4 text-lg mt-8">
-                    <li className="flex items-center gap-3">
-                        <CheckCircle className="h-6 w-6 text-accent" />
-                        <span>Communication instantanée.</span>
-                    </li>
-                    <li className="flex items-center gap-3">
-                        <CheckCircle className="h-6 w-6 text-accent" />
-                        <span>Prise de rendez-vous simplifiée.</span>
-                    </li>
-                    <li className="flex items-center gap-3">
-                        <CheckCircle className="h-6 w-6 text-accent" />
-                        <span>Échanges sécurisés et privés.</span>
-                    </li>
-                </ul>
-            </div>
+              </CardContent>
+            </Card>
+            <Card className="p-8 flex flex-col justify-between bg-accent/10">
+              <CardHeader>
+                <Users className="h-10 w-10 text-accent-dark mb-4" />
+                <CardTitle className="text-2xl font-bold text-accent-dark">Communauté Active</CardTitle>
+              </CardHeader>
+              <CardContent>
+                <p className="text-md text-muted-foreground">
+                  Rejoignez une communauté de propriétaires et de locataires pour des conseils et des opportunités.
+                </p>
+              </CardContent>
+            </Card>
+          </div>
         </div>
       </section>
     </div>
