@@ -56,7 +56,7 @@ export default function Home() {
 
       {(state.reasoning || recommendedProperties.length > 0) && (
         <section className="w-full py-16 md:py-24 bg-card/80 backdrop-blur-sm">
-          <div className="container mx-auto px-4">
+          <div className="container mx-auto px-4 md:px-6">
             {state.reasoning && (
               <div className="w-full max-w-4xl mx-auto mb-12 animate-fade-in">
                 <Card>
@@ -85,7 +85,7 @@ export default function Home() {
       )}
 
       <section className="w-full py-20 md:py-32 bg-transparent my-16">
-        <div className="container mx-auto px-4 grid md:grid-cols-2 gap-12 items-center">
+        <div className="container mx-auto px-4 md:px-6 grid md:grid-cols-2 gap-12 items-center">
             <div className="space-y-6 max-w-lg">
                 <h2 className="text-4xl font-bold tracking-tight text-primary sm:text-5xl">Toutes vos annonces au même endroit.</h2>
                 <p className="text-lg text-muted-foreground">
@@ -106,7 +106,7 @@ export default function Home() {
                     </li>
                 </ul>
             </div>
-            <div className="relative w-full h-96 group [mask-image:linear-gradient(to_right,transparent,white_5%,white_95%,transparent)]">
+            <div className="relative w-full h-96 group [mask-image:linear-gradient(to_right,transparent,white_20%,white_80%,transparent)]">
               <div className="flex animate-marquee-reverse group-hover:pause">
                   {[...marqueeColors, ...marqueeColors].map((color, index) => (
                       <div key={index} className="flex-shrink-0 w-80 h-80 p-4">
@@ -119,7 +119,7 @@ export default function Home() {
       </section>
 
       <section className="w-full py-20 md:py-32 bg-card/80 backdrop-blur-sm my-16">
-        <div className="container mx-auto px-4 grid md:grid-cols-2 gap-12 items-center">
+        <div className="container mx-auto px-4 md:px-6 grid md:grid-cols-2 gap-12 items-center">
              <div className="relative aspect-square rounded-xl overflow-hidden shadow-2xl md:order-2">
                  <Image
                     src="https://placehold.co/600x600.png"

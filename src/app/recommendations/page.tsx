@@ -3,7 +3,7 @@ import { properties } from '@/lib/properties';
 
 export default function RecommendationsPage() {
   return (
-    <div className="container mx-auto px-4 py-8">
+    <div className="container mx-auto px-4 md:px-6 py-8">
       <h1 className="font-headline text-4xl font-bold text-primary mb-8 text-center">
         Explorer toutes les propriétés
       </h1>

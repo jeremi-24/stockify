@@ -12,7 +12,7 @@ export default function FavoritesPage() {
   const favoriteProperties = properties.filter(p => favorites.includes(p.id));
 
   return (
-    <div className="container mx-auto px-4 py-12">
+    <div className="container mx-auto px-4 md:px-6 py-12">
       <h1 className="font-headline text-4xl font-bold text-primary mb-8">
         Vos propriétés favorites
       </h1>

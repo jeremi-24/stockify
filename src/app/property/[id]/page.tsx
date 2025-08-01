@@ -27,7 +27,7 @@ export default function PropertyPage({ params }: PropertyPageProps) {
   }
 
   return (
-    <div className="container mx-auto px-4 py-12">
+    <div className="container mx-auto px-4 md:px-6 py-12">
       <div className="grid grid-cols-1 lg:grid-cols-3 gap-8">
         <div className="lg:col-span-2">
           <Card className="overflow-hidden">
