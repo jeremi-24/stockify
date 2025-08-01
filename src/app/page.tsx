@@ -9,7 +9,8 @@ import { PropertyCard } from '@/components/property-card';
 import { properties } from '@/lib/properties';
 import { RecommendationFormState, getRecommendationsAction } from '@/lib/actions';
 import { Card, CardContent, CardHeader, CardTitle } from '@/components/ui/card';
-import { CheckCircle, Home as HomeIcon, MessageSquare, Search } from 'lucide-react';
+import { CheckCircle } from 'lucide-react';
+import { BorderBeam } from '@/components/ui/border-beam';
 
 const initialState: RecommendationFormState = {
   message: '',
@@ -106,7 +107,7 @@ export default function Home() {
                     </li>
                 </ul>
             </div>
-            <div className="relative w-full h-96 group [mask-image:linear-gradient(to_right,transparent,white_10%,white_90%,transparent)]">
+            <div className="relative w-full h-96 group [mask-image:linear-gradient(to_right,transparent,white_20%,white_80%,transparent)]">
               <div className="flex animate-marquee-reverse group-hover:pause">
                   {[...marqueeColors, ...marqueeColors].map((color, index) => (
                       <div key={index} className="flex-shrink-0 w-80 h-80 p-4">
@@ -121,6 +122,7 @@ export default function Home() {
       <section className="w-full py-20 md:py-32 bg-card/80 backdrop-blur-sm">
         <div className="container mx-auto px-4 grid md:grid-cols-2 gap-12 items-center">
              <div className="relative aspect-square rounded-xl overflow-hidden shadow-2xl md:order-2">
+                <BorderBeam colorFrom="#16A34A" colorTo="#4ADE80" duration={7} delay={0} />
                  <Image
                     src="https://placehold.co/600x600.png"
                     alt="Smartphone showing a WhatsApp conversation"
@@ -129,7 +131,7 @@ export default function Home() {
                     data-ai-hint="whatsapp conversation"
                 />
             </div>
-            <div className="space-y-6 md:order-1">
+            <div className="space-y-6 md:order-1 max-w-lg">
                 <h2 className="text-4xl font-bold tracking-tight text-primary sm:text-5xl">Contact direct et rapide via WhatsApp.</h2>
                 <p className="text-lg text-muted-foreground">
                     Fini les longs délais d'attente. Contactez directement les propriétaires ou les locataires potentiels via WhatsApp pour des échanges fluides et instantanés.

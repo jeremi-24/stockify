@@ -133,7 +133,10 @@ export default {
         'zoom': 'zoom-in 10s linear infinite alternate',
         'marquee': 'marquee 30s linear infinite',
         'marquee-reverse': 'marquee-reverse 30s linear infinite',
-        'border-beam': 'border-beam 5s linear infinite',
+        'border-beam': 'border-beam var(--duration) linear var(--delay) infinite',
+      },
+      backgroundImage: {
+        "border-beam": "conic-gradient(from 180deg at 50% 50%, transparent 0deg, var(--color-from) 180deg, var(--color-to) 180deg, transparent 360deg)",
       },
     },
   },
