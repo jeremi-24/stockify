@@ -10,7 +10,7 @@ import {
   DropdownMenuTrigger,
 } from "@/components/ui/dropdown-menu";
 import { cn } from "@/lib/utils";
-import { ChevronDown, Sparkles, Twitter, Linkedin, Facebook } from "lucide-react";
+import { ChevronDown, Sparkles, Twitter, Linkedin, Facebook, Star } from "lucide-react";
 import Image from "next/image";
 import { Card, CardContent } from "@/components/ui/card";
 import { Avatar, AvatarFallback, AvatarImage } from "@/components/ui/avatar";
@@ -99,6 +99,13 @@ const TestimonialCard = ({ testimonial, index, scrollYProgress }: { testimonial:
       >
         <Card>
           <CardContent className="p-8">
+            <div className="flex mb-4">
+              <Star className="h-5 w-5 fill-red-500 text-red-500" />
+              <Star className="h-5 w-5 fill-red-500 text-red-500" />
+              <Star className="h-5 w-5 fill-red-500 text-red-500" />
+              <Star className="h-5 w-5 fill-red-500 text-red-500" />
+              <Star className="h-5 w-5 text-muted-foreground" />
+            </div>
             <p className="text-lg text-muted-foreground mb-6">"{testimonial.text}"</p>
             <div className="flex items-center gap-4">
               <Avatar>
