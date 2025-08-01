@@ -86,7 +86,7 @@ export default function Home() {
 
       <section className="w-full py-20 md:py-32 bg-transparent">
         <div className="container mx-auto px-4 grid md:grid-cols-2 gap-12 items-center">
-            <div className="space-y-6">
+            <div className="space-y-6 max-w-lg">
                 <h2 className="text-4xl font-bold tracking-tight text-primary sm:text-5xl">Toutes vos annonces au même endroit.</h2>
                 <p className="text-lg text-muted-foreground">
                     Gérez et consultez facilement toutes vos annonces immobilières depuis une seule interface simple et intuitive. Ne perdez plus jamais le fil de vos propriétés.
@@ -106,7 +106,7 @@ export default function Home() {
                     </li>
                 </ul>
             </div>
-            <div className="relative w-full h-96 group [mask-image:linear-gradient(to_right,transparent,white_20%,white_80%,transparent)]">
+            <div className="relative w-full h-96 group [mask-image:linear-gradient(to_right,transparent,white_2%,white_98%,transparent)]">
               <div className="flex animate-marquee-reverse group-hover:pause">
                   {[...marqueeColors, ...marqueeColors].map((color, index) => (
                       <div key={index} className="flex-shrink-0 w-80 h-80 p-4">
