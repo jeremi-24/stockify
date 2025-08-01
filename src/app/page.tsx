@@ -72,16 +72,22 @@ const testimonials = [
     },
 ];
 
-const TestimonialCard = ({ testimonial, index }: { testimonial: (typeof testimonials)[0], index: number }) => {
+const TestimonialCard = ({ testimonial, index, scrollY }: { testimonial: (typeof testimonials)[0], index: number, scrollY: number }) => {
+    const cardVisibility = scrollY - index;
+    const isVisible = cardVisibility > -1 && cardVisibility < 1;
+    const translateY = isVisible ? 0 : 100 * (cardVisibility > 0 ? -1 : 1);
+    const opacity = isVisible ? 1 : 0;
+    
     return (
         <Card
             style={{
-                transform: `scale(${1 - (testimonials.length - 1 - index) * 0.05}) translateY(${(testimonials.length - 1 - index) * -10}px)`,
-                opacity: 1 - (testimonials.length - 1 - index) * 0.1,
+                transform: `translateY(${translateY}%)`,
+                opacity: opacity,
+                transition: 'transform 0.5s ease-out, opacity 0.5s ease-out',
+                zIndex: index
             }}
             className={cn(
-                "w-full max-w-2xl absolute top-1/2 -translate-y-1/2 transition-transform duration-500 ease-in-out",
-                "group-data-[scroll=end]:opacity-0 group-data-[scroll=end]:-translate-y-1/2 group-data-[scroll=end]:scale-90"
+                "w-full max-w-2xl absolute top-1/2 -translate-y-1/2"
             )}
         >
             <CardContent className="p-8">
@@ -102,6 +108,29 @@ const TestimonialCard = ({ testimonial, index }: { testimonial: (typeof testimon
 };
 
 export default function Home() {
+    const [scrollY, setScrollY] = React.useState(0);
+    const sectionRef = React.useRef<HTMLDivElement>(null);
+    const containerRef = React.useRef<HTMLDivElement>(null);
+
+
+    React.useEffect(() => {
+        const handleScroll = () => {
+            if (sectionRef.current && containerRef.current) {
+                const { top, height } = sectionRef.current.getBoundingClientRect();
+                const containerHeight = containerRef.current.offsetHeight;
+                const scrollableHeight = height - containerHeight;
+                const scrollProgress = -top / scrollableHeight;
+
+                if (scrollProgress >= 0 && scrollProgress <= 1) {
+                    setScrollY(scrollProgress * testimonials.length);
+                }
+            }
+        };
+
+        window.addEventListener('scroll', handleScroll);
+        return () => window.removeEventListener('scroll', handleScroll);
+    }, []);
+
   return (
     <div className="relative min-h-screen w-full bg-background text-foreground">
       <div className="absolute inset-0 -z-10 h-full w-full bg-[radial-gradient(#3e3e3e_1px,transparent_1px)] [background-size:16px_16px]"></div>
@@ -307,37 +336,23 @@ export default function Home() {
         </div>
       </section>
 
-      <section className="container mx-auto px-4 md:px-6 py-16 md:py-24">
-          <h2 className="text-center text-3xl md:text-4xl font-bold tracking-tight mb-12">
-              Ce que nos clients disent de nous
-          </h2>
-          <div className="relative h-[250vh]">
-              <div className="sticky top-0 h-screen flex flex-col items-center justify-center gap-4">
-                  {testimonials.map((testimonial, index) => {
-                      return (
-                          <div
-                              key={index}
-                              className="group w-full"
-                              style={{
-                                  transform: `translateY(${index * 100}vh)`,
-                                  position: 'absolute',
-                                  top: 0,
-                                  left: 0,
-                                  right: 0,
-                                  bottom: 0,
-                                  height: '100vh'
-                              }}
-                              data-scroll={index === testimonials.length - 1 ? "end" : ""}
-                          >
-                              <div className="sticky top-0 h-screen flex items-center justify-center">
-                                 <TestimonialCard testimonial={testimonial} index={index}/>
-                              </div>
-                          </div>
-                      );
-                  })}
-              </div>
-          </div>
-      </section>
+       <section ref={sectionRef} className="container mx-auto px-4 md:px-6 py-16 md:py-24" style={{ height: `${testimonials.length * 100}vh` }}>
+            <div ref={containerRef} className="sticky top-0 h-screen flex flex-col items-center justify-center">
+                <h2 className="text-center text-3xl md:text-4xl font-bold tracking-tight mb-12 absolute top-24">
+                    Ce que nos clients disent de nous
+                </h2>
+                <div className="relative w-full h-96">
+                    {testimonials.map((testimonial, index) => (
+                        <TestimonialCard 
+                            key={index} 
+                            testimonial={testimonial} 
+                            index={index} 
+                            scrollY={scrollY}
+                        />
+                    ))}
+                </div>
+            </div>
+        </section>
 
     </div>
   );
