@@ -21,8 +21,14 @@ export default function Home() {
 
   return (
     <>
-      <section className="w-full py-20 md:py-32 lg:py-40 bg-card">
-        <div className="container px-4 md:px-6">
+      <section className="w-full py-20 md:py-32 lg:py-40 bg-card relative overflow-hidden">
+        <div className="absolute inset-0 z-0">
+          <div className="absolute top-0 left-0 w-64 h-64 bg-accent/10 rounded-full-squircle animate-pulse"></div>
+          <div className="absolute bottom-0 right-0 w-96 h-96 bg-primary/10 rounded-full-squircle animate-pulse-slow"></div>
+          <div className="absolute top-1/2 left-1/2 -translate-x-1/2 -translate-y-1/2 w-[50vw] h-[50vh] bg-accent/5 rounded-full-squircle blur-3xl"></div>
+        </div>
+
+        <div className="container px-4 md:px-6 relative z-10">
           <div className="flex flex-col items-center space-y-6 text-center">
             <div className="space-y-4">
               <h1 className="text-4xl font-bold tracking-tighter text-primary sm:text-5xl md:text-6xl lg:text-7xl">
