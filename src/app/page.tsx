@@ -1,7 +1,7 @@
 
 'use client';
 
-import { useFormState } from 'react-dom';
+import { useActionState } from 'react';
 import { RecommendationsForm } from '@/components/recommendations-form';
 import { PropertyCard } from '@/components/property-card';
 import { properties } from '@/lib/properties';
@@ -13,7 +13,7 @@ const initialState: RecommendationFormState = {
 };
 
 export default function Home() {
-  const [state, formAction] = useFormState(getRecommendationsAction, initialState);
+  const [state, formAction] = useActionState(getRecommendationsAction, initialState);
 
   const recommendedProperties = state.recommendations
     ? properties.filter(p => state.recommendations?.includes(p.id))

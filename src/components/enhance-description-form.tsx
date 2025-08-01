@@ -1,6 +1,6 @@
 'use client';
 
-import { useFormState, useFormStatus } from 'react-dom';
+import { useActionState, useFormStatus } from 'react-dom';
 import { enhanceDescriptionAction, type EnhanceFormState } from '@/lib/actions';
 import { Button } from '@/components/ui/button';
 import { Card, CardContent, CardDescription, CardFooter, CardHeader, CardTitle } from '@/components/ui/card';
@@ -34,7 +34,7 @@ function SubmitButton() {
 }
 
 export function EnhanceDescriptionForm() {
-  const [state, formAction] = useFormState(enhanceDescriptionAction, initialState);
+  const [state, formAction] = useActionState(enhanceDescriptionAction, initialState);
 
   return (
     <form action={formAction}>
