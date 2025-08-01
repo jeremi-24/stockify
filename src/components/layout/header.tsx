@@ -2,7 +2,7 @@
 
 import Link from 'next/link';
 import { usePathname } from 'next/navigation';
-import { Home as HomeIcon, Sparkles, Heart, Menu } from 'lucide-react';
+import { Home as HomeIcon, Sparkles, Heart, Menu, Lightbulb } from 'lucide-react';
 import { Button } from '@/components/ui/button';
 import { Sheet, SheetContent, SheetTrigger } from '@/components/ui/sheet';
 import { cn } from '@/lib/utils';
@@ -11,6 +11,7 @@ const navLinks = [
   { href: '/', label: 'Home', icon: HomeIcon },
   { href: '/favorites', label: 'Favorites', icon: Heart },
   { href: '/enhance-description', label: 'Enhance Description', icon: Sparkles },
+  { href: '/recommendations', label: 'Recommendations', icon: Lightbulb },
 ];
 
 export function Header() {

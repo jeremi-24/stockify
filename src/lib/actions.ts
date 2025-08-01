@@ -2,6 +2,7 @@
 
 import { z } from 'zod';
 import { enhancePropertyDescription } from '@/ai/flows/enhance-property-description';
+import { getPropertyRecommendations } from '@/ai/flows/get-property-recommendations';
 
 const EnhanceFormSchema = z.object({
   description: z.string().min(10, 'Description must be at least 10 characters.'),
@@ -47,6 +48,49 @@ export async function enhanceDescriptionAction(
     };
   } catch (error) {
     console.error('AI enhancement failed:', error);
+    return {
+      message: 'An unexpected error occurred. Please try again later.',
+    };
+  }
+}
+
+const RecommendationFormSchema = z.object({
+  prompt: z.string().min(10, 'Prompt must be at least 10 characters.'),
+});
+
+export type RecommendationFormState = {
+  message: string;
+  recommendations?: string[];
+  reasoning?: string;
+  errors?: {
+    prompt?: string[];
+  };
+};
+
+export async function getRecommendationsAction(
+  prevState: RecommendationFormState,
+  formData: FormData
+): Promise<RecommendationFormState> {
+  const validatedFields = RecommendationFormSchema.safeParse({
+    prompt: formData.get('prompt'),
+  });
+
+  if (!validatedFields.success) {
+    return {
+      message: 'Failed to get recommendations. Please check the prompt.',
+      errors: validatedFields.error.flatten().fieldErrors,
+    };
+  }
+
+  try {
+    const result = await getPropertyRecommendations(validatedFields.data);
+    return {
+      message: 'Recommendations generated successfully!',
+      recommendations: result.recommendations,
+      reasoning: result.reasoning,
+    };
+  } catch (error) {
+    console.error('AI recommendation failed:', error);
     return {
       message: 'An unexpected error occurred. Please try again later.',
     };
