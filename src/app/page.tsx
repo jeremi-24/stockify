@@ -8,6 +8,7 @@ import {
   DropdownMenuTrigger,
 } from "@/components/ui/dropdown-menu";
 import { ChevronDown, Sparkles } from "lucide-react";
+import Image from "next/image";
 
 function LogoIcon(props: React.SVGProps<SVGSVGElement>) {
   return (
@@ -84,7 +85,7 @@ export default function Home() {
         </div>
       </header>
 
-      <main className="container mx-auto flex flex-col items-center justify-center px-4 py-24 text-center md:px-6 md:py-32">
+      <main className="container mx-auto flex flex-col items-center justify-center px-4 pt-24 pb-12 text-center md:px-6 md:pt-32 md:pb-16">
         <div className="mb-8 flex items-center gap-2 rounded-full bg-secondary/70 px-4 py-1.5 text-sm font-medium text-muted-foreground backdrop-blur-sm">
           <span className="rounded-full bg-primary/20 p-1 text-primary">
             <Sparkles className="h-4 w-4 fill-primary" />
@@ -107,6 +108,17 @@ export default function Home() {
           Commencez gratuitement
         </Button>
       </main>
+
+      <section className="container mx-auto px-4 md:px-6 pb-24">
+        <Image
+          src="https://placehold.co/1200x600.png"
+          alt="Aperçu du SaaS"
+          width={1200}
+          height={600}
+          className="mx-auto rounded-xl shadow-2xl"
+          data-ai-hint="dashboard screenshot"
+        />
+      </section>
     </div>
   );
 }
