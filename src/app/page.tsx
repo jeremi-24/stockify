@@ -10,7 +10,7 @@ import {
   DropdownMenuTrigger,
 } from "@/components/ui/dropdown-menu";
 import { cn } from "@/lib/utils";
-import { ChevronDown, Sparkles } from "lucide-react";
+import { ChevronDown, Sparkles, Twitter, Linkedin, Facebook } from "lucide-react";
 import Image from "next/image";
 import { Card, CardContent } from "@/components/ui/card";
 import { Avatar, AvatarFallback, AvatarImage } from "@/components/ui/avatar";
@@ -79,7 +79,7 @@ const TestimonialCard = ({ testimonial, index, scrollY }: { testimonial: (typeof
     
     // Animate from bottom (100%) to center (0) when it's the next card
     // Start animation when the previous card is halfway through its own animation
-    const translateY = (1 - Math.min(1, Math.max(0, cardProgress))) * 100;
+    const translateY = (1 - Math.min(1, Math.max(0, cardProgress))) * 80;
     const opacity = isVisible ? 1 : 0;
     const scale = 1 - (index - scrollY) * 0.05;
 
@@ -269,7 +269,7 @@ export default function Home() {
                             "flex-1 flex justify-center items-center p-8",
                             index < logos.length - 1 && "border-r border-border"
                         )}>
-                            <span className="text-2xl font-bold tracking-widest text-muted-foreground">{logo.name}</span>
+                            <span className="text-2xl font-bold tracking-widest text-white">{logo.name}</span>
                         </div>
                     ))}
                 </div>
@@ -312,7 +312,7 @@ export default function Home() {
                         alt="Commande 1"
                         width={300}
                         height={300}
-                        className="rounded-2xl shadow-2xl bg-background p-2 transition-all duration-300 hover:shadow-red-500/50 hover:shadow-2xl"
+                        className="rounded-2xl shadow-2xl transition-all duration-300 hover:shadow-red-500/50 hover:shadow-2xl"
                         data-ai-hint="order management interface"
                     />
                     <Image
@@ -320,7 +320,7 @@ export default function Home() {
                         alt="Commande 2"
                         width={300}
                         height={300}
-                        className="rounded-2xl shadow-2xl bg-background p-2 transition-all duration-300 hover:shadow-red-500/50 hover:shadow-2xl"
+                        className="rounded-2xl shadow-2xl transition-all duration-300 hover:shadow-red-500/50 hover:shadow-2xl"
                         data-ai-hint="order details screen"
                     />
                     <Image
@@ -328,7 +328,7 @@ export default function Home() {
                         alt="Commande 3"
                         width={300}
                         height={300}
-                        className="rounded-2xl shadow-2xl bg-background p-2 transition-all duration-300 hover:shadow-red-500/50 hover:shadow-2xl"
+                        className="rounded-2xl shadow-2xl transition-all duration-300 hover:shadow-red-500/50 hover:shadow-2xl"
                         data-ai-hint="customer order history"
                     />
                 </div>
@@ -337,22 +337,72 @@ export default function Home() {
       </section>
 
       <section ref={sectionRef} className="relative" style={{ height: `${(testimonials.length + 1) * 100}vh` }}>
-    <div className="sticky top-0 h-screen flex flex-col items-center overflow-hidden pt-24 pb-24">
-        <h2 className="text-center text-3xl md:text-4xl mb-10 font-bold tracking-tight ">
-            Ce que nos clients disent de nous
-        </h2>
-        <div className="relative w-full  flex items-center justify-center">
-            {testimonials.map((testimonial, index) => (
-                <TestimonialCard 
-                    key={index} 
-                    testimonial={testimonial} 
-                    index={index} 
-                    scrollY={scrollY}
-                />
-            ))}
+        <div className="sticky top-0 h-screen flex flex-col items-center justify-center overflow-hidden">
+            <h2 className="text-center text-3xl md:text-4xl mb-10 font-bold tracking-tight ">
+                Ce que nos clients disent de nous
+            </h2>
+            <div className="relative w-full  flex items-center justify-center">
+                {testimonials.map((testimonial, index) => (
+                    <TestimonialCard 
+                        key={index} 
+                        testimonial={testimonial} 
+                        index={index} 
+                        scrollY={scrollY}
+                    />
+                ))}
+            </div>
         </div>
-    </div>
-</section>
+      </section>
+
+      <footer className="container mx-auto px-4 md:px-6 py-12 border-t border-border">
+        <div className="grid gap-12 md:grid-cols-4">
+            <div className="flex flex-col gap-4 items-start">
+                <a href="#" className="flex items-center gap-2">
+                    <LogoIcon className="h-6 w-6" />
+                    <span className="text-xl font-bold">Stockify</span>
+                </a>
+                <p className="text-muted-foreground text-sm">
+                    La solution tout-en-un pour votre commerce.
+                </p>
+            </div>
+            <div className="grid grid-cols-2 md:grid-cols-3 gap-8 md:col-span-3">
+                <div>
+                    <h3 className="font-semibold mb-4">Fonctionnalités</h3>
+                    <ul className="space-y-2 text-sm text-muted-foreground">
+                        <li><a href="#" className="hover:text-foreground">Inventaire</a></li>
+                        <li><a href="#" className="hover:text-foreground">Point de Vente</a></li>
+                        <li><a href="#" className="hover:text-foreground">Commandes</a></li>
+                        <li><a href="#" className="hover:text-foreground">Analyses</a></li>
+                    </ul>
+                </div>
+                <div>
+                    <h3 className="font-semibold mb-4">Entreprise</h3>
+                    <ul className="space-y-2 text-sm text-muted-foreground">
+                        <li><a href="#" className="hover:text-foreground">À propos</a></li>
+                        <li><a href="#" className="hover:text-foreground">Carrières</a></li>
+                        <li><a href="#" className="hover:text-foreground">Contact</a></li>
+                        <li><a href="#" className="hover:text-foreground">Blog</a></li>
+                    </ul>
+                </div>
+                <div>
+                    <h3 className="font-semibold mb-4">Légal</h3>
+                    <ul className="space-y-2 text-sm text-muted-foreground">
+                        <li><a href="#" className="hover:text-foreground">Conditions d'utilisation</a></li>
+                        <li><a href="#" className="hover:text-foreground">Politique de confidentialité</a></li>
+                        <li><a href="#" className="hover:text-foreground">Mentions légales</a></li>
+                    </ul>
+                </div>
+            </div>
+        </div>
+        <div className="mt-12 pt-8 border-t border-border flex justify-between items-center">
+            <p className="text-sm text-muted-foreground">&copy; {new Date().getFullYear()} Stockify. Tous droits réservés.</p>
+            <div className="flex gap-4">
+                <a href="#" className="text-muted-foreground hover:text-foreground"><Twitter className="h-5 w-5" /></a>
+                <a href="#" className="text-muted-foreground hover:text-foreground"><Facebook className="h-5 w-5" /></a>
+                <a href="#" className="text-muted-foreground hover:text-foreground"><Linkedin className="h-5 w-5" /></a>
+            </div>
+        </div>
+      </footer>
 
     </div>
   );
