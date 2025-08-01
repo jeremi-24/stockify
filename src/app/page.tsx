@@ -8,7 +8,7 @@ import { PropertyCard } from '@/components/property-card';
 import { properties } from '@/lib/properties';
 import { RecommendationFormState, getRecommendationsAction } from '@/lib/actions';
 import { Card, CardContent, CardHeader, CardTitle } from '@/components/ui/card';
-import { CheckCircle, MessageSquare, Search, Users } from 'lucide-react';
+import { CheckCircle } from 'lucide-react';
 
 const initialState: RecommendationFormState = {
   message: '',
