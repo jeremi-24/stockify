@@ -11,7 +11,7 @@ import {
 import { Slider } from '@/components/ui/slider';
 import { Button } from '@/components/ui/button';
 import { Search } from 'lucide-react';
-import type { Dispatch, SetStateAction } from 'react';
+import { useState, useEffect, type Dispatch, type SetStateAction } from 'react';
 
 export type FilterState = {
   location: string;
@@ -27,6 +27,12 @@ type PropertyFiltersProps = {
 const MAX_PRICE = 3000000;
 
 export function PropertyFilters({ filters, setFilters }: PropertyFiltersProps) {
+  const [isClient, setIsClient] = useState(false);
+
+  useEffect(() => {
+    setIsClient(true);
+  }, []);
+
   const handleLocationChange = (e: React.ChangeEvent<HTMLInputElement>) => {
     setFilters(prev => ({ ...prev, location: e.target.value }));
   };
@@ -64,7 +70,7 @@ export function PropertyFilters({ filters, setFilters }: PropertyFiltersProps) {
         </Select>
         <div className="space-y-3">
           <label className="block text-sm font-medium text-foreground">
-            Price Range: ${filters.priceRange[0].toLocaleString()} - ${filters.priceRange[1].toLocaleString()}{filters.priceRange[1] === MAX_PRICE ? '+' : ''}
+            Price Range: {isClient ? `$${filters.priceRange[0].toLocaleString()} - $${filters.priceRange[1].toLocaleString()}${filters.priceRange[1] === MAX_PRICE ? '+' : ''}` : 'Loading...'}
           </label>
           <Slider
             min={0}
