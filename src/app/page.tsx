@@ -10,9 +10,9 @@ import {
   DropdownMenuTrigger,
 } from "@/components/ui/dropdown-menu";
 import { cn } from "@/lib/utils";
-import { ChevronDown, Sparkles, Twitter, Linkedin, Facebook, Star, CheckCircle2 } from "lucide-react";
+import { ChevronDown, Sparkles, Twitter, Linkedin, Facebook, Star, CheckCircle2, Check } from "lucide-react";
 import Image from "next/image";
-import { Card, CardContent } from "@/components/ui/card";
+import { Card, CardContent, CardHeader, CardTitle, CardDescription } from "@/components/ui/card";
 import { Avatar, AvatarFallback, AvatarImage } from "@/components/ui/avatar";
 import React, { useRef } from "react";
 import { motion, useScroll, useTransform } from "framer-motion";
@@ -379,23 +379,42 @@ export default function Home() {
         </div>
       </section>
       
-      <section className="relative w-full py-24 md:py-32 overflow-hidden">
-        <Image
-          src="https://placehold.co/1920x1080.png"
-          alt="CTA Background"
-          fill
-          className="absolute inset-0 object-cover -z-20"
-          data-ai-hint="abstract background texture"
-        />
-        <div className="absolute inset-0 bg-black/60 -z-10"></div>
-        <div className="container mx-auto px-4 md:px-6 text-center text-white relative z-10">
-          <h2 className="text-3xl md:text-5xl font-bold tracking-tight">Prêt à transformer votre gestion ?</h2>
-          <p className="mt-4 max-w-xl mx-auto text-lg text-white/80">
-            Rejoignez des milliers de commerçants qui font confiance à Stockify pour optimiser leur business.
-          </p>
-          <Button size="lg" className="mt-8 rounded-full bg-red-500 px-8 text-lg font-semibold text-white transition-colors hover:bg-red-600">
-            Passez à l'action
-          </Button>
+      <section className="relative w-full py-24 md:py-32 overflow-hidden bg-secondary/30">
+        <div className="container mx-auto px-4 md:px-6 grid md:grid-cols-2 gap-16 items-center">
+            <div className="text-white relative z-10">
+                <h2 className="text-3xl md:text-5xl font-bold tracking-tight">Prêt à transformer votre gestion ?</h2>
+                <p className="mt-4 max-w-xl text-lg text-white/80">
+                    Rejoignez des milliers de commerçants qui font confiance à Stockify pour optimiser leur business.
+                </p>
+            </div>
+            <Card className="bg-card/80 backdrop-blur-sm border-border/50 text-card-foreground shadow-2xl">
+                <CardHeader>
+                    <CardTitle className="text-2xl font-bold">Plan Pro</CardTitle>
+                    <CardDescription>La solution complète pour les entreprises en croissance.</CardDescription>
+                </CardHeader>
+                <CardContent className="space-y-6">
+                    <div className="text-4xl font-bold">
+                        29€ <span className="text-lg font-normal text-muted-foreground">/mois</span>
+                    </div>
+                    <ul className="space-y-3 text-sm text-muted-foreground">
+                        <li className="flex items-center gap-2">
+                            <Check className="h-4 w-4 text-red-500" />
+                            <span>Toutes les fonctionnalités de base</span>
+                        </li>
+                        <li className="flex items-center gap-2">
+                            <Check className="h-4 w-4 text-red-500" />
+                            <span>Support prioritaire</span>
+                        </li>
+                        <li className="flex items-center gap-2">
+                            <Check className="h-4 w-4 text-red-500" />
+                            <span>Analyses avancées</span>
+                        </li>
+                    </ul>
+                    <Button size="lg" className="w-full mt-4 rounded-full bg-red-500 px-8 text-lg font-semibold text-white transition-colors hover:bg-red-600">
+                        Passez à l'action
+                    </Button>
+                </CardContent>
+            </Card>
         </div>
       </section>
 
