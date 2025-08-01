@@ -77,7 +77,7 @@ const testimonials = [
 ];
 
 const carouselImages = [
-    { src: "/order1.svg", alt: "Order management interface", hint: "order management interface", width: 400, height: 200 },
+    { src: "/order.svg", alt: "Order management interface", hint: "order management interface", width: 400, height: 200 },
     { src: "/order2.svg", alt: "Order details screen", hint: "order details screen", width: 300, height: 300 },
     { src: "/order3.svg", alt: "Customer order history", hint: "customer order history", width: 300, height: 300 },
     { src: "/order1.svg", alt: "Order management interface", hint: "order management interface", width: 400, height: 200 },
@@ -356,7 +356,7 @@ export default function Home() {
                 >
                     <CarouselContent>
                         {carouselImages.map((image, index) => (
-                            <CarouselItem key={index} className="md:basis-1/2 lg:basis-1/3 flex justify-center">
+                            <CarouselItem key={index} className="md:basis-1/2 lg:basis-1/3 flex justify-center items-center">
                                 <div className="p-1">
                                     <Image
                                         src={image.src}
@@ -364,8 +364,9 @@ export default function Home() {
                                         width={image.width}
                                         height={image.height}
                                         className={cn(
-                                            "rounded-2xl shadow-xl transition-all duration-300 hover:shadow-red-500/50 hover:shadow-2xl",
-                                            image.width === 400 ? "w-[400px] h-[200px]" : "w-[300px] h-[300px]"
+                                            "rounded-2xl object-cover shadow-xl transition-all duration-300 hover:shadow-red-500/50 hover:shadow-2xl",
+                                            "w-[300px] h-[300px]",
+                                            index % 2 === 0 ? "lg:w-[400px] lg:h-[200px]" : "lg:w-[300px] lg:h-[300px]"
                                         )}
                                         data-ai-hint={image.hint}
                                     />
@@ -490,3 +491,5 @@ export default function Home() {
     </div>
   );
 }
+
+    
