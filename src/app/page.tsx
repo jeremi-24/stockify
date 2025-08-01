@@ -21,12 +21,12 @@ export default function Home() {
     ? properties.filter(p => state.recommendations?.includes(p.id))
     : [];
 
-  const marqueeImages = [
-    { src: 'https://placehold.co/400x400.png', alt: 'Property 1', hint: 'modern apartment interior' },
-    { src: 'https://placehold.co/400x400.png', alt: 'Property 2', hint: 'cozy living room' },
-    { src: 'https://placehold.co/400x400.png', alt: 'Property 3', hint: 'house exterior suburban' },
-    { src: 'https://placehold.co/400x400.png', alt: 'Property 4', hint: 'luxury kitchen' },
-    { src: 'https://placehold.co/400x400.png', alt: 'Property 5', hint: 'rooftop terrace' },
+  const marqueeColors = [
+    'bg-primary/20',
+    'bg-accent/20',
+    'bg-primary/30',
+    'bg-accent/30',
+    'bg-primary/40',
   ];
 
   return (
@@ -107,11 +107,9 @@ export default function Home() {
             </div>
             <div className="relative w-full overflow-hidden h-96 group">
               <div className="flex animate-marquee-reverse group-hover:pause">
-                  {[...marqueeImages, ...marqueeImages].map((image, index) => (
+                  {[...marqueeColors, ...marqueeColors].map((color, index) => (
                       <div key={index} className="flex-shrink-0 w-80 h-80 p-4">
-                        <div className="w-full h-full rounded-xl overflow-hidden shadow-2xl relative">
-                          <Image src={image.src} alt={image.alt} layout="fill" objectFit="cover" data-ai-hint={image.hint} />
-                        </div>
+                        <div className={`w-full h-full rounded-xl shadow-2xl ${color}`} />
                       </div>
                   ))}
               </div>
