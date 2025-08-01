@@ -106,10 +106,10 @@ export default function Home() {
                 </ul>
             </div>
             <div className="relative w-full overflow-hidden h-96 group">
-              <div className="flex animate-marquee group-hover:pause">
+              <div className="flex animate-marquee-reverse group-hover:pause">
                   {[...marqueeImages, ...marqueeImages].map((image, index) => (
                       <div key={index} className="flex-shrink-0 w-80 h-80 p-4">
-                        <div className="w-full h-full rounded-xl overflow-hidden shadow-2xl">
+                        <div className="w-full h-full rounded-xl overflow-hidden shadow-2xl relative">
                           <Image src={image.src} alt={image.alt} layout="fill" objectFit="cover" data-ai-hint={image.hint} />
                         </div>
                       </div>
