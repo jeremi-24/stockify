@@ -91,7 +91,7 @@ export default function Home() {
                 <p className="text-lg text-muted-foreground">
                     Gérez et consultez facilement toutes vos annonces immobilières depuis une seule interface simple et intuitive. Ne perdez plus jamais le fil de vos propriétés.
                 </p>
-                <ul className="space-y-4 text-lg">
+                <ul className="space-y-4 text-lg mt-6">
                     <li className="flex items-center gap-3">
                         <CheckCircle className="h-6 w-6 text-accent" />
                         <span>Centralisation de toutes vos offres.</span>
@@ -106,7 +106,7 @@ export default function Home() {
                     </li>
                 </ul>
             </div>
-            <div className="relative w-full h-96 group [mask-image:linear-gradient(to_right,transparent,white_2%,white_98%,transparent)]">
+            <div className="relative w-full h-96 group [mask-image:linear-gradient(to_right,transparent,white_10%,white_90%,transparent)]">
               <div className="flex animate-marquee-reverse group-hover:pause">
                   {[...marqueeColors, ...marqueeColors].map((color, index) => (
                       <div key={index} className="flex-shrink-0 w-80 h-80 p-4">
@@ -134,7 +134,7 @@ export default function Home() {
                 <p className="text-lg text-muted-foreground">
                     Fini les longs délais d'attente. Contactez directement les propriétaires ou les locataires potentiels via WhatsApp pour des échanges fluides et instantanés.
                 </p>
-                 <ul className="space-y-4 text-lg">
+                 <ul className="space-y-4 text-lg mt-6">
                     <li className="flex items-center gap-3">
                         <CheckCircle className="h-6 w-6 text-accent" />
                         <span>Communication instantanée.</span>
