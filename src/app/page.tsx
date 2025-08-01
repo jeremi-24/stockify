@@ -37,19 +37,7 @@ const logos = [
   { name: 'CELESTIAL' },
   { name: 'ECHO' },
   { name: 'QUANTUM' },
-  { name: 'PULSE' },
-  { name: 'ZENITH' },
 ];
-
-const Logos = () => (
-  <>
-    {logos.map((logo, index) => (
-      <div key={index} className="flex-shrink-0 w-40">
-        <span className="text-2xl font-bold tracking-widest text-muted-foreground">{logo.name}</span>
-      </div>
-    ))}
-  </>
-);
 
 export default function Home() {
   return (
@@ -144,21 +132,10 @@ export default function Home() {
             <h2 className="text-center text-lg font-semibold text-muted-foreground">
             Reconnu par les meilleures entreprises du monde
             </h2>
-            <div className="relative mt-8">
-              <div
-                className="pointer-events-none absolute inset-y-0 left-0 w-1/4 bg-gradient-to-r from-background to-transparent"
-                aria-hidden="true"
-              ></div>
-              <div
-                className="pointer-events-none absolute inset-y-0 right-0 w-1/4 bg-gradient-to-l from-background to-transparent"
-                aria-hidden="true"
-              ></div>
-              <div className="overflow-hidden">
-                <div className="flex w-max animate-marquee [--duration:40s] hover:[animation-play-state:paused]">
-                    <Logos />
-                    <Logos />
-                </div>
-              </div>
+            <div className="mt-8 flex justify-center items-center gap-16">
+                {logos.map((logo) => (
+                    <span key={logo.name} className="text-2xl font-bold tracking-widest text-muted-foreground">{logo.name}</span>
+                ))}
             </div>
         </div>
       </section>
