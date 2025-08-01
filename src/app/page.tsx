@@ -1,5 +1,6 @@
 "use client";
 
+import { Badge } from "@/components/ui/badge";
 import { Button } from "@/components/ui/button";
 import {
   DropdownMenu,
@@ -115,6 +116,12 @@ export default function Home() {
         <Button size="lg" className="mt-8 rounded-full bg-red-500 px-8 text-lg font-semibold text-white transition-colors hover:bg-red-600">
           Commencez gratuitement
         </Button>
+        <div className="mt-8 flex flex-wrap justify-center gap-4">
+            <Badge variant="secondary">Inventaire</Badge>
+            <Badge variant="secondary">Point de Vente</Badge>
+            <Badge variant="secondary">Gestion de Cartons</Badge>
+            <Badge variant="secondary">Commande</Badge>
+        </div>
       </main>
 
       <section className="container mx-auto px-4 md:px-6 pb-24">
