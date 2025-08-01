@@ -2,11 +2,13 @@
 'use client';
 
 import { useActionState } from 'react';
+import Image from 'next/image';
 import { RecommendationsForm } from '@/components/recommendations-form';
 import { PropertyCard } from '@/components/property-card';
 import { properties } from '@/lib/properties';
 import { RecommendationFormState, getRecommendationsAction } from '@/lib/actions';
 import { Card, CardContent, CardHeader, CardTitle } from '@/components/ui/card';
+import { CheckCircle, Home as HomeIcon, MessageSquare, Search } from 'lucide-react';
 
 const initialState: RecommendationFormState = {
   message: '',
@@ -20,8 +22,100 @@ export default function Home() {
     : [];
 
   return (
-    <>
-      <section className="w-full py-20 md:py-32 lg:py-40 bg-card relative overflow-hidden">
+    <div className="flex flex-col">
+      <section className="relative w-full h-[80vh] flex items-center justify-center text-center bg-primary/10 overflow-hidden">
+        <div className="absolute inset-0 z-0 opacity-20">
+            <Image
+                src="https://placehold.co/1920x1080.png"
+                alt="Modern living room"
+                layout="fill"
+                objectFit="cover"
+                className="animate-zoom"
+                data-ai-hint="modern living room"
+            />
+            <div className="absolute inset-0 bg-gradient-to-t from-background via-transparent to-transparent"></div>
+        </div>
+        <div className="container px-4 md:px-6 relative z-10 text-primary">
+            <h1 className="text-5xl font-bold tracking-tighter sm:text-6xl md:text-7xl lg:text-8xl !leading-tight">
+                Votre <span className="text-accent">prochaine maison</span>,
+                <br />
+                plus proche que jamais.
+            </h1>
+            <p className="mx-auto mt-6 max-w-[700px] text-primary/80 md:text-xl">
+                Découvrez, connectez et trouvez la propriété parfaite grâce à la puissance de l'IA et une communauté dynamique.
+            </p>
+        </div>
+      </section>
+
+      <section className="w-full py-20 md:py-32 bg-background">
+        <div className="container mx-auto px-4 grid md:grid-cols-2 gap-12 items-center">
+            <div className="space-y-6">
+                <h2 className="text-4xl font-bold tracking-tight text-primary sm:text-5xl">Toutes vos annonces au même endroit.</h2>
+                <p className="text-lg text-muted-foreground">
+                    Gérez et consultez facilement toutes vos annonces immobilières depuis une seule interface simple et intuitive. Ne perdez plus jamais le fil de vos propriétés.
+                </p>
+                <ul className="space-y-4 text-lg">
+                    <li className="flex items-center gap-3">
+                        <CheckCircle className="h-6 w-6 text-accent" />
+                        <span>Centralisation de toutes vos offres.</span>
+                    </li>
+                    <li className="flex items-center gap-3">
+                        <CheckCircle className="h-6 w-6 text-accent" />
+                        <span>Interface simple et épurée.</span>
+                    </li>
+                    <li className="flex items-center gap-3">
+                        <CheckCircle className="h-6 w-6 text-accent" />
+                        <span>Gain de temps et d'efficacité.</span>
+                    </li>
+                </ul>
+            </div>
+            <div className="relative aspect-square rounded-xl overflow-hidden shadow-2xl">
+                 <Image
+                    src="https://placehold.co/600x600.png"
+                    alt="Dashboard showing property listings"
+                    layout="fill"
+                    objectFit="cover"
+                    data-ai-hint="dashboard property listings"
+                />
+            </div>
+        </div>
+      </section>
+
+      <section className="w-full py-20 md:py-32 bg-card">
+        <div className="container mx-auto px-4 grid md:grid-cols-2 gap-12 items-center">
+             <div className="relative aspect-square rounded-xl overflow-hidden shadow-2xl md:order-2">
+                 <Image
+                    src="https://placehold.co/600x600.png"
+                    alt="Smartphone showing a WhatsApp conversation"
+                    layout="fill"
+                    objectFit="cover"
+                    data-ai-hint="whatsapp conversation"
+                />
+            </div>
+            <div className="space-y-6 md:order-1">
+                <h2 className="text-4xl font-bold tracking-tight text-primary sm:text-5xl">Contact direct et rapide via WhatsApp.</h2>
+                <p className="text-lg text-muted-foreground">
+                    Fini les longs délais d'attente. Contactez directement les propriétaires ou les locataires potentiels via WhatsApp pour des échanges fluides et instantanés.
+                </p>
+                 <ul className="space-y-4 text-lg">
+                    <li className="flex items-center gap-3">
+                        <CheckCircle className="h-6 w-6 text-accent" />
+                        <span>Communication instantanée.</span>
+                    </li>
+                    <li className="flex items-center gap-3">
+                        <CheckCircle className="h-6 w-6 text-accent" />
+                        <span>Prise de rendez-vous simplifiée.</span>
+                    </li>
+                    <li className="flex items-center gap-3">
+                        <CheckCircle className="h-6 w-6 text-accent" />
+                        <span>Échanges sécurisés et privés.</span>
+                    </li>
+                </ul>
+            </div>
+        </div>
+      </section>
+      
+      <section id="ai-search" className="w-full py-20 md:py-32 bg-background relative overflow-hidden">
         <div className="absolute inset-0 z-0">
           <div className="absolute top-0 left-0 w-64 h-64 bg-accent/10 rounded-full-squircle animate-pulse"></div>
           <div className="absolute bottom-0 right-0 w-96 h-96 bg-primary/10 rounded-full-squircle animate-pulse-slow"></div>
@@ -31,9 +125,7 @@ export default function Home() {
         <div className="container px-4 md:px-6 relative z-10">
           <div className="flex flex-col items-center space-y-6 text-center">
             <div className="space-y-4">
-              <h1 className="text-4xl font-bold tracking-tighter text-primary sm:text-5xl md:text-6xl lg:text-7xl">
-                Trouvez la maison de vos <span className="text-accent">rêves</span>
-              </h1>
+              <h2 className="text-4xl font-bold tracking-tighter text-primary sm:text-5xl md:text-6xl">Trouvez votre maison ou chambre grâce à l'IA</h2>
               <p className="mx-auto max-w-[700px] text-muted-foreground md:text-xl">
                 Notre IA vous aide à découvrir des propriétés qui correspondent parfaitement à votre style de vie. Décrivez simplement ce que vous cherchez.
               </p>
@@ -45,33 +137,35 @@ export default function Home() {
         </div>
       </section>
 
-      <section className="w-full py-16 md:py-24 bg-background">
-        <div className="container mx-auto px-4">
-          {state.reasoning && (
-            <div className="w-full max-w-4xl mx-auto mb-12 animate-fade-in">
-              <Card>
-                  <CardHeader>
-                      <CardTitle className="font-headline text-2xl text-accent">Raisonnement de l'IA</CardTitle>
-                  </CardHeader>
-                  <CardContent>
-                      <p className="text-lg whitespace-pre-wrap font-body">{state.reasoning}</p>
-                  </CardContent>
-              </Card>
-            </div>
-          )}
-
-          {recommendedProperties.length > 0 && (
-            <div className="w-full max-w-6xl mx-auto animate-fade-in">
-              <h2 className="font-headline text-3xl font-bold text-primary mb-8 text-center">Voici vos recommandations :</h2>
-              <div className="grid grid-cols-1 gap-6 sm:grid-cols-2 lg:grid-cols-3">
-                {recommendedProperties.map(property => (
-                  <PropertyCard key={property.id} property={property} />
-                ))}
+      {(state.reasoning || recommendedProperties.length > 0) && (
+        <section className="w-full py-16 md:py-24 bg-card">
+          <div className="container mx-auto px-4">
+            {state.reasoning && (
+              <div className="w-full max-w-4xl mx-auto mb-12 animate-fade-in">
+                <Card>
+                    <CardHeader>
+                        <CardTitle className="font-headline text-2xl text-accent">Raisonnement de l'IA</CardTitle>
+                    </CardHeader>
+                    <CardContent>
+                        <p className="text-lg whitespace-pre-wrap font-body">{state.reasoning}</p>
+                    </CardContent>
+                </Card>
               </div>
-            </div>
-          )}
-        </div>
-      </section>
-    </>
+            )}
+
+            {recommendedProperties.length > 0 && (
+              <div className="w-full max-w-6xl mx-auto animate-fade-in">
+                <h2 className="font-headline text-3xl font-bold text-primary mb-8 text-center">Voici vos recommandations :</h2>
+                <div className="grid grid-cols-1 gap-6 sm:grid-cols-2 lg:grid-cols-3">
+                  {recommendedProperties.map(property => (
+                    <PropertyCard key={property.id} property={property} />
+                  ))}
+                </div>
+              </div>
+            )}
+          </div>
+        </section>
+      )}
+    </div>
   );
 }

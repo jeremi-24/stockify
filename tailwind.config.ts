@@ -108,6 +108,10 @@ export default {
         'pulse-slow': {
           '0%, 100%': { opacity: '0.5' },
           '50%': { opacity: '1' },
+        },
+        'zoom-in': {
+          '0%': { transform: 'scale(1)', opacity: '0.5' },
+          '100%': { transform: 'scale(1.1)', opacity: '0.2' },
         }
       },
       animation: {
@@ -116,6 +120,7 @@ export default {
         'border-spin': 'border-spin 2s linear infinite',
         'fade-in': 'fade-in 0.5s ease-out',
         'pulse-slow': 'pulse 6s cubic-bezier(0.4, 0, 0.6, 1) infinite',
+        'zoom': 'zoom-in 10s linear infinite alternate',
       },
     },
   },
