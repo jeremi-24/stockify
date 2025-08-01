@@ -154,7 +154,7 @@ export default function Home() {
                 aria-hidden="true"
               ></div>
               <div className="overflow-hidden">
-                <div className="flex w-max animate-marquee items-center gap-16 [--duration:40s] hover:[animation-play-state:paused]">
+                <div className="flex w-max animate-marquee [--duration:40s] hover:[animation-play-state:paused]">
                     <Logos />
                     <Logos />
                 </div>
