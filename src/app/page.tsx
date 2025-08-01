@@ -75,14 +75,22 @@ const testimonials = [
 ];
 
 const TestimonialCard = ({ testimonial, index, scrollYProgress }: { testimonial: (typeof testimonials)[0], index: number, scrollYProgress: any }) => {
-    const scale = useTransform(scrollYProgress, [index * 0.25, (index + 1) * 0.25], [0.8, 1]);
-    const translateY = useTransform(scrollYProgress, [index * 0.25, (index + 1) * 0.25], [100, 0]);
+    const totalCards = testimonials.length;
+    const start = index / totalCards;
+    const end = (index + 1) / totalCards;
+    const cardEnd = (index + 0.8) / totalCards
+
+    const scale = useTransform(scrollYProgress, [start, end], [0.8, 1]);
+    const translateY = useTransform(scrollYProgress, [start, end], [150, 0]);
+    const opacity = useTransform(scrollYProgress, [start, cardEnd, end], [0, 1, 0]);
+
 
     return (
       <motion.div
         style={{
           scale,
           translateY,
+          opacity,
           zIndex: index,
         }}
         className={cn(
@@ -321,7 +329,7 @@ export default function Home() {
 
       <section ref={sectionRef} className="relative h-[400vh]">
         <div className="sticky top-0 h-screen flex flex-col items-center justify-start pt-24 overflow-hidden">
-            <h2 className="text-center text-3xl md:text-4xl mb-10 font-bold tracking-tight">
+            <h2 className="text-center text-3xl md:text-4xl mb-24 font-bold tracking-tight">
                 Ce que nos clients disent de nous
             </h2>
             <div className="relative w-full h-96 flex items-start justify-center">
