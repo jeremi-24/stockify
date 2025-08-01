@@ -7,8 +7,8 @@ import { cn } from "@/lib/utils";
 const inter = Inter({ subsets: ["latin"] });
 
 export const metadata: Metadata = {
-  title: "Superlist",
-  description: "Stay on top of everything",
+  title: "Stockify",
+  description: "Gérez vos stocks et votre boutique en ligne facilement",
 };
 
 export default function RootLayout({
@@ -17,7 +17,7 @@ export default function RootLayout({
   children: React.ReactNode;
 }>) {
   return (
-    <html lang="en" className="dark">
+    <html lang="fr" className="dark">
       <body className={cn("min-h-screen font-sans antialiased", inter.className)}>
         {children}
         <Toaster />

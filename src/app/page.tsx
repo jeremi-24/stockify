@@ -41,38 +41,38 @@ export default function Home() {
         <div className="flex items-center gap-6">
           <a href="#" className="flex items-center gap-2">
             <LogoIcon className="h-6 w-6" />
-            <span className="text-xl font-bold">Superlist</span>
+            <span className="text-xl font-bold">Stockify</span>
           </a>
           <nav className="hidden items-center gap-6 md:flex">
             <DropdownMenu>
               <DropdownMenuTrigger className="flex items-center gap-1 text-sm font-medium text-muted-foreground outline-none transition-colors hover:text-foreground">
-                Features <ChevronDown className="h-4 w-4" />
+                Fonctionnalités <ChevronDown className="h-4 w-4" />
               </DropdownMenuTrigger>
               <DropdownMenuContent>
-                <DropdownMenuItem>Feature 1</DropdownMenuItem>
-                <DropdownMenuItem>Feature 2</DropdownMenuItem>
+                <DropdownMenuItem>Gestion des stocks</DropdownMenuItem>
+                <DropdownMenuItem>Commandes</DropdownMenuItem>
               </DropdownMenuContent>
             </DropdownMenu>
             <DropdownMenu>
               <DropdownMenuTrigger className="flex items-center gap-1 text-sm font-medium text-muted-foreground outline-none transition-colors hover:text-foreground">
-                Use Cases <ChevronDown className="h-4 w-4" />
+                Cas d'usage <ChevronDown className="h-4 w-4" />
               </DropdownMenuTrigger>
               <DropdownMenuContent>
-                <DropdownMenuItem>For Teams</DropdownMenuItem>
-                <DropdownMenuItem>For Individuals</DropdownMenuItem>
+                <DropdownMenuItem>Pour les PME</DropdownMenuItem>
+                <DropdownMenuItem>Pour les e-commerçants</DropdownMenuItem>
               </DropdownMenuContent>
             </DropdownMenu>
             <a
               href="#"
               className="text-sm font-medium text-muted-foreground transition-colors hover:text-foreground"
             >
-              Updates
+              Nouveautés
             </a>
             <a
               href="#"
               className="text-sm font-medium text-muted-foreground transition-colors hover:text-foreground"
             >
-              Pricing
+              Tarifs
             </a>
             <a
               href="#"
@@ -82,19 +82,19 @@ export default function Home() {
             </a>
             <DropdownMenu>
               <DropdownMenuTrigger className="flex items-center gap-1 text-sm font-medium text-muted-foreground outline-none transition-colors hover:text-foreground">
-                Download <ChevronDown className="h-4 w-4" />
+                Support <ChevronDown className="h-4 w-4" />
               </DropdownMenuTrigger>
               <DropdownMenuContent>
-                <DropdownMenuItem>macOS</DropdownMenuItem>
-                <DropdownMenuItem>Windows</DropdownMenuItem>
+                <DropdownMenuItem>Documentation</DropdownMenuItem>
+                <DropdownMenuItem>Contacter le support</DropdownMenuItem>
               </DropdownMenuContent>
             </DropdownMenu>
           </nav>
         </div>
         <div className="flex items-center gap-4">
-          <Button variant="ghost">Sign in</Button>
+          <Button variant="ghost">Connexion</Button>
           <Button className="rounded-full bg-red-500 px-6 font-semibold text-white transition-colors hover:bg-red-600">
-            Sign up
+            Inscription
           </Button>
         </div>
       </header>
@@ -104,23 +104,22 @@ export default function Home() {
           <span className="rounded-full bg-primary/20 p-1 text-primary">
             <Sparkles className="h-4 w-4 fill-primary" />
           </span>
-          <span className="text-foreground">NEW</span> Introducing AI Meeting Notes in Superlist
+          <span className="text-foreground">NOUVEAU</span> Intégration de l'IA pour prédire vos ventes
         </div>
 
         <h1 className="text-5xl font-bold tracking-tighter md:text-7xl">
-          Stay on top <br />
+         Gardez le contrôle <br />
           <span className="bg-gradient-to-b from-red-500 to-orange-500 bg-clip-text text-transparent">
-            of everything
+            sur tout
           </span>
         </h1>
 
         <p className="mx-auto mt-6 max-w-xl text-lg text-muted-foreground">
-          Superlist generates your meeting notes, tracks follow-ups, and lets
-          you manage all your tasks and notes in one place.
+          Stockify centralise votre inventaire, suit vos commandes, et vous permet de gérer toute votre boutique en un seul endroit.
         </p>
 
         <Button size="lg" className="mt-8 rounded-full bg-red-500 px-8 text-lg font-semibold text-white transition-colors hover:bg-red-600">
-          Sign up for free
+          Commencez gratuitement
         </Button>
       </main>
     </div>
