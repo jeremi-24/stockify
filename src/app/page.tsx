@@ -118,6 +118,17 @@ export default function Home() {
         </Button>
       </main>
 
+      <section className="container mx-auto px-4 md:px-6 pb-24">
+        <Image
+          src="https://placehold.co/1200x600.png"
+          alt="Aperçu du SaaS"
+          width={1200}
+          height={600}
+          className="mx-auto rounded-xl shadow-2xl"
+          data-ai-hint="dashboard screenshot"
+        />
+      </section>
+
       <section className="container mx-auto px-4 md:px-6 py-16 md:py-24 space-y-24">
         <div className="grid md:grid-cols-2 gap-12 items-center">
           <div>
@@ -154,7 +165,29 @@ export default function Home() {
             </p>
           </div>
         </div>
+      </section>
 
+      <section className="py-16 md:py-24">
+        <div className="container mx-auto px-4 md:px-6">
+            <h2 className="text-center text-lg font-semibold text-muted-foreground">
+            Reconnu par les meilleures entreprises du monde
+            </h2>
+            <div className="mt-8 border-y border-border">
+                <div className="flex justify-around items-center">
+                    {logos.map((logo, index) => (
+                        <div key={logo.name} className={cn(
+                            "flex-1 flex justify-center items-center p-8",
+                            index < logos.length - 1 && "border-r border-border"
+                        )}>
+                            <span className="text-2xl font-bold tracking-widest text-muted-foreground">{logo.name}</span>
+                        </div>
+                    ))}
+                </div>
+            </div>
+        </div>
+      </section>
+
+       <section className="container mx-auto px-4 md:px-6 py-16 md:py-24 space-y-24">
         <div className="grid md:grid-cols-2 gap-12 items-center">
           <div>
             <Badge variant="secondary" className="text-base px-6 py-2 mb-4">Gestion de Cartons</Badge>
@@ -191,36 +224,6 @@ export default function Home() {
           </div>
         </div>
       </section>
-
-      <section className="container mx-auto px-4 md:px-6 pb-24">
-        <Image
-          src="https://placehold.co/1200x600.png"
-          alt="Aperçu du SaaS"
-          width={1200}
-          height={600}
-          className="mx-auto rounded-xl shadow-2xl"
-          data-ai-hint="dashboard screenshot"
-        />
-      </section>
-
-      <section className="py-16 md:py-24">
-        <div className="container mx-auto px-4 md:px-6">
-            <h2 className="text-center text-lg font-semibold text-muted-foreground">
-            Reconnu par les meilleures entreprises du monde
-            </h2>
-            <div className="mt-8 border-y border-border">
-                <div className="flex justify-around items-center">
-                    {logos.map((logo, index) => (
-                        <div key={logo.name} className={cn(
-                            "flex-1 flex justify-center items-center p-8",
-                            index < logos.length - 1 && "border-r border-border"
-                        )}>
-                            <span className="text-2xl font-bold tracking-widest text-muted-foreground">{logo.name}</span>
-                        </div>
-                    ))}
-                </div>
-            </div>
-        </div>
-      </section>
     </div>
   );
+}
