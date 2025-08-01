@@ -1,5 +1,4 @@
 
-
 'use client';
 
 import { useActionState } from 'react';
@@ -115,34 +114,6 @@ export default function Home() {
                   ))}
               </div>
             </div>
-        </div>
-      </section>
-
-      <section className="w-full py-20 md:py-32 bg-transparent my-16 px-4 md:px-6">
-        <div className="container mx-auto">
-          <div className="text-center mb-12">
-            <h2 className="text-4xl font-bold tracking-tight text-primary sm:text-5xl">Visualisation Simplifiée</h2>
-            <p className="mt-4 text-lg text-muted-foreground max-w-3xl mx-auto">
-              Organisez et visualisez vos données avec une grille simple et intuitive.
-            </p>
-          </div>
-          <div 
-            className="relative h-96 w-full rounded-lg p-4"
-            style={{
-              backgroundImage: `
-                linear-gradient(to right, hsl(var(--border)) 1px, transparent 1px),
-                linear-gradient(to bottom, hsl(var(--border)) 1px, transparent 1px)
-              `,
-              backgroundSize: '3rem 3rem',
-            }}
-          >
-            <div 
-              className="absolute inset-0"
-              style={{
-                background: 'radial-gradient(ellipse at center, transparent 30%, hsl(var(--background)) 80%)'
-              }}
-            />
-          </div>
         </div>
       </section>
     </div>
