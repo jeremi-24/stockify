@@ -32,6 +32,25 @@ function LogoIcon(props: React.SVGProps<SVGSVGElement>) {
   );
 }
 
+const logos = [
+  { name: 'Apex', component: (props: any) => <svg {...props} viewBox="0 0 256 256"><path fill="currentColor" d="M128 24a104 104 0 1 0 104 104A104.11 104.11 0 0 0 128 24M74.08 197.5a64.21 64.21 0 0 1-4.71-12.35a8 8 0 0 1 15.49-4.3A48.24 48.24 0 0 0 128 200a48.25 48.25 0 0 0 43.14-23.15a8 8 0 0 1 15.49 4.3a64.21 64.21 0 0 1-4.71 12.35a87.81 87.81 0 0 1-107.84 0M180 140a8 8 0 0 1-8 8H84a8 8 0 0 1 0-16h88a8 8 0 0 1 8 8m-20-40a12 12 0 1 1 12-12a12 12 0 0 1-12 12m-64 0a12 12 0 1 1 12-12a12 12 0 0 1-12 12"/></svg> },
+  { name: 'Celestial', component: (props: any) => <svg {...props} viewBox="0 0 256 256"><path fill="currentColor" d="M203.2 173.81a8 8 0 0 1-7.06 12.11l-58.85-24.16a80.11 80.11 0 1 1 29.3-51.08a8 8 0 1 1-15.09-5.34a64.09 64.09 0 1 0-22.18 43l53.88 22.14a7.82 7.82 0 0 1 4.51 1.28a8 8 0 0 1 2.55 10.83m-60.57-2.61a8 8 0 0 1 6.51 10.15a48 48 0 1 0-71-47.38a8 8 0 1 1-15.18-5a64 64 0 1 1 86.18 48.74a8 8 0 0 1-6.51-10.15a8 8 0 0 1 10-6.36"/></svg> },
+  { name: 'Echo', component: (props: any) => <svg {...props} viewBox="0 0 256 256"><path fill="currentColor" d="M128 32a96 96 0 1 0 96 96a96.11 96.11 0 0 0-96-96m0 176a80 80 0 1 1 80-80a80.09 80.09 0 0 1-80 80m45.66-109.66a8 8 0 0 1 0 11.32l-40 40a8 8 0 0 1-11.32 0l-24-24a8 8 0 0 1 11.32-11.32L108 128.69l34.34-34.35a8 8 0 0 1 11.32 0"/></svg> },
+  { name: 'Quantum', component: (props: any) => <svg {...props} viewBox="0 0 256 256"><path fill="currentColor" d="m224.43 145.41l-40.05-20a8 8 0 0 0-9.45 1.33l-22.82 22.82a80 80 0 0 1-46-46l22.82-22.82a8 8 0 0 0 1.33-9.45l-20-40.05a8 8 0 0 0-9.45-5.69L64 54.71a8 8 0 0 0-5.69 9.45l20 40a8 8 0 0 0 9.48 5.72l28.48-7.12a8 8 0 0 0 6.13-6.13l7.12-28.48a8 8 0 0 0-5.72-9.48l-40-20a8 8 0 0 0-9.45 5.69L48.59 81a8 8 0 0 0 5.69 9.45l40.05 20a8 8 0 0 0 9.45-1.33l22.82-22.82a80 80 0 0 1 46 46l-22.82 22.82a8 8 0 0 0-1.33 9.45l20 40.05a8 8 0 0 0 9.45 5.69L208 181.29a8 8 0 0 0 9.45-5.69l20-40a8 8 0 0 0-5.72-9.48l-28.48-7.12a8 8 0 0 0-6.13 6.13l-7.12 28.48a8 8 0 0 0 5.72 9.48l40 20a8 8 0 0 0 9.45-5.69l12.14-36.41a8 8 0 0 0-5.69-9.45Z"/></svg> },
+  { name: 'Pulse', component: (props: any) => <svg {...props} viewBox="0 0 256 256"><path fill="currentColor" d="M128 32a96 96 0 1 0 96 96a96.11 96.11 0 0 0-96-96m0 176a80 80 0 1 1 80-80a80.09 80.09 0 0 1-80 80m75-80a8 8 0 0 1-8 8h-28.49l-14.08 35.2a8 8 0 1 1-15.06-6l18.82-47.05H128a8 8 0 0 1 0-16h22.77l-18.82-47.05a8 8 0 0 1 15.06-6L164.49 120H192a8 8 0 0 1 8 8"/></svg> },
+  { name: 'Zenith', component: (props: any) => <svg {...props} viewBox="0 0 256 256"><path fill="currentColor" d="M228.44 100.22a8 8 0 0 0-8.66-1.16l-36.43 14.57a80.06 80.06 0 0 0-66.69 0L80.22 99.06a8 8 0 1 0-7.5 14.56l36.43 14.57a80.06 80.06 0 0 0 0 15.18l-36.43 14.57a8 8 0 1 0 7.5 14.56l36.43-14.57a80.06 80.06 0 0 0 66.69 0l36.43 14.57a8 8 0 1 0 7.5-14.56l-36.43-14.57a80.06 80.06 0 0 0 0-15.18l36.43-14.57a8 8 0 0 0 1.16-13.4Z"/></svg> },
+];
+
+const Logos = () => (
+  <>
+    {logos.map((logo, index) => (
+      <div key={index} className="flex-shrink-0 w-40">
+        <logo.component className="h-10 w-auto text-muted-foreground" />
+      </div>
+    ))}
+  </>
+);
+
 export default function Home() {
   return (
     <div className="relative min-h-screen w-full bg-background text-foreground">
@@ -119,6 +138,31 @@ export default function Home() {
           data-ai-hint="dashboard screenshot"
         />
       </section>
+
+      <section className="py-16 md:py-24">
+        <div className="container mx-auto px-4 md:px-6">
+            <h2 className="text-center text-lg font-semibold text-muted-foreground">
+            Reconnu par les meilleures entreprises du monde
+            </h2>
+            <div className="relative mt-8">
+              <div
+                className="pointer-events-none absolute inset-y-0 left-0 w-1/4 bg-gradient-to-r from-background to-transparent"
+                aria-hidden="true"
+              ></div>
+              <div
+                className="pointer-events-none absolute inset-y-0 right-0 w-1/4 bg-gradient-to-l from-background to-transparent"
+                aria-hidden="true"
+              ></div>
+              <div className="overflow-hidden">
+                <div className="flex w-max animate-marquee items-center gap-16 [--duration:40s] hover:[animation-play-state:paused]">
+                    <Logos />
+                    <Logos />
+                </div>
+              </div>
+            </div>
+        </div>
+      </section>
     </div>
   );
-}
+
+    
