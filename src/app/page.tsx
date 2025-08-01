@@ -74,7 +74,7 @@ const testimonials = [
 ];
 
 const carouselImages = [
-    { src: "https://placehold.co/1200x600.png", alt: "Order management interface", hint: "order management interface" },
+    { src: "/order1.svg", alt: "Order management interface", hint: "order management interface" },
     { src: "https://placehold.co/1200x600.png", alt: "Order details screen", hint: "order details screen" },
     { src: "https://placehold.co/1200x600.png", alt: "Customer order history", hint: "customer order history" },
 ];
@@ -366,6 +366,17 @@ export default function Home() {
                         />
                     </motion.div>
                 </AnimatePresence>
+            </div>
+            <div className="flex justify-center gap-2 mt-4">
+              {carouselImages.map((_, index) => (
+                  <div
+                      key={index}
+                      className={cn(
+                          "h-2 w-24 rounded-full bg-muted transition-colors",
+                          index === currentImageIndex && "bg-red-500"
+                      )}
+                  />
+              ))}
             </div>
         </div>
       </section>
