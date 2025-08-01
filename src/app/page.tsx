@@ -116,13 +116,81 @@ export default function Home() {
         <Button size="lg" className="mt-8 rounded-full bg-red-500 px-8 text-lg font-semibold text-white transition-colors hover:bg-red-600">
           Commencez gratuitement
         </Button>
-        <div className="mt-12 w-full max-w-[1200px] flex justify-between items-center gap-4 px-4">
-            <Badge variant="secondary" className="text-base px-6 py-2">Inventaire</Badge>
-            <Badge variant="secondary" className="text-base px-6 py-2">Point de Vente</Badge>
-            <Badge variant="secondary" className="text-base px-6 py-2">Gestion de Cartons</Badge>
-            <Badge variant="secondary" className="text-base px-6 py-2">Commande</Badge>
-        </div>
       </main>
+
+      <section className="container mx-auto px-4 md:px-6 py-16 md:py-24 space-y-24">
+        <div className="grid md:grid-cols-2 gap-12 items-center">
+          <div>
+            <Badge variant="secondary" className="text-base px-6 py-2 mb-4">Inventaire</Badge>
+            <h2 className="text-3xl md:text-4xl font-bold tracking-tight">Gérez votre inventaire avec précision</h2>
+            <p className="mt-4 text-lg text-muted-foreground">
+              Suivez vos niveaux de stock en temps réel, recevez des alertes de stock bas et automatisez vos processus de réapprovisionnement pour ne jamais manquer une vente.
+            </p>
+          </div>
+          <Image
+            src="https://placehold.co/600x400.png"
+            alt="Gestion d'inventaire"
+            width={600}
+            height={400}
+            className="rounded-xl shadow-2xl"
+            data-ai-hint="inventory management"
+          />
+        </div>
+
+        <div className="grid md:grid-cols-2 gap-12 items-center">
+          <Image
+            src="https://placehold.co/600x400.png"
+            alt="Point de Vente"
+            width={600}
+            height={400}
+            className="rounded-xl shadow-2xl md:order-last"
+            data-ai-hint="point of sale system"
+          />
+          <div>
+            <Badge variant="secondary" className="text-base px-6 py-2 mb-4">Point de Vente</Badge>
+            <h2 className="text-3xl md:text-4xl font-bold tracking-tight">Un système de point de vente intégré</h2>
+            <p className="mt-4 text-lg text-muted-foreground">
+              Acceptez les paiements en ligne et en magasin avec un système POS complet, synchronisé automatiquement avec votre inventaire.
+            </p>
+          </div>
+        </div>
+
+        <div className="grid md:grid-cols-2 gap-12 items-center">
+          <div>
+            <Badge variant="secondary" className="text-base px-6 py-2 mb-4">Gestion de Cartons</Badge>
+            <h2 className="text-3xl md:text-4xl font-bold tracking-tight">Optimisez la préparation des commandes</h2>
+            <p className="mt-4 text-lg text-muted-foreground">
+              Organisez votre entrepôt, générez des listes de prélèvement et emballez vos commandes plus rapidement avec notre module de gestion de cartons.
+            </p>
+          </div>
+          <Image
+            src="https://placehold.co/600x400.png"
+            alt="Gestion de Cartons"
+            width={600}
+            height={400}
+            className="rounded-xl shadow-2xl"
+            data-ai-hint="warehouse shipping boxes"
+          />
+        </div>
+
+        <div className="grid md:grid-cols-2 gap-12 items-center">
+           <Image
+            src="https://placehold.co/600x400.png"
+            alt="Gestion des commandes"
+            width={600}
+            height={400}
+            className="rounded-xl shadow-2xl md:order-last"
+            data-ai-hint="order management interface"
+          />
+          <div>
+            <Badge variant="secondary" className="text-base px-6 py-2 mb-4">Commande</Badge>
+            <h2 className="text-3xl md:text-4xl font-bold tracking-tight">Centralisez toutes vos commandes</h2>
+            <p className="mt-4 text-lg text-muted-foreground">
+              Importez et gérez les commandes de tous vos canaux de vente (e-commerce, magasin, etc.) à partir d'une seule interface unifiée.
+            </p>
+          </div>
+        </div>
+      </section>
 
       <section className="container mx-auto px-4 md:px-6 pb-24">
         <Image
@@ -156,4 +224,3 @@ export default function Home() {
       </section>
     </div>
   );
-}
