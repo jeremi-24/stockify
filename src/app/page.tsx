@@ -16,6 +16,8 @@ import { Card, CardContent, CardHeader, CardTitle, CardDescription } from "@/com
 import { Avatar, AvatarFallback, AvatarImage } from "@/components/ui/avatar";
 import React, { useRef } from "react";
 import { motion, useScroll, useTransform } from "framer-motion";
+import { Carousel, CarouselContent, CarouselItem } from "@/components/ui/carousel";
+import Autoplay from "embla-carousel-autoplay";
 
 
 function LogoIcon(props: React.SVGProps<SVGSVGElement>) {
@@ -72,6 +74,15 @@ const testimonials = [
       avatar: "https://placehold.co/100x100.png",
       text: "En tant que startup, nous avions besoin d'une solution tout-en-un. Stockify nous a permis de centraliser nos commandes et de nous concentrer sur notre croissance.",
     },
+];
+
+const carouselImages = [
+    { src: "/order1.svg", alt: "Order management interface", hint: "order management interface", width: 400, height: 200 },
+    { src: "/order2.svg", alt: "Order details screen", hint: "order details screen", width: 300, height: 300 },
+    { src: "/order3.svg", alt: "Customer order history", hint: "customer order history", width: 300, height: 300 },
+    { src: "/order1.svg", alt: "Order management interface", hint: "order management interface", width: 400, height: 200 },
+    { src: "/order2.svg", alt: "Order details screen", hint: "order details screen", width: 300, height: 300 },
+    { src: "/order3.svg", alt: "Customer order history", hint: "customer order history", width: 300, height: 300 },
 ];
 
 const BentoCard = ({ className, children }: { className?: string, children: React.ReactNode }) => (
@@ -154,6 +165,10 @@ export default function Home() {
       target: sectionRef,
       offset: ["start start", "end end"]
     });
+    
+    const autoplayPlugin = useRef(
+      Autoplay({ delay: 2000, stopOnInteraction: true })
+    );
 
   return (
     <div className="relative min-h-screen w-full bg-background text-foreground">
@@ -320,7 +335,7 @@ export default function Home() {
         </div>
       </section>
 
-       <section className="container mx-auto px-4 md:px-6 py-16 md:py-24 space-y-24">
+       <section className="container mx-auto px-4 md:px-6 py-16 md:py-24 space-y-16">
         <div className="flex flex-col items-center text-center gap-8">
             <div className="flex flex-col items-center gap-4">
                 <Badge variant="secondary" className="text-base px-6 py-2">Commande</Badge>
@@ -330,33 +345,35 @@ export default function Home() {
                 </p>
             </div>
 
-            <div className="relative w-full flex justify-center items-center">
-                <div className="relative z-10 flex items-center justify-center w-full max-w-4xl gap-8">
-                    <Image
-                        src="https://placehold.co/300x300.png"
-                        alt="Commande 1"
-                        width={300}
-                        height={300}
-                        className="rounded-2xl shadow-xl transition-all duration-300 hover:shadow-red-500/50 hover:shadow-2xl"
-                        data-ai-hint="order management interface"
-                    />
-                    <Image
-                        src="https://placehold.co/300x300.png"
-                        alt="Commande 2"
-                        width={300}
-                        height={300}
-                        className="rounded-2xl shadow-xl transition-all duration-300 hover:shadow-red-500/50 hover:shadow-2xl"
-                        data-ai-hint="order details screen"
-                    />
-                    <Image
-                        src="https://placehold.co/300x300.png"
-                        alt="Commande 3"
-                        width={300}
-                        height={300}
-                        className="rounded-2xl shadow-xl transition-all duration-300 hover:shadow-red-500/50 hover:shadow-2xl"
-                        data-ai-hint="customer order history"
-                    />
-                </div>
+            <div className="w-full">
+                 <Carousel
+                    plugins={[autoplayPlugin.current]}
+                    opts={{
+                        align: "center",
+                        loop: true,
+                    }}
+                    className="w-full max-w-4xl mx-auto"
+                >
+                    <CarouselContent>
+                        {carouselImages.map((image, index) => (
+                            <CarouselItem key={index} className="md:basis-1/2 lg:basis-1/3 flex justify-center">
+                                <div className="p-1">
+                                    <Image
+                                        src={image.src}
+                                        alt={image.alt}
+                                        width={image.width}
+                                        height={image.height}
+                                        className={cn(
+                                            "rounded-2xl shadow-xl transition-all duration-300 hover:shadow-red-500/50 hover:shadow-2xl",
+                                            image.width === 400 ? "w-[400px] h-[200px]" : "w-[300px] h-[300px]"
+                                        )}
+                                        data-ai-hint={image.hint}
+                                    />
+                                </div>
+                            </CarouselItem>
+                        ))}
+                    </CarouselContent>
+                </Carousel>
             </div>
         </div>
       </section>
