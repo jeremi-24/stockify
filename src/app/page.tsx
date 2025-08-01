@@ -292,13 +292,6 @@ export default function Home() {
                 />
                 <BentoImage src="https://placehold.co/400x300.png" alt="Point de Vente" hint="point of sale"/>
             </BentoCard>
-            <BentoCard className="lg:col-span-2">
-                 <BentoContent
-                    title="Commandes centralisées"
-                    text="Gérez les commandes de tous vos canaux de vente depuis une seule interface."
-                />
-                <BentoImage src="https://placehold.co/800x300.png" alt="Commandes" hint="order management"/>
-            </BentoCard>
              <BentoCard className="md:col-span-2 lg:col-span-2">
                 <BentoContent
                     title="Préparation optimisée"
@@ -497,9 +490,5 @@ export default function Home() {
 
     </div>
   );
-
-    
-
-    
 
     
