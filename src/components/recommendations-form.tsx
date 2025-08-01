@@ -16,7 +16,7 @@ function SubmitButton() {
       type="submit"
       disabled={pending}
       size="lg"
-      className="absolute right-2.5 bottom-2.5"
+      className="absolute right-2.5 top-1/2 -translate-y-1/2"
       aria-label="Obtenir des recommandations"
     >
       {pending ? (
@@ -39,7 +39,7 @@ export function RecommendationsForm({ formAction, state, className }: Recommenda
     <form action={formAction} className={cn("w-full", className)}>
       <Card className="shadow-2xl rounded-xl">
         <CardContent className="p-0">
-          <div className="relative">
+          <div className="relative flex items-center">
             <Textarea
               id="prompt"
               name="prompt"
