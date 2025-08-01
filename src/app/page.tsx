@@ -73,61 +73,61 @@ const testimonials = [
 ];
 
 const TestimonialCard = ({ testimonial, index, scrollY }: { testimonial: (typeof testimonials)[0], index: number, scrollY: number }) => {
-    const cardVisibility = scrollY - index;
-    const isVisible = cardVisibility > -1 && cardVisibility < 1;
-    const translateY = isVisible ? 0 : 100 * (cardVisibility > 0 ? -1 : 1);
-    const opacity = isVisible ? 1 : 0;
+    const cardProgress = scrollY - index;
+    const isVisible = cardProgress > -1 && cardProgress <= 1;
     
+    // Animate from bottom (100%) to center (0) when it's the next card
+    // Start animation when the previous card is halfway through its own animation
+    const translateY = (1 - Math.min(1, Math.max(0, cardProgress))) * 100;
+    const opacity = isVisible ? 1 : 0;
+    const scale = 1 - (index - scrollY) * 0.05;
+
     return (
-        <Card
-            style={{
-                transform: `translateY(${translateY}%)`,
-                opacity: opacity,
-                transition: 'transform 0.5s ease-out, opacity 0.5s ease-out',
-                zIndex: index
-            }}
-            className={cn(
-                "w-full max-w-2xl absolute top-1/2 -translate-y-1/2"
-            )}
-        >
-            <CardContent className="p-8">
-                <p className="text-lg text-muted-foreground mb-6">"{testimonial.text}"</p>
-                <div className="flex items-center gap-4">
-                    <Avatar>
-                        <AvatarImage src={testimonial.avatar} alt={testimonial.name} />
-                        <AvatarFallback>{testimonial.name.charAt(0)}</AvatarFallback>
-                    </Avatar>
-                    <div>
-                        <p className="font-semibold text-foreground">{testimonial.name}</p>
-                        <p className="text-sm text-muted-foreground">{testimonial.title}</p>
-                    </div>
-                </div>
-            </CardContent>
-        </Card>
+      <Card
+        style={{
+          transform: `translateY(${translateY}%) scale(${Math.max(0.8, scale)})`,
+          opacity: opacity,
+          transition: 'transform 0.5s ease-out, opacity 0.5s ease-out',
+          zIndex: testimonials.length - index, // Higher index cards are on top
+        }}
+        className={cn(
+          "w-full max-w-2xl absolute top-1/2 -translate-y-1/2"
+        )}
+      >
+        <CardContent className="p-8">
+          <p className="text-lg text-muted-foreground mb-6">"{testimonial.text}"</p>
+          <div className="flex items-center gap-4">
+            <Avatar>
+              <AvatarImage src={testimonial.avatar} alt={testimonial.name} />
+              <AvatarFallback>{testimonial.name.charAt(0)}</AvatarFallback>
+            </Avatar>
+            <div>
+              <p className="font-semibold text-foreground">{testimonial.name}</p>
+              <p className="text-sm text-muted-foreground">{testimonial.title}</p>
+            </div>
+          </div>
+        </CardContent>
+      </Card>
     );
 };
 
 export default function Home() {
     const [scrollY, setScrollY] = React.useState(0);
     const sectionRef = React.useRef<HTMLDivElement>(null);
-    const containerRef = React.useRef<HTMLDivElement>(null);
-
 
     React.useEffect(() => {
         const handleScroll = () => {
-            if (sectionRef.current && containerRef.current) {
+            if (sectionRef.current) {
                 const { top, height } = sectionRef.current.getBoundingClientRect();
-                const containerHeight = containerRef.current.offsetHeight;
-                const scrollableHeight = height - containerHeight;
-                const scrollProgress = -top / scrollableHeight;
-
-                if (scrollProgress >= 0 && scrollProgress <= 1) {
-                    setScrollY(scrollProgress * testimonials.length);
-                }
+                const viewportHeight = window.innerHeight;
+                const scrollableHeight = height - viewportHeight;
+                const scrollProgress = Math.max(0, Math.min(1, -top / scrollableHeight));
+                
+                setScrollY(scrollProgress * (testimonials.length));
             }
         };
 
-        window.addEventListener('scroll', handleScroll);
+        window.addEventListener('scroll', handleScroll, { passive: true });
         return () => window.removeEventListener('scroll', handleScroll);
     }, []);
 
@@ -336,23 +336,23 @@ export default function Home() {
         </div>
       </section>
 
-       <section ref={sectionRef} className="container mx-auto px-4 md:px-6 py-16 md:py-24" style={{ height: `${testimonials.length * 100}vh` }}>
-            <div ref={containerRef} className="sticky top-0 h-screen flex flex-col items-center justify-center">
-                <h2 className="text-center text-3xl md:text-4xl font-bold tracking-tight mb-12 absolute top-24">
-                    Ce que nos clients disent de nous
-                </h2>
-                <div className="relative w-full h-96">
-                    {testimonials.map((testimonial, index) => (
-                        <TestimonialCard 
-                            key={index} 
-                            testimonial={testimonial} 
-                            index={index} 
-                            scrollY={scrollY}
-                        />
-                    ))}
-                </div>
-            </div>
-        </section>
+      <section ref={sectionRef} className="relative" style={{ height: `${(testimonials.length + 1) * 100}vh` }}>
+          <div className="sticky top-0 h-screen flex flex-col items-center justify-center overflow-hidden">
+              <h2 className="text-center text-3xl md:text-4xl font-bold tracking-tight mb-12 absolute top-24">
+                  Ce que nos clients disent de nous
+              </h2>
+              <div className="relative w-full h-96">
+                  {testimonials.map((testimonial, index) => (
+                      <TestimonialCard 
+                          key={index} 
+                          testimonial={testimonial} 
+                          index={index} 
+                          scrollY={scrollY}
+                      />
+                  ))}
+              </div>
+          </div>
+      </section>
 
     </div>
   );
