@@ -85,7 +85,7 @@ export default function Home() {
       )}
 
       <section className="w-full py-20 md:py-32 bg-transparent my-16 px-4 md:px-6">
-        <div className="container mx-auto px-4 md:px-6 grid md:grid-cols-2 gap-12 items-center">
+        <div className="container mx-auto grid md:grid-cols-2 gap-12 items-center">
             <div className="space-y-6 max-w-lg">
                 <h2 className="text-4xl font-bold tracking-tight text-primary sm:text-5xl">Toutes vos annonces au même endroit.</h2>
                 <p className="text-lg text-muted-foreground">
@@ -106,7 +106,7 @@ export default function Home() {
                     </li>
                 </ul>
             </div>
-            <div className="relative w-full h-96 group [mask-image:linear-gradient(to_right,transparent_0%,white_20%,white_80%,transparent_100%)]">
+            <div className="relative w-full h-96 group [mask-image:linear-gradient(to_right,transparent_5%,white_25%,white_75%,transparent_95%)]">
               <div className="flex animate-marquee group-hover:pause">
                   {[...marqueeColors, ...marqueeColors].map((color, index) => (
                       <div key={index} className="flex-shrink-0 w-80 h-80 p-4">
@@ -119,7 +119,7 @@ export default function Home() {
       </section>
 
       <section className="w-full py-20 md:py-32 bg-card/80 backdrop-blur-sm my-16 px-4 md:px-6">
-        <div className="container mx-auto px-4 md:px-6">
+        <div className="container mx-auto">
           <div className="text-center mb-12">
             <h2 className="text-4xl font-bold tracking-tight text-primary sm:text-5xl">Des fonctionnalités conçues pour vous</h2>
             <p className="mt-4 text-lg text-muted-foreground max-w-3xl mx-auto">
@@ -176,46 +176,24 @@ export default function Home() {
       </section>
 
       <section className="w-full py-20 md:py-32 bg-transparent my-16 px-4 md:px-6">
-        <div className="container mx-auto px-4 md:px-6">
+        <div className="container mx-auto">
           <div className="text-center mb-12">
             <h2 className="text-4xl font-bold tracking-tight text-primary sm:text-5xl">Visualisation Simplifiée</h2>
             <p className="mt-4 text-lg text-muted-foreground max-w-3xl mx-auto">
               Organisez et visualisez vos données avec une grille simple et intuitive.
             </p>
           </div>
-          <div className="grid grid-cols-1 md:grid-cols-2 gap-8">
-            <Card>
-              <CardHeader>
-                <CardTitle>Élément 1</CardTitle>
-              </CardHeader>
-              <CardContent>
-                <div className="bg-muted rounded-md aspect-video"></div>
-              </CardContent>
-            </Card>
-            <Card>
-              <CardHeader>
-                <CardTitle>Élément 2</CardTitle>
-              </CardHeader>
-              <CardContent>
-                <div className="bg-muted rounded-md aspect-video"></div>
-              </CardContent>
-            </Card>
-            <Card>
-              <CardHeader>
-                <CardTitle>Élément 3</CardTitle>
-              </CardHeader>
-              <CardContent>
-                <div className="bg-muted rounded-md aspect-video"></div>
-              </CardContent>
-            </Card>
-            <Card>
-              <CardHeader>
-                <CardTitle>Élément 4</CardTitle>
-              </CardHeader>
-              <CardContent>
-                <div className="bg-muted rounded-md aspect-video"></div>
-              </CardContent>
-            </Card>
+          <div 
+            className="relative h-96 w-full rounded-lg border bg-card p-4"
+            style={{
+              backgroundImage: `
+                linear-gradient(to right, hsl(var(--border)) 1px, transparent 1px),
+                linear-gradient(to bottom, hsl(var(--border)) 1px, transparent 1px)
+              `,
+              backgroundSize: '3rem 3rem',
+            }}
+          >
+            <div className="absolute inset-0 bg-gradient-to-t from-card to-transparent" />
           </div>
         </div>
       </section>
