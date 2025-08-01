@@ -306,7 +306,7 @@ export default function Home() {
 
             <div className="relative w-full flex justify-center items-center">
                 <div className="absolute top-1/2 left-0 w-full h-0.5 bg-border -translate-y-1/2"></div>
-                <div className="relative z-10 flex items-center justify-around w-full max-w-4xl">
+                <div className="relative z-10 flex items-center justify-around w-full max-w-4xl gap-8">
                     <Image
                         src="https://placehold.co/300x300.png"
                         alt="Commande 1"
