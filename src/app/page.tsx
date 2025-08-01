@@ -106,8 +106,8 @@ export default function Home() {
                     </li>
                 </ul>
             </div>
-            <div className="relative w-full h-96 group [mask-image:linear-gradient(to_right,transparent,white_20%,white_80%,transparent)]">
-              <div className="flex animate-marquee-reverse group-hover:pause">
+            <div className="relative w-full h-96 group [mask-image:linear-gradient(to_right,transparent_0%,white_20%,white_80%,transparent_100%)]">
+              <div className="flex animate-marquee group-hover:pause">
                   {[...marqueeColors, ...marqueeColors].map((color, index) => (
                       <div key={index} className="flex-shrink-0 w-80 h-80 p-4">
                         <div className={`w-full h-full rounded-xl shadow-2xl ${color}`} />
@@ -169,6 +169,51 @@ export default function Home() {
                 <p className="text-md text-muted-foreground">
                   Rejoignez une communauté de propriétaires et de locataires pour des conseils et des opportunités.
                 </p>
+              </CardContent>
+            </Card>
+          </div>
+        </div>
+      </section>
+
+      <section className="w-full py-20 md:py-32 bg-transparent my-16 px-4 md:px-6">
+        <div className="container mx-auto px-4 md:px-6">
+          <div className="text-center mb-12">
+            <h2 className="text-4xl font-bold tracking-tight text-primary sm:text-5xl">Visualisation Simplifiée</h2>
+            <p className="mt-4 text-lg text-muted-foreground max-w-3xl mx-auto">
+              Organisez et visualisez vos données avec une grille simple et intuitive.
+            </p>
+          </div>
+          <div className="grid grid-cols-1 md:grid-cols-2 gap-8">
+            <Card>
+              <CardHeader>
+                <CardTitle>Élément 1</CardTitle>
+              </CardHeader>
+              <CardContent>
+                <div className="bg-muted rounded-md aspect-video"></div>
+              </CardContent>
+            </Card>
+            <Card>
+              <CardHeader>
+                <CardTitle>Élément 2</CardTitle>
+              </CardHeader>
+              <CardContent>
+                <div className="bg-muted rounded-md aspect-video"></div>
+              </CardContent>
+            </Card>
+            <Card>
+              <CardHeader>
+                <CardTitle>Élément 3</CardTitle>
+              </CardHeader>
+              <CardContent>
+                <div className="bg-muted rounded-md aspect-video"></div>
+              </CardContent>
+            </Card>
+            <Card>
+              <CardHeader>
+                <CardTitle>Élément 4</CardTitle>
+              </CardHeader>
+              <CardContent>
+                <div className="bg-muted rounded-md aspect-video"></div>
               </CardContent>
             </Card>
           </div>
