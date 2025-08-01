@@ -266,22 +266,44 @@ export default function Home() {
           />
         </div>
 
-        <div className="grid md:grid-cols-2 gap-12 items-center">
-           <Image
-            src="https://placehold.co/600x400.png"
-            alt="Gestion des commandes"
-            width={600}
-            height={400}
-            className="rounded-xl shadow-2xl md:order-last"
-            data-ai-hint="order management interface"
-          />
-          <div>
-            <Badge variant="secondary" className="text-base px-6 py-2 mb-4">Commande</Badge>
-            <h2 className="text-3xl md:text-4xl font-bold tracking-tight">Centralisez toutes vos commandes</h2>
-            <p className="mt-4 text-lg text-muted-foreground">
-              Importez et gérez les commandes de tous vos canaux de vente (e-commerce, magasin, etc.) à partir d'une seule interface unifiée.
-            </p>
-          </div>
+        <div className="flex flex-col items-center text-center gap-8">
+            <div className="flex flex-col items-center gap-4">
+                <Badge variant="secondary" className="text-base px-6 py-2">Commande</Badge>
+                <h2 className="text-3xl md:text-4xl font-bold tracking-tight">Centralisez toutes vos commandes</h2>
+                <p className="max-w-2xl text-lg text-muted-foreground">
+                    Importez et gérez les commandes de tous vos canaux de vente (e-commerce, magasin, etc.) à partir d'une seule interface unifiée.
+                </p>
+            </div>
+
+            <div className="relative w-full flex justify-center items-center">
+                <div className="absolute top-1/2 left-0 w-full h-0.5 bg-border -translate-y-1/2"></div>
+                <div className="relative z-10 flex items-center justify-around w-full max-w-4xl">
+                    <Image
+                        src="https://placehold.co/300x300.png"
+                        alt="Commande 1"
+                        width={300}
+                        height={300}
+                        className="rounded-xl shadow-2xl bg-background p-2"
+                        data-ai-hint="order management interface"
+                    />
+                    <Image
+                        src="https://placehold.co/300x300.png"
+                        alt="Commande 2"
+                        width={300}
+                        height={300}
+                        className="rounded-xl shadow-2xl bg-background p-2"
+                        data-ai-hint="order details screen"
+                    />
+                    <Image
+                        src="https://placehold.co/300x300.png"
+                        alt="Commande 3"
+                        width={300}
+                        height={300}
+                        className="rounded-xl shadow-2xl bg-background p-2"
+                        data-ai-hint="customer order history"
+                    />
+                </div>
+            </div>
         </div>
       </section>
 
@@ -292,7 +314,6 @@ export default function Home() {
           <div className="relative h-[250vh]">
               <div className="sticky top-0 h-screen flex flex-col items-center justify-center gap-4">
                   {testimonials.map((testimonial, index) => {
-                      const groupNumber = Math.floor(index);
                       return (
                           <div
                               key={index}
