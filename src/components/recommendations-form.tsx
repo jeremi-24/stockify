@@ -37,7 +37,7 @@ type RecommendationsFormProps = {
 export function RecommendationsForm({ formAction, state, className }: RecommendationsFormProps) {
   return (
     <form action={formAction} className={cn("w-full", className)}>
-      <Card className="shadow-2xl rounded-xl border-none">
+      <Card className="shadow-lg rounded-xl border-none">
         <CardContent className="p-0">
           <div className="relative flex items-center">
             <Input
