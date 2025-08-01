@@ -4,8 +4,8 @@ import { useFormStatus } from 'react-dom';
 import { type RecommendationFormState } from '@/lib/actions';
 import { Button } from '@/components/ui/button';
 import { Card, CardContent } from '@/components/ui/card';
-import { Textarea } from '@/components/ui/textarea';
-import { Lightbulb, Loader2 } from 'lucide-react';
+import { Input } from '@/components/ui/input';
+import { Send, Loader2 } from 'lucide-react';
 import { cn } from '@/lib/utils';
 
 function SubmitButton() {
@@ -15,14 +15,14 @@ function SubmitButton() {
     <Button
       type="submit"
       disabled={pending}
-      size="lg"
-      className="absolute right-2.5 top-1/2 -translate-y-1/2"
+      size="icon"
+      className="absolute right-2 top-1/2 -translate-y-1/2 h-10 w-12 bg-primary text-primary-foreground hover:bg-primary/90"
       aria-label="Obtenir des recommandations"
     >
       {pending ? (
         <Loader2 className="h-5 w-5 animate-spin" />
       ) : (
-        <Lightbulb className="h-5 w-5" />
+        <Send className="h-5 w-5" />
       )}
     </Button>
   );
@@ -37,15 +37,14 @@ type RecommendationsFormProps = {
 export function RecommendationsForm({ formAction, state, className }: RecommendationsFormProps) {
   return (
     <form action={formAction} className={cn("w-full", className)}>
-      <Card className="shadow-2xl rounded-xl">
+      <Card className="shadow-2xl rounded-xl border-none">
         <CardContent className="p-0">
           <div className="relative flex items-center">
-            <Textarea
+            <Input
               id="prompt"
               name="prompt"
-              placeholder="Ex: 'Je cherche un endroit calme en banlieue avec un grand jardin pour mon chien' ou 'Un appartement moderne proche de la vie nocturne'"
-              rows={3}
-              className="w-full text-base border-2 rounded-xl focus-visible:ring-accent pr-20 py-4 pl-4 resize-none"
+              placeholder="Ex: 'Je cherche un endroit calme en banlieue avec un grand jardin pour mon chien'"
+              className="w-full text-base border-2 rounded-xl focus-visible:ring-accent pr-20 py-6 pl-6"
               aria-label="Votre propriété idéale"
             />
             <SubmitButton />
