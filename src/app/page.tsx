@@ -184,7 +184,7 @@ export default function Home() {
             </p>
           </div>
           <div 
-            className="relative h-96 w-full rounded-lg border bg-card p-4"
+            className="relative h-96 w-full rounded-lg p-4"
             style={{
               backgroundImage: `
                 linear-gradient(to right, hsl(var(--border)) 1px, transparent 1px),
@@ -193,7 +193,7 @@ export default function Home() {
               backgroundSize: '3rem 3rem',
             }}
           >
-            <div className="absolute inset-0 bg-gradient-to-t from-card to-transparent" />
+            <div className="absolute inset-0 bg-gradient-to-t from-background to-transparent" />
           </div>
         </div>
       </section>
