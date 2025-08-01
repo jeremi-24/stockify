@@ -94,7 +94,7 @@ const TestimonialCard = ({ testimonial, index, scrollYProgress }: { testimonial:
           zIndex: index,
         }}
         className={cn(
-          "w-full max-w-2xl absolute top-1/2 -translate-y-[calc(50%_-_100px)]"
+          "w-full max-w-2xl absolute"
         )}
       >
         <Card>
@@ -329,10 +329,10 @@ export default function Home() {
 
       <section ref={sectionRef} className="relative h-[400vh]">
         <div className="sticky top-0 h-screen flex flex-col items-center justify-start pt-24 overflow-hidden">
-            <h2 className="text-center text-3xl md:text-4xl mb-24 font-bold tracking-tight">
+            <h2 className="text-center text-3xl md:text-4xl mb-12 font-bold tracking-tight">
                 Ce que nos clients disent de nous
             </h2>
-            <div className="relative w-full h-96 flex items-start justify-center">
+            <div className="relative w-full h-96 flex items-start justify-center pt-8">
                 {testimonials.map((testimonial, index) => (
                     <TestimonialCard 
                         key={index} 
