@@ -360,8 +360,9 @@ export default function Home() {
                         <Image
                             src={carouselImages[currentImageIndex].src}
                             alt={carouselImages[currentImageIndex].alt}
-                            layout="fill"
-                            objectFit="cover"
+                            width={1200}
+                            height={600}
+                            className="object-cover"
                             data-ai-hint={carouselImages[currentImageIndex].hint}
                         />
                     </motion.div>
@@ -383,6 +384,7 @@ export default function Home() {
 
       <section ref={sectionRef} className="relative h-[400vh]">
         <div className="sticky top-0 h-screen flex flex-col items-center justify-start pt-24 overflow-hidden">
+             <div className="absolute inset-0 -z-10 bg-[radial-gradient(ellipse_at_center,rgba(214,40,40,0.15),transparent_80%)]"></div>
             <h2 className="text-center text-3xl md:text-4xl mb-12 font-bold tracking-tight">
                 Ce que nos clients disent de nous
             </h2>
@@ -492,6 +494,5 @@ export default function Home() {
 
     </div>
   );
-}
 
     
