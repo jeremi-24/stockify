@@ -106,7 +106,7 @@ export default function Home() {
                     </li>
                 </ul>
             </div>
-            <div className="relative w-full h-96 group [mask-image:linear-gradient(to_right,transparent,white_2%,white_98%,transparent)]">
+            <div className="relative w-full h-96 group [mask-image:linear-gradient(to_right,transparent,white_20%,white_80%,transparent)]">
               <div className="flex animate-marquee-reverse group-hover:pause">
                   {[...marqueeColors, ...marqueeColors].map((color, index) => (
                       <div key={index} className="flex-shrink-0 w-80 h-80 p-4">
