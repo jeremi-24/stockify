@@ -23,7 +23,7 @@ export default function Home() {
 
   return (
     <div className="flex flex-col">
-      <section id="ai-search" className="w-full py-20 md:py-32 bg-background relative overflow-hidden">
+      <section id="ai-search" className="w-full py-20 md:py-32 bg-transparent relative overflow-hidden">
         <div className="absolute inset-0 z-0">
           <div className="absolute top-0 left-0 w-64 h-64 bg-accent/10 rounded-full-squircle animate-pulse"></div>
           <div className="absolute bottom-0 right-0 w-96 h-96 bg-primary/10 rounded-full-squircle animate-pulse-slow"></div>
@@ -46,7 +46,7 @@ export default function Home() {
       </section>
 
       {(state.reasoning || recommendedProperties.length > 0) && (
-        <section className="w-full py-16 md:py-24 bg-card">
+        <section className="w-full py-16 md:py-24 bg-card/80 backdrop-blur-sm">
           <div className="container mx-auto px-4">
             {state.reasoning && (
               <div className="w-full max-w-4xl mx-auto mb-12 animate-fade-in">
@@ -75,7 +75,7 @@ export default function Home() {
         </section>
       )}
 
-      <section className="w-full py-20 md:py-32 bg-background">
+      <section className="w-full py-20 md:py-32 bg-transparent">
         <div className="container mx-auto px-4 grid md:grid-cols-2 gap-12 items-center">
             <div className="space-y-6">
                 <h2 className="text-4xl font-bold tracking-tight text-primary sm:text-5xl">Toutes vos annonces au même endroit.</h2>
@@ -109,7 +109,7 @@ export default function Home() {
         </div>
       </section>
 
-      <section className="w-full py-20 md:py-32 bg-card">
+      <section className="w-full py-20 md:py-32 bg-card/80 backdrop-blur-sm">
         <div className="container mx-auto px-4 grid md:grid-cols-2 gap-12 items-center">
              <div className="relative aspect-square rounded-xl overflow-hidden shadow-2xl md:order-2">
                  <Image
