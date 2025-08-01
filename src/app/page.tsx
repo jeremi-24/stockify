@@ -91,6 +91,23 @@ export default function Home() {
           </div>
         </section>
       )}
+      
+      <section className="w-full py-20 md:py-32 bg-transparent my-16 px-4 md:px-6">
+        <div className="container mx-auto flex justify-center items-center gap-8 -skew-y-3">
+          <div className="w-64 h-64 relative transform rotate-[-8deg] transition-transform duration-300 hover:scale-105 hover:rotate-[-4deg] shadow-2xl rounded-xl overflow-hidden">
+            <Image src="https://placehold.co/400x400.png" alt="Domino Image 1" fill className="object-cover" data-ai-hint="modern architecture" />
+          </div>
+          <div className="w-64 h-64 relative transform rotate-[5deg] transition-transform duration-300 hover:scale-105 hover:rotate-[2deg] shadow-2xl rounded-xl overflow-hidden">
+            <Image src="https://placehold.co/400x400.png" alt="Domino Image 2" fill className="object-cover" data-ai-hint="living room" />
+          </div>
+          <div className="w-64 h-64 relative transform rotate-[-3deg] transition-transform duration-300 hover:scale-105 hover:rotate-[-1deg] shadow-2xl rounded-xl overflow-hidden">
+            <Image src="https://placehold.co/400x400.png" alt="Domino Image 3" fill className="object-cover" data-ai-hint="cozy bedroom" />
+          </div>
+          <div className="w-64 h-64 relative transform rotate-[7deg] transition-transform duration-300 hover:scale-105 hover:rotate-[3deg] shadow-2xl rounded-xl overflow-hidden">
+            <Image src="https://placehold.co/400x400.png" alt="Domino Image 4" fill className="object-cover" data-ai-hint="kitchen interior" />
+          </div>
+        </div>
+      </section>
 
       <section className="w-full py-20 md:py-32 bg-transparent my-16 px-4 md:px-6">
         <div className="container mx-auto grid md:grid-cols-2 gap-12 items-center">
