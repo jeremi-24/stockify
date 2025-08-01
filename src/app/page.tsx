@@ -77,12 +77,12 @@ const testimonials = [
 ];
 
 const carouselImages = [
-    { src: "/order.svg", alt: "Order management interface", hint: "order management interface", width: 400, height: 200 },
-    { src: "/order2.svg", alt: "Order details screen", hint: "order details screen", width: 300, height: 300 },
-    { src: "/order3.svg", alt: "Customer order history", hint: "customer order history", width: 300, height: 300 },
-    { src: "/order1.svg", alt: "Order management interface", hint: "order management interface", width: 400, height: 200 },
-    { src: "/order2.svg", alt: "Order details screen", hint: "order details screen", width: 300, height: 300 },
-    { src: "/order3.svg", alt: "Customer order history", hint: "customer order history", width: 300, height: 300 },
+    { src: "/order.svg", alt: "Order management interface", hint: "order management interface" },
+    { src: "/order2.svg", alt: "Order details screen", hint: "order details screen" },
+    { src: "/order3.svg", alt: "Customer order history", hint: "customer order history" },
+    { src: "/order1.svg", alt: "Order management interface", hint: "order management interface" },
+    { src: "/order2.svg", alt: "Order details screen", hint: "order details screen" },
+    { src: "/order3.svg", alt: "Customer order history", hint: "customer order history" },
 ];
 
 const BentoCard = ({ className, children }: { className?: string, children: React.ReactNode }) => (
@@ -361,13 +361,9 @@ export default function Home() {
                                     <Image
                                         src={image.src}
                                         alt={image.alt}
-                                        width={image.width}
-                                        height={image.height}
-                                        className={cn(
-                                            "rounded-2xl object-cover shadow-xl transition-all duration-300 hover:shadow-red-500/50 hover:shadow-2xl",
-                                            "w-[300px] h-[300px]",
-                                            index % 2 === 0 ? "lg:w-[400px] lg:h-[200px]" : "lg:w-[300px] lg:h-[300px]"
-                                        )}
+                                        width={300}
+                                        height={300}
+                                        className="rounded-2xl object-cover shadow-xl transition-all duration-300 hover:scale-110 hover:shadow-red-500/50 hover:shadow-2xl"
                                         data-ai-hint={image.hint}
                                     />
                                 </div>
