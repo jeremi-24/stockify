@@ -29,16 +29,16 @@ export default function Home() {
           <span className="sr-only">Mon Entreprise</span>
         </a>
         <nav className="ml-auto flex gap-4 sm:gap-6">
-          <a className="text-sm font-medium hover:underline underline-offset-4" href="#">
+          <a className="text-base font-medium hover:underline underline-offset-4" href="#">
             Fonctionnalités
           </a>
-          <a className="text-sm font-medium hover:underline underline-offset-4" href="#">
+          <a className="text-base font-medium hover:underline underline-offset-4" href="#">
             Tarifs
           </a>
-          <a className="text-sm font-medium hover:underline underline-offset-4" href="#">
+          <a className="text-base font-medium hover:underline underline-offset-4" href="#">
             À propos
           </a>
-          <a className="text-sm font-medium hover:underline underline-offset-4" href="#">
+          <a className="text-base font-medium hover:underline underline-offset-4" href="#">
             Contact
           </a>
         </nav>
@@ -54,12 +54,6 @@ export default function Home() {
                 <p className="mx-auto max-w-[700px] text-muted-foreground md:text-xl">
                   Avec des composants de qualité production basés sur Tailwind CSS.
                 </p>
-              </div>
-              <div className="space-x-4">
-                <Button>
-                  <Code className="mr-2 h-4 w-4" />
-                  Commencer
-                </Button>
               </div>
             </div>
           </div>
