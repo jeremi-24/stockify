@@ -10,7 +10,6 @@ import { properties } from '@/lib/properties';
 import { RecommendationFormState, getRecommendationsAction } from '@/lib/actions';
 import { Card, CardContent, CardHeader, CardTitle } from '@/components/ui/card';
 import { CheckCircle } from 'lucide-react';
-import { BorderBeam } from '@/components/ui/border-beam';
 
 const initialState: RecommendationFormState = {
   message: '',
@@ -129,7 +128,6 @@ export default function Home() {
                     objectFit="cover"
                     data-ai-hint="whatsapp conversation"
                 />
-                <BorderBeam colorFrom="#16A34A" colorTo="#4ADE80" duration={7} delay={0} />
             </div>
             <div className="space-y-6 md:order-1 max-w-lg">
                 <h2 className="text-4xl font-bold tracking-tight text-primary sm:text-5xl">Contact direct et rapide via WhatsApp.</h2>

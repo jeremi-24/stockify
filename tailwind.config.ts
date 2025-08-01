@@ -118,11 +118,6 @@ export default {
           '0%': { transform: 'translateX(-100%)' },
           '100%': { transform: 'translateX(0%)' },
         },
-        'border-beam': {
-          '100%': {
-            'offset-distance': '100%',
-          },
-        },
       },
       animation: {
         'accordion-down': 'accordion-down 0.2s ease-out',
@@ -133,10 +128,6 @@ export default {
         'zoom': 'zoom-in 10s linear infinite alternate',
         'marquee': 'marquee 30s linear infinite',
         'marquee-reverse': 'marquee-reverse 30s linear infinite',
-        'border-beam': 'border-beam var(--duration) linear var(--delay) infinite',
-      },
-      backgroundImage: {
-        "border-beam": "conic-gradient(from 180deg at 50% 50%, transparent 0deg, var(--color-from) 180deg, var(--color-to) 180deg, transparent 360deg)",
       },
     },
   },
