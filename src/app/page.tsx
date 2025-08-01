@@ -97,14 +97,20 @@ export default function Home() {
                     </li>
                 </ul>
             </div>
-            <div className="relative aspect-square rounded-xl overflow-hidden shadow-2xl">
-                 <Image
-                    src="https://placehold.co/600x600.png"
-                    alt="Dashboard showing property listings"
-                    layout="fill"
-                    objectFit="cover"
-                    data-ai-hint="dashboard property listings"
-                />
+            <div className="relative h-[150vh]">
+              <div className="sticky top-1/4 -translate-y-1/4">
+                <div className="relative w-full aspect-square">
+                    <div className="absolute top-0 left-0 w-3/5 aspect-square rounded-xl overflow-hidden shadow-2xl animate-fade-in [animation-delay:0.2s] [animation-fill-mode:backwards]">
+                        <Image src="https://placehold.co/400x400.png" alt="Property 1" layout="fill" objectFit="cover" data-ai-hint="modern apartment interior" />
+                    </div>
+                    <div className="absolute bottom-0 right-0 w-3/5 aspect-square rounded-xl overflow-hidden shadow-2xl animate-fade-in [animation-delay:0.4s] [animation-fill-mode:backwards]">
+                        <Image src="https://placehold.co/400x400.png" alt="Property 2" layout="fill" objectFit="cover" data-ai-hint="cozy living room" />
+                    </div>
+                    <div className="absolute top-1/2 left-1/2 -translate-x-1/2 -translate-y-1/2 w-3/5 aspect-square rounded-xl overflow-hidden shadow-2xl animate-fade-in [animation-delay:0.6s] [animation-fill-mode:backwards]">
+                        <Image src="https://placehold.co/400x400.png" alt="Property 3" layout="fill" objectFit="cover" data-ai-hint="house exterior suburban" />
+                    </div>
+                </div>
+              </div>
             </div>
         </div>
       </section>
