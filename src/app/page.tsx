@@ -306,13 +306,13 @@ export default function Home() {
 
             <div className="relative w-full flex justify-center items-center">
                 <div className="absolute top-1/2 left-0 w-full h-0.5 bg-border -translate-y-1/2"></div>
-                <div className="relative z-10 flex items-center justify-around w-full max-w-4xl gap-8">
+                <div className="relative z-10 flex items-center justify-center w-full max-w-4xl gap-8">
                     <Image
                         src="https://placehold.co/300x300.png"
                         alt="Commande 1"
                         width={300}
                         height={300}
-                        className="rounded-xl shadow-2xl bg-background p-2"
+                        className="rounded-2xl shadow-2xl bg-background p-2"
                         data-ai-hint="order management interface"
                     />
                     <Image
@@ -320,7 +320,7 @@ export default function Home() {
                         alt="Commande 2"
                         width={300}
                         height={300}
-                        className="rounded-xl shadow-2xl bg-background p-2"
+                        className="rounded-2xl shadow-2xl bg-background p-2"
                         data-ai-hint="order details screen"
                     />
                     <Image
@@ -328,7 +328,7 @@ export default function Home() {
                         alt="Commande 3"
                         width={300}
                         height={300}
-                        className="rounded-xl shadow-2xl bg-background p-2"
+                        className="rounded-2xl shadow-2xl bg-background p-2"
                         data-ai-hint="customer order history"
                     />
                 </div>
@@ -337,22 +337,22 @@ export default function Home() {
       </section>
 
       <section ref={sectionRef} className="relative" style={{ height: `${(testimonials.length + 1) * 100}vh` }}>
-          <div className="sticky top-0 h-screen flex flex-col items-center justify-center overflow-hidden">
-              <h2 className="text-center text-3xl md:text-4xl font-bold tracking-tight mb-12 absolute top-24">
-                  Ce que nos clients disent de nous
-              </h2>
-              <div className="relative w-full h-96">
-                  {testimonials.map((testimonial, index) => (
-                      <TestimonialCard 
-                          key={index} 
-                          testimonial={testimonial} 
-                          index={index} 
-                          scrollY={scrollY}
-                      />
-                  ))}
-              </div>
-          </div>
-      </section>
+    <div className="sticky top-0 h-screen flex flex-col items-center overflow-hidden pt-24 pb-24">
+        <h2 className="text-center text-3xl md:text-4xl mb-10 font-bold tracking-tight ">
+            Ce que nos clients disent de nous
+        </h2>
+        <div className="relative w-full  flex items-center justify-center">
+            {testimonials.map((testimonial, index) => (
+                <TestimonialCard 
+                    key={index} 
+                    testimonial={testimonial} 
+                    index={index} 
+                    scrollY={scrollY}
+                />
+            ))}
+        </div>
+    </div>
+</section>
 
     </div>
   );
