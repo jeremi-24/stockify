@@ -1,7 +1,7 @@
 
 'use client';
 
-import { useActionState } from 'react';
+import { useActionState, useState, useEffect } from 'react';
 import Image from 'next/image';
 import { RecommendationsForm } from '@/components/recommendations-form';
 import { PropertyCard } from '@/components/property-card';
@@ -16,6 +16,15 @@ const initialState: RecommendationFormState = {
 
 export default function Home() {
   const [state, formAction] = useActionState(getRecommendationsAction, initialState);
+  const [isScrolled, setIsScrolled] = useState(false);
+
+  useEffect(() => {
+    const handleScroll = () => {
+      setIsScrolled(window.scrollY > 50);
+    };
+    window.addEventListener('scroll', handleScroll);
+    return () => window.removeEventListener('scroll', handleScroll);
+  }, []);
 
   const recommendedProperties = state.recommendations
     ? properties.filter(p => state.recommendations?.includes(p.id))
@@ -31,14 +40,14 @@ export default function Home() {
 
   return (
     <div className="flex flex-col">
-      <section id="ai-search" className="w-full py-20 md:py-32 bg-transparent relative overflow-hidden px-4 md:px-6">
+      <section id="ai-search" className="w-full h-screen py-20 md:py-32 bg-transparent relative overflow-hidden px-4 md:px-6 flex items-center justify-center">
         <div className="absolute inset-0 z-0">
           <div className="absolute top-0 left-0 w-64 h-64 bg-accent/10 rounded-full-squircle animate-pulse"></div>
           <div className="absolute bottom-0 right-0 w-96 h-96 bg-primary/10 rounded-full-squircle animate-pulse-slow"></div>
           <div className="absolute top-1/2 left-1/2 -translate-x-1/2 -translate-y-1/2 w-[50vw] h-[50vh] bg-accent/5 rounded-full-squircle blur-3xl"></div>
         </div>
 
-        <div className="container px-4 md:px-6 relative z-10">
+        <div className={`container px-4 md:px-6 relative z-10 transition-all duration-700 ease-out ${isScrolled ? 'opacity-0 -translate-y-16' : 'opacity-100'}`}>
           <div className="flex flex-col items-center space-y-6 text-center">
             <div className="space-y-4">
               <h1 className="text-4xl font-bold tracking-tighter text-primary sm:text-5xl md:text-6xl">Trouvez votre maison ou chambre grâce à l'IA</h1>
