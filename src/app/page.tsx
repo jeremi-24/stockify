@@ -20,7 +20,7 @@ import { motion, useScroll, useTransform, AnimatePresence, useInView } from "fra
 const AnimatedElement = ({ children, className, variants, amount = 0.5 }) => {
     const ref = useRef(null);
     const isInView = useInView(ref, { once: true, amount });
-
+    const [isMobileMenuOpen, setIsMobileMenuOpen] = useState(false);
     return (
         <motion.div
             ref={ref}
@@ -202,6 +202,7 @@ const ProofCard = ({ avatar, name, text, index }) => {
 export default function Home() {
     const [currentImageIndex, setCurrentImageIndex] = useState(0);
     const [isScrolled, setIsScrolled] = useState(false);
+    const [isMobileMenuOpen, setIsMobileMenuOpen] = useState(false);
 
     useEffect(() => {
         const timer = setTimeout(() => {
@@ -236,12 +237,45 @@ export default function Home() {
           ? "h-16 bg-background/80 backdrop-blur-lg border-b border-border/20 shadow-sm"
           : "h-20 bg-transparent"
         )}>
+          {isMobileMenuOpen && (
+  <div className="md:hidden fixed top-16 left-0 w-full bg-background border-t border-border z-40 px-4 py-4 space-y-4">
+    <a href="#" className="block text-sm font-medium text-muted-foreground hover:text-foreground">Fonctionnalités</a>
+    <a href="#" className="block text-sm font-medium text-muted-foreground hover:text-foreground">Cas d'usage</a>
+    <a href="#" className="block text-sm font-medium text-muted-foreground hover:text-foreground">Nouveautés</a>
+    <a href="#" className="block text-sm font-medium text-muted-foreground hover:text-foreground">Tarifs</a>
+    <div className="pt-4 border-t border-border flex flex-col gap-2">
+      <Button variant="ghost" className="w-full justify-start">Connexion</Button>
+      <Button className="w-full justify-center bg-red-500 text-white hover:bg-red-600 rounded-full">Inscription</Button>
+    </div>
+  </div>
+)}
+
         <div className="container mx-auto flex items-center justify-between">
           <div className="flex items-center gap-6">
             <a href="#" className="flex items-center gap-2">
               <LogoIcon className="h-6 w-6" />
               <span className="text-xl font-bold">Stockify</span>
             </a>
+            <button
+  className="md:hidden  flex items-right"
+  onClick={() => setIsMobileMenuOpen(!isMobileMenuOpen)}
+>
+  <svg
+    xmlns="http://www.w3.org/2000/svg"
+    className="h-6 w-6 text-foreground"
+    fill="none"
+    viewBox="0 0 24 24"
+    stroke="currentColor"
+  >
+    <path
+      strokeLinecap="round"
+      strokeLinejoin="round"
+      strokeWidth={2}
+      d={isMobileMenuOpen ? "M6 18L18 6M6 6l12 12" : "M4 6h16M4 12h16M4 18h16"}
+    />
+  </svg>
+</button>
+            
             <nav className="hidden items-center gap-6 md:flex">
               <DropdownMenu>
                 <DropdownMenuTrigger className="flex items-center gap-1 text-sm font-medium text-muted-foreground outline-none transition-colors hover:text-foreground">
@@ -275,7 +309,7 @@ export default function Home() {
               </a>
             </nav>
           </div>
-          <div className="flex items-center gap-4">
+          <div className="flex hidden md:flex items-center gap-4">
             <Button variant="ghost">Connexion</Button>
             <Button className="rounded-full bg-red-500 px-6 font-semibold text-white transition-colors hover:bg-red-600">
               Inscription
@@ -408,7 +442,7 @@ export default function Home() {
         </div>
       </section>
 
-      <section className="py-16 md:py-24 relative overflow-hidden">
+      <section className="py-8 md:py-24 relative overflow-hidden">
         <div className="absolute inset-0 -z-10 bg-[radial-gradient(ellipse_at_top,rgba(214,40,40,0.15),transparent_80%)]"></div>
         <div className="container mx-auto px-4 md:px-6">
             <AnimatedElement variants={fadeInUp} className="text-center text-lg font-semibold text-muted-foreground">
@@ -417,35 +451,29 @@ export default function Home() {
             <AnimatedElement variants={fadeInUp} amount={0.2} className="mt-8">
                 {/* Première rangée */}
                 <div className="border-y border-border">
-                    <div className="flex justify-around items-center">
-                        {logos.map((logo, index) => (
-                            <div key={`${logo.name}-${index}-1`} className={cn(
-                                "flex-1 flex justify-center items-center p-8",
-                                index < logos.length - 1 && "border-r border-border"
-                            )}>
-                                <span className="text-2xl font-bold tracking-widest text-white">{logo.name}</span>
-                            </div>
-                        ))}
-                    </div>
-                </div>
+  <div className="flex flex-col sm:flex-row justify-around items-center">
+    {logos.map((logo, index) => (
+      <div
+        key={`${logo.name}-${index}-1`}
+        className={cn(
+          "flex-1 flex justify-center items-center p-8",
+          index < logos.length - 1 &&
+            "border-b sm:border-b-0 sm:border-r border-border"
+        )}
+      >
+        <span className="text-2xl font-bold tracking-widest text-white">{logo.name}</span>
+      </div>
+    ))}
+  </div>
+</div>
+
              
-                <div className="border-b border-border ml-16">
-                     <div className="flex justify-around items-center">
-                        {[...logos].reverse().map((logo, index) => (
-                            <div key={`${logo.name}-${index}-2`} className={cn(
-                                "flex-1 flex justify-center items-center p-8",
-                                index < logos.length - 1 && "border-r border-border"
-                            )}>
-                                <span className="text-2xl font-bold tracking-widest text-muted-foreground">{logo.name}</span>
-                            </div>
-                        ))}
-                    </div>
-                </div>
+               
             </AnimatedElement>
         </div>
     </section>
 
-       <section className="container mx-auto px-4 md:px-6 py-16 md:py-24 space-y-16">
+       <section className="container mx-auto px-4 md:px-6 py-8 md:py-12 space-y-16">
         <AnimatedElement variants={staggerContainer} className="flex flex-col items-center text-center gap-8">
             <div className="flex flex-col items-center gap-4">
                 <motion.div variants={fadeInUp}><Badge variant="secondary" className="text-base px-6 py-2">Commande</Badge></motion.div>
