@@ -1,9 +1,14 @@
 import type { Metadata } from 'next';
+import { Inter } from 'next/font/google';
 import './globals.css';
+import { Toaster } from '@/components/ui/toaster';
+import { cn } from '@/lib/utils';
+
+const inter = Inter({ subsets: ['latin'] });
 
 export const metadata: Metadata = {
-  title: 'Nouveau Projet',
-  description: 'Généré par App Prototyper',
+  title: 'Composants pour Tailwind CSS',
+  description: 'Créez des sites web encore plus rapidement avec des composants basés sur Tailwind CSS',
 };
 
 export default function RootLayout({
@@ -12,8 +17,11 @@ export default function RootLayout({
   children: React.ReactNode;
 }>) {
   return (
-    <html lang="fr">
-      <body>{children}</body>
+    <html lang="fr" className="dark">
+      <body className={cn('min-h-screen font-sans antialiased', inter.className)}>
+        {children}
+        <Toaster />
+      </body>
     </html>
   );
 }
