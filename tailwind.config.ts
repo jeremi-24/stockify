@@ -95,15 +95,10 @@ export default {
             height: '0',
           },
         },
-        'glow': {
-          '0%': { boxShadow: '0 0 0px hsl(var(--accent))' },
-          '100%': { boxShadow: '0 0 8px hsl(var(--accent))' },
-        },
       },
       animation: {
         'accordion-down': 'accordion-down 0.2s ease-out',
         'accordion-up': 'accordion-up 0.2s ease-out',
-        'glow': 'glow 1.5s ease-in-out infinite alternate',
       },
     },
   },
