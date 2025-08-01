@@ -1,3 +1,6 @@
+
+'use client';
+
 import Image from 'next/image';
 import Link from 'next/link';
 import { BedDouble, Bath, SquareGanttChart } from 'lucide-react';
@@ -5,12 +8,19 @@ import type { Property } from '@/lib/properties';
 import { Badge } from '@/components/ui/badge';
 import { Card, CardContent, CardHeader } from '@/components/ui/card';
 import { FavoriteButton } from './favorite-button';
+import { useState, useEffect } from 'react';
 
 type PropertyCardProps = {
   property: Property;
 };
 
 export function PropertyCard({ property }: PropertyCardProps) {
+  const [formattedPrice, setFormattedPrice] = useState<string | null>(null);
+
+  useEffect(() => {
+    setFormattedPrice(property.price.toLocaleString());
+  }, [property.price]);
+
   return (
     <Link href={`/property/${property.id}`} className="group block">
       <Card className="overflow-hidden transition-shadow duration-300 hover:shadow-2xl">
@@ -39,7 +49,7 @@ export function PropertyCard({ property }: PropertyCardProps) {
           </h3>
           <p className="text-sm text-muted-foreground mb-2">{property.location}</p>
           <p className="font-headline text-2xl font-bold text-accent mb-4">
-            ${property.price.toLocaleString()}
+            {formattedPrice ? `$${formattedPrice}` : '...'}
           </p>
           <div className="flex justify-between border-t pt-3 text-sm text-muted-foreground">
             <div className="flex items-center gap-2">
