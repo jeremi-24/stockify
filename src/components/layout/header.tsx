@@ -2,16 +2,16 @@
 
 import Link from 'next/link';
 import { usePathname } from 'next/navigation';
-import { Home as HomeIcon, Sparkles, Heart, Menu, Lightbulb } from 'lucide-react';
+import { Home as HomeIcon, Sparkles, Heart, Menu, Building2 } from 'lucide-react';
 import { Button } from '@/components/ui/button';
 import { Sheet, SheetContent, SheetTrigger } from '@/components/ui/sheet';
 import { cn } from '@/lib/utils';
 
 const navLinks = [
-  { href: '/', label: 'Home', icon: HomeIcon },
+  { href: '/', label: 'AI Recommendations', icon: HomeIcon },
   { href: '/favorites', label: 'Favorites', icon: Heart },
   { href: '/enhance-description', label: 'Enhance Description', icon: Sparkles },
-  { href: '/recommendations', label: 'Recommendations', icon: Lightbulb },
+  { href: '/recommendations', label: 'All Properties', icon: Building2 },
 ];
 
 export function Header() {
