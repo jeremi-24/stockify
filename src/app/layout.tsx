@@ -1,14 +1,14 @@
-import type { Metadata } from 'next';
-import { Inter } from 'next/font/google';
-import './globals.css';
-import { Toaster } from '@/components/ui/toaster';
-import { cn } from '@/lib/utils';
+import type { Metadata } from "next";
+import { Inter } from "next/font/google";
+import "./globals.css";
+import { Toaster } from "@/components/ui/toaster";
+import { cn } from "@/lib/utils";
 
-const inter = Inter({ subsets: ['latin'] });
+const inter = Inter({ subsets: ["latin"] });
 
 export const metadata: Metadata = {
-  title: 'Composants pour Tailwind CSS',
-  description: 'Créez des sites web encore plus rapidement avec des composants basés sur Tailwind CSS',
+  title: "Superlist",
+  description: "Stay on top of everything",
 };
 
 export default function RootLayout({
@@ -17,8 +17,8 @@ export default function RootLayout({
   children: React.ReactNode;
 }>) {
   return (
-    <html lang="fr" className="dark">
-      <body className={cn('min-h-screen font-sans antialiased', inter.className)}>
+    <html lang="en" className="dark">
+      <body className={cn("min-h-screen font-sans antialiased", inter.className)}>
         {children}
         <Toaster />
       </body>
