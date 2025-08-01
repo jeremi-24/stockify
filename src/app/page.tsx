@@ -85,14 +85,14 @@ export default function Home() {
         </section>
       )}
 
-      <section className="w-full py-20 md:py-32 bg-transparent">
+      <section className="w-full py-20 md:py-32 bg-transparent my-16">
         <div className="container mx-auto px-4 grid md:grid-cols-2 gap-12 items-center">
             <div className="space-y-6 max-w-lg">
                 <h2 className="text-4xl font-bold tracking-tight text-primary sm:text-5xl">Toutes vos annonces au même endroit.</h2>
                 <p className="text-lg text-muted-foreground">
                     Gérez et consultez facilement toutes vos annonces immobilières depuis une seule interface simple et intuitive. Ne perdez plus jamais le fil de vos propriétés.
                 </p>
-                <ul className="space-y-4 text-lg mt-6">
+                <ul className="space-y-4 text-lg mt-8">
                     <li className="flex items-center gap-3">
                         <CheckCircle className="h-6 w-6 text-accent" />
                         <span>Centralisation de toutes vos offres.</span>
@@ -107,7 +107,7 @@ export default function Home() {
                     </li>
                 </ul>
             </div>
-            <div className="relative w-full h-96 group [mask-image:linear-gradient(to_right,transparent,white_20%,white_80%,transparent)]">
+            <div className="relative w-full h-96 group [mask-image:linear-gradient(to_right,transparent,white_5%,white_95%,transparent)]">
               <div className="flex animate-marquee-reverse group-hover:pause">
                   {[...marqueeColors, ...marqueeColors].map((color, index) => (
                       <div key={index} className="flex-shrink-0 w-80 h-80 p-4">
@@ -119,10 +119,9 @@ export default function Home() {
         </div>
       </section>
 
-      <section className="w-full py-20 md:py-32 bg-card/80 backdrop-blur-sm">
+      <section className="w-full py-20 md:py-32 bg-card/80 backdrop-blur-sm my-16">
         <div className="container mx-auto px-4 grid md:grid-cols-2 gap-12 items-center">
              <div className="relative aspect-square rounded-xl overflow-hidden shadow-2xl md:order-2">
-                <BorderBeam colorFrom="#16A34A" colorTo="#4ADE80" duration={7} delay={0} />
                  <Image
                     src="https://placehold.co/600x600.png"
                     alt="Smartphone showing a WhatsApp conversation"
@@ -130,13 +129,14 @@ export default function Home() {
                     objectFit="cover"
                     data-ai-hint="whatsapp conversation"
                 />
+                <BorderBeam colorFrom="#16A34A" colorTo="#4ADE80" duration={7} delay={0} />
             </div>
             <div className="space-y-6 md:order-1 max-w-lg">
                 <h2 className="text-4xl font-bold tracking-tight text-primary sm:text-5xl">Contact direct et rapide via WhatsApp.</h2>
                 <p className="text-lg text-muted-foreground">
                     Fini les longs délais d'attente. Contactez directement les propriétaires ou les locataires potentiels via WhatsApp pour des échanges fluides et instantanés.
                 </p>
-                 <ul className="space-y-4 text-lg mt-6">
+                 <ul className="space-y-4 text-lg mt-8">
                     <li className="flex items-center gap-3">
                         <CheckCircle className="h-6 w-6 text-accent" />
                         <span>Communication instantanée.</span>

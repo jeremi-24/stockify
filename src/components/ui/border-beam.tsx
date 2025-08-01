@@ -5,7 +5,6 @@ import React, { FC, useEffect, useRef, useState } from "react";
 
 interface BorderBeamProps {
   className?: string;
-  children: React.ReactNode;
   colorFrom?: string;
   colorTo?: string;
   duration?: number;
@@ -14,7 +13,6 @@ interface BorderBeamProps {
 
 export const BorderBeam: FC<BorderBeamProps> = ({
   className,
-  children,
   colorFrom = "#10B981", // Emerald-500
   colorTo = "#34D399",   // Emerald-400
   duration = 5,
@@ -27,7 +25,7 @@ export const BorderBeam: FC<BorderBeamProps> = ({
     if (containerRef.current) {
       const { width, height } = containerRef.current.getBoundingClientRect();
       setPath(
-        `M${width},0 H0 V${height} H${width} V0 Z`
+        `M${width / 2},0 C${width / 2},${height / 2} ${width / 2},${height / 2} ${width},${height / 2}`
       );
     }
   }, []);
@@ -44,7 +42,7 @@ export const BorderBeam: FC<BorderBeamProps> = ({
         } as React.CSSProperties
       }
       className={cn(
-        "relative w-full h-full p-px rounded-[inherit] [border:calc(1px)_solid_transparent] [background:linear-gradient(to_right,hsl(var(--primary)),hsl(var(--primary)))_padding-box,var(--border-beam)_border-box]",
+        "absolute inset-0 w-full h-full",
         className
       )}
     >
@@ -81,7 +79,6 @@ export const BorderBeam: FC<BorderBeamProps> = ({
           </linearGradient>
         </defs>
       </svg>
-      {children}
     </div>
   );
 };
