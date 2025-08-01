@@ -55,7 +55,7 @@ export default function Home() {
       </section>
 
       {(state.reasoning || recommendedProperties.length > 0) && (
-        <section className="w-full py-16 md:py-24 bg-card/80 backdrop-blur-sm px-4 md:px-6">
+        <section className="w-full py-16 md:py-24 bg-transparent px-4 md:px-6 my-16">
           <div className="container mx-auto px-4 md:px-6">
             {state.reasoning && (
               <div className="w-full max-w-4xl mx-auto mb-12 animate-fade-in">
@@ -118,7 +118,7 @@ export default function Home() {
         </div>
       </section>
 
-      <section className="w-full py-20 md:py-32 bg-card/80 backdrop-blur-sm my-16 px-4 md:px-6">
+      <section className="w-full py-20 md:py-32 bg-transparent my-16 px-4 md:px-6">
         <div className="container mx-auto">
           <div className="text-center mb-12">
             <h2 className="text-4xl font-bold tracking-tight text-primary sm:text-5xl">Des fonctionnalités conçues pour vous</h2>
@@ -193,7 +193,12 @@ export default function Home() {
               backgroundSize: '3rem 3rem',
             }}
           >
-            <div className="absolute inset-0 bg-gradient-to-t from-background to-transparent" />
+            <div 
+              className="absolute inset-0"
+              style={{
+                background: 'radial-gradient(ellipse at center, transparent 30%, hsl(var(--background)) 80%)'
+              }}
+            />
           </div>
         </div>
       </section>
