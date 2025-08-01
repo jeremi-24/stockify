@@ -121,63 +121,6 @@ export default function Home() {
       <section className="w-full py-20 md:py-32 bg-transparent my-16 px-4 md:px-6">
         <div className="container mx-auto">
           <div className="text-center mb-12">
-            <h2 className="text-4xl font-bold tracking-tight text-primary sm:text-5xl">Des fonctionnalités conçues pour vous</h2>
-            <p className="mt-4 text-lg text-muted-foreground max-w-3xl mx-auto">
-              Nous avons créé des outils puissants pour simplifier votre recherche immobilière et améliorer votre expérience.
-            </p>
-          </div>
-          <div className="grid grid-cols-1 md:grid-cols-3 md:grid-rows-2 gap-6">
-            <Card className="md:col-span-2 md:row-span-2 p-8 flex flex-col justify-between bg-primary/10">
-              <div>
-                <CardHeader>
-                  <Search className="h-12 w-12 text-primary mb-4" />
-                  <CardTitle className="text-3xl font-bold text-primary">Recherche Intelligente</CardTitle>
-                </CardHeader>
-                <CardContent>
-                  <p className="text-lg text-muted-foreground">
-                    Notre IA analyse vos besoins pour vous proposer des biens qui vous correspondent vraiment. Décrivez votre recherche et laissez-vous surprendre par la pertinence des résultats.
-                  </p>
-                </CardContent>
-              </div>
-              <div className="relative aspect-video rounded-xl overflow-hidden mt-6">
-                <Image
-                    src="https://placehold.co/600x400.png"
-                    alt="Recherche intelligente"
-                    layout="fill"
-                    objectFit="cover"
-                    data-ai-hint="modern abstract"
-                />
-              </div>
-            </Card>
-            <Card className="p-8 flex flex-col justify-between bg-accent/10">
-              <CardHeader>
-                <MessageSquare className="h-10 w-10 text-accent-dark mb-4" />
-                <CardTitle className="text-2xl font-bold text-accent-dark">Contact Direct</CardTitle>
-              </CardHeader>
-              <CardContent>
-                <p className="text-md text-muted-foreground">
-                  Contactez directement les propriétaires via WhatsApp pour des échanges rapides et fluides.
-                </p>
-              </CardContent>
-            </Card>
-            <Card className="p-8 flex flex-col justify-between bg-accent/10">
-              <CardHeader>
-                <Users className="h-10 w-10 text-accent-dark mb-4" />
-                <CardTitle className="text-2xl font-bold text-accent-dark">Communauté Active</CardTitle>
-              </CardHeader>
-              <CardContent>
-                <p className="text-md text-muted-foreground">
-                  Rejoignez une communauté de propriétaires et de locataires pour des conseils et des opportunités.
-                </p>
-              </CardContent>
-            </Card>
-          </div>
-        </div>
-      </section>
-
-      <section className="w-full py-20 md:py-32 bg-transparent my-16 px-4 md:px-6">
-        <div className="container mx-auto">
-          <div className="text-center mb-12">
             <h2 className="text-4xl font-bold tracking-tight text-primary sm:text-5xl">Visualisation Simplifiée</h2>
             <p className="mt-4 text-lg text-muted-foreground max-w-3xl mx-auto">
               Organisez et visualisez vos données avec une grille simple et intuitive.
