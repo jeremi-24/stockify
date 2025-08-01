@@ -1,0 +1,47 @@
+[33mbd50d0c[m[33m ([m[1;36mHEAD[m[33m -> [m[1;32mmaster[m[33m, [m[1;31morigin/master[m[33m)[m final UI
+[33m3bd959f[m garde le nav en sticky blur lors quand on commence alle defiler sur la p
+[33mb9052a1[m tourne le  a droite de10 degré et decale le vers le bas
+[33mdbc5a35[m cest bien mais  decale le trait unpeu vers la droite et un ^peu vers le
+[33mad05f4d[m dans ce texte : "Une plateforme, un contrôle total" met des trait pour m
+[33m76a3ecf[m enleve le bento de centraliser les commndes
+[33m522c756[m je ne vois rien
+[33mf1bf9f0[m ajoute le meme degradé au niveau de hero ,a lintersection de section cli
+[33m4863593[m met un arriere plan lumine neon dans la section avis
+[33ma59a0e9[m sous le conteneur je veux 3 barre representant les 3 images avec effet a
+[33m4216854[m soit tu met un contenenur 1200x600 et les 3 images prendront cette dimen
+[33m2b5a85c[m je repren ma requete : met toute les image a la meme taille , mais lors
+[33mc299089[m non je veux le defilement mette en valeur une image au miliu sa taille f
+[33m4d5e6c9[m pour les 3 image de la section commande , met les en carousel infini aut
+[33m0ac63bd[m reduis la largeur de la carte
+[33mb3d3a1b[m sur le CTa je propose qu'on mette le texte a gauche et aa  droite on met
+[33m78abf90[m remplace les deux section inventaire et point de vente par une seule sec
+[33mf54f156[m maintenant a chaque commentaire , met au mois 4 etoile avec la couleur d
+[33mfc3c144[m il ya trop despace entre les cartes et le titre de temoignage
+[33m251a813[m cest bien mais maintenant les autres cartes ne disparaisssent plus mais
+[33m7eeaaee[m cest bien mais elle sont trop transparent ,larrive du prochain ou du pre
+[33m39b2e18[m pour lanimation de testimonial utiliser framermotion
+[33m1079820[m ajoute un CTA avant le footer , il  sera sur toute la largeur ontenant u
+[33m52c3244[m fais mo un footer
+[33m3b40afd[m je veux avoir un hover sur les3 avec un shadow de la coueur du texte "su
+[33m623adc6[m essai de mettre les 3 carte de la section commande , au milieu
+[33mc3cda51[m allons sur la section commande : espace un peu ses images
+[33m66a5b00[m essai ncore lefet arrive un peu peu
+[33m70a87ef[m la secion testimonial est mal implementer , on doit arrivé sur le premie
+[33m1e8584b[m pour la section commande , met ses textes en haut milieu et pour son ima
+[33m16bfb9c[m a la fin fais une section témoignage : ce sera une carte largeur superie
+[33m1dde2f3[m met 2 section apres la grande image 1200x600 et les 2 autres apres clien
+[33ma179e2c[m prend ces badge et creer leur une section chacune et met les avant leur
+[33m2527a16[m reparti les sur une longueure total de 1200 et grossi les un peu
+[33m7a6bb82[m juste sous le hero creer des badge pour : Inventaire ,Point de Vente , G
+[33mc9560b8[m delimité les avec 2 trait horizontal (haut et bas) et les traits vertica
+[33m5983ac4[m soit met 4 et ne les fait pas defiler
+[33m9a8fdb4[m cest pas resolu
+[33m970d2c9[m les animation de logo client doievnt etre infin cest a dire quan d la li
+[33m47b8ba1[m je prefere les logo textes en capita
+[33m36729fd[m ensuite la section client , un carrousel de photo qui va defiléinfinimen
+[33m87bb4b8[m juste en bas du hero limage 1200x600 qui montrera limage du saas
+[33m8f471df[m efface Blog Support
+[33m670f3a7[m mainteant adapte les texte au gestion de stock et boutique
+[33meb662f8[m concois moi un truc comme ca
+[33me10094c[m I see this error with the app, reported by NextJS, please fix it. The er
+[33mbd94811[m supprimer le bouton commencer , et augmente la taille des lien de navi
