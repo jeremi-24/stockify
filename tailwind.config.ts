@@ -18,6 +18,7 @@ export default {
     extend: {
       rotate: {
         '6': '6deg',
+        '10': '10deg',
       },
       fontFamily: {
         body: ['Roboto', 'sans-serif'],

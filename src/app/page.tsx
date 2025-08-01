@@ -1,4 +1,3 @@
-
 "use client";
 
 import { Badge } from "@/components/ui/badge";
@@ -10,14 +9,33 @@ import {
   DropdownMenuTrigger,
 } from "@/components/ui/dropdown-menu";
 import { cn } from "@/lib/utils";
-import { ChevronDown, Sparkles, Twitter, Linkedin, Facebook, Star, CheckCircle2, Check } from "lucide-react";
+import { ChevronDown, Sparkles, Twitter, Linkedin, Facebook, Star, CheckCircle2, Check, ArrowUpRight, User, Package, DollarSign } from "lucide-react";
 import Image from "next/image";
 import { Card, CardContent, CardHeader, CardTitle, CardDescription } from "@/components/ui/card";
 import { Avatar, AvatarFallback, AvatarImage } from "@/components/ui/avatar";
 import React, { useState, useEffect, useRef } from "react";
-import { motion, useScroll, useTransform, AnimatePresence } from "framer-motion";
+import { motion, useScroll, useTransform, AnimatePresence, useInView } from "framer-motion";
 
-function LogoIcon(props: React.SVGProps<SVGSVGElement>) {
+// Helper component for scroll-triggered animations
+const AnimatedElement = ({ children, className, variants, amount = 0.5 }) => {
+    const ref = useRef(null);
+    const isInView = useInView(ref, { once: true, amount });
+
+    return (
+        <motion.div
+            ref={ref}
+            className={className}
+            variants={variants}
+            initial="initial"
+            animate={isInView ? "animate" : "initial"}
+        >
+            {children}
+        </motion.div>
+    );
+};
+
+
+function LogoIcon(props) {
   return (
     <svg
       {...props}
@@ -46,46 +64,43 @@ const logos = [
   { name: 'QUANTUM' },
 ];
 
-const testimonials = [
-    {
-      name: "Jean Dupont",
-      title: "Gérant de e-commerce",
-      avatar: "https://placehold.co/100x100.png",
-      text: "Stockify a transformé ma gestion des stocks. Je gagne un temps précieux et j'ai réduit mes erreurs de 50%. C'est un outil indispensable pour tout commerçant.",
-    },
-    {
-      name: "Marie Curie",
-      title: "Directrice des opérations",
-      avatar: "https://placehold.co/100x100.png",
-      text: "L'intégration du point de vente avec l'inventaire est un véritable game-changer. Tout est synchronisé en temps réel, c'est incroyablement efficace.",
-    },
-    {
-      name: "Pierre Martin",
-      title: "Responsable d'entrepôt",
-      avatar: "https://placehold.co/100x100.png",
-      text: "La fonctionnalité de gestion des cartons a optimisé notre processus de préparation de commandes comme jamais auparavant. Nos clients sont livrés plus vite.",
-    },
-    {
-      name: "Sophie Leroy",
-      title: "Fondatrice de startup",
-      avatar: "https://placehold.co/100x100.png",
-      text: "En tant que startup, nous avions besoin d'une solution tout-en-un. Stockify nous a permis de centraliser nos commandes et de nous concentrer sur notre croissance.",
-    },
-];
-
 const carouselImages = [
-    { src: "/order1.svg", alt: "Order management interface", hint: "order management interface" },
-    { src: "https://placehold.co/1200x600.png", alt: "Order details screen", hint: "order details screen" },
-    { src: "https://placehold.co/1200x600.png", alt: "Customer order history", hint: "customer order history" },
+    { src: "/order2.svg", alt: "Order management interface", hint: "order management interface" },
+    { src: "/order2.svg", alt: "Order details screen", hint: "order details screen" },
+    { src: "/order2.svg", alt: "Customer order history", hint: "customer order history" },
 ];
 
-const BentoCard = ({ className, children }: { className?: string, children: React.ReactNode }) => (
-    <div className={cn("relative rounded-xl border border-border/50 bg-secondary/20 shadow-lg backdrop-blur-sm p-6 overflow-hidden", className)}>
-        {children}
-    </div>
-);
+const fadeInUp = {
+  initial: { opacity: 0, y: 30 },
+  animate: { opacity: 1, y: 0, transition: { duration: 0.6, ease: "easeOut" } },
+};
 
-const BentoContent = ({ title, text, className, children }: { title: string, text: string, className?: string, children?: React.ReactNode }) => (
+const staggerContainer = {
+  animate: {
+    transition: {
+      staggerChildren: 0.1,
+    },
+  },
+};
+
+const BentoCard = ({ className, children }) => {
+    const ref = useRef(null);
+    const isInView = useInView(ref, { once: true, amount: 0.2 });
+
+    return (
+        <motion.div
+            ref={ref}
+            className={cn("relative rounded-xl border border-border/50 bg-secondary/20 shadow-lg backdrop-blur-sm p-6 overflow-hidden", className)}
+            initial={{ opacity: 0, scale: 0.95 }}
+            animate={isInView ? { opacity: 1, scale: 1 } : {}}
+            transition={{ duration: 0.5, ease: "easeOut" }}
+        >
+            {children}
+        </motion.div>
+    );
+};
+
+const BentoContent = ({ title, text, className, children }) => (
     <div className={cn("relative z-10 flex flex-col h-full", className)}>
         <h3 className="text-xl font-bold">{title}</h3>
         <p className="text-sm text-muted-foreground mt-2 flex-1">{text}</p>
@@ -93,7 +108,7 @@ const BentoContent = ({ title, text, className, children }: { title: string, tex
     </div>
 );
 
-const BentoImage = ({ src, alt, hint }: { src: string, alt: string, hint: string }) => (
+const BentoImage = ({ src, alt, hint }) => (
     <Image
         src={src}
         alt={alt}
@@ -103,63 +118,88 @@ const BentoImage = ({ src, alt, hint }: { src: string, alt: string, hint: string
     />
 );
 
+const stats = [
+  {
+    icon: <User className="w-8 h-8 text-red-500" />,
+    value: "10,000+",
+    label: "Commerçants Actifs",
+  },
+  {
+    icon: <Package className="w-8 h-8 text-red-500" />,
+    value: "1M+",
+    label: "Commandes Traitées",
+  },
+  {
+    icon: <DollarSign className="w-8 h-8 text-red-500" />,
+    value: "250K $",
+    label: "Générés par nos clients",
+  },
+];
 
-const TestimonialCard = ({ testimonial, index, scrollYProgress }: { testimonial: (typeof testimonials)[0], index: number, scrollYProgress: any }) => {
-    const totalCards = testimonials.length;
-    const start = index / totalCards;
-    const end = (index + 1) / totalCards;
-    const cardEnd = (index + 0.8) / totalCards
+const proofs = [
+  {
+    avatar: "https://randomuser.me/api/portraits/men/6.jpg",
+    name: "Julien B.",
+    text: "Vient d'optimiser son stock de 25% !",
+  },
+  {
+    avatar: "https://randomuser.me/api/portraits/women/44.jpg",
+    name: "Carla S.",
+    text: "A atteint 1000 commandes aujourd'hui.",
+  },
+  {
+    avatar: "https://randomuser.me/api/portraits/men/51.jpg",
+    name: "Marc V.",
+    text: "A économisé 8h de travail cette semaine.",
+  },
+];
 
-    const scale = useTransform(scrollYProgress, [start, end], [0.8, 1]);
-    const translateY = useTransform(scrollYProgress, [start, end], [150, 0]);
-    const opacity = useTransform(scrollYProgress, [start, cardEnd, end], [0, 1, 0]);
 
-
+const StatsCard = ({ icon, value, label }) => {
+    const ref = useRef(null);
+    const isInView = useInView(ref, { once: true, amount: 0.5 });
+    
     return (
-      <motion.div
-        style={{
-          scale,
-          translateY,
-          opacity,
-          zIndex: index,
-        }}
-        className={cn(
-          "w-full max-w-2xl absolute"
-        )}
-      >
-        <Card>
-          <CardContent className="p-8">
-            <div className="flex mb-4">
-              <Star className="h-5 w-5 fill-red-500 text-red-500" />
-              <Star className="h-5 w-5 fill-red-500 text-red-500" />
-              <Star className="h-5 w-5 fill-red-500 text-red-500" />
-              <Star className="h-5 w-5 fill-red-500 text-red-500" />
-              <Star className="h-5 w-5 text-muted-foreground" />
-            </div>
-            <p className="text-lg text-muted-foreground mb-6">"{testimonial.text}"</p>
-            <div className="flex items-center gap-4">
-              <Avatar>
-                <AvatarImage src={testimonial.avatar} alt={testimonial.name} />
-                <AvatarFallback>{testimonial.name.charAt(0)}</AvatarFallback>
-              </Avatar>
-              <div>
-                <p className="font-semibold text-foreground">{testimonial.name}</p>
-                <p className="text-sm text-muted-foreground">{testimonial.title}</p>
-              </div>
-            </div>
-          </CardContent>
-        </Card>
-      </motion.div>
+        <motion.div
+            ref={ref}
+            className="flex flex-col items-center text-center p-6 bg-secondary/30 rounded-xl"
+            initial={{ opacity: 0, y: 20 }}
+            animate={isInView ? { opacity: 1, y: 0 } : {}}
+            transition={{ duration: 0.5, ease: "easeOut" }}
+        >
+            <div className="mb-4">{icon}</div>
+            <p className="text-4xl font-bold bg-gradient-to-b from-red-500 to-orange-500 bg-clip-text text-transparent">{value}</p>
+            <p className="text-muted-foreground">{label}</p>
+        </motion.div>
     );
 };
 
+const ProofCard = ({ avatar, name, text, index }) => {
+    const ref = useRef(null);
+    const isInView = useInView(ref, { once: true, amount: 0.5 });
+
+    return (
+        <motion.div
+            ref={ref}
+            className="flex items-center gap-4 p-4 bg-card/80 backdrop-blur-sm border border-border/50 rounded-lg shadow-lg"
+            initial={{ opacity: 0, x: -30 }}
+            animate={isInView ? { opacity: 1, x: 0 } : {}}
+            transition={{ duration: 0.5, delay: index * 0.2, ease: "easeOut" }}
+        >
+            <Avatar>
+                <AvatarImage src={avatar} alt={name} />
+                <AvatarFallback>{name.charAt(0)}</AvatarFallback>
+            </Avatar>
+            <div>
+                <p className="font-semibold text-foreground">{name}</p>
+                <p className="text-sm text-muted-foreground">{text}</p>
+            </div>
+            <CheckCircle2 className="h-6 w-6 text-green-500 ml-auto" />
+        </motion.div>
+    );
+}
+
 export default function Home() {
-    const sectionRef = useRef(null);
-    const { scrollYProgress } = useScroll({
-      target: sectionRef,
-      offset: ["start start", "end end"]
-    });
-    
     const [currentImageIndex, setCurrentImageIndex] = useState(0);
     const [isScrolled, setIsScrolled] = useState(false);
 
@@ -186,7 +226,11 @@ export default function Home() {
       <div className="absolute inset-0 -z-10 h-full w-full bg-[radial-gradient(#3e3e3e_1px,transparent_1px)] [background-size:16px_16px]"></div>
        <div className="absolute inset-0 -z-20 h-full w-full bg-gradient-to-br from-background via-indigo-950/40 to-background"></div>
 
-       <header className={cn(
+       <motion.header 
+        initial={{ y: -100 }}
+        animate={{ y: 0 }}
+        transition={{ duration: 0.5, ease: "easeOut" }}
+        className={cn(
         "fixed top-0 left-0 right-0 z-50 flex items-center justify-between transition-all duration-300",
         isScrolled 
           ? "h-16 bg-background/80 backdrop-blur-lg border-b border-border/20 shadow-sm"
@@ -238,129 +282,180 @@ export default function Home() {
             </Button>
           </div>
         </div>
-      </header>
+      </motion.header>
 
-      <main className="container relative mx-auto flex flex-col items-center justify-center px-4  pb-12 text-center md:px-6 pt-28 md:pt-40 md:pb-16 relative">
+      <main className="container relative mx-auto flex flex-col items-center justify-center px-4  pb-12 text-center md:px-6 pt-28 md:pt-40 md:pb-16">
         <div className="absolute -z-10 -top-20 left-1/2 -translate-x-1/2 w-full max-w-4xl h-96 bg-[radial-gradient(ellipse_at_center,rgba(214,40,40,0.15),transparent_80%)]"></div>
+        
+        <motion.div
+            className="flex flex-col items-center text-center"
+            variants={staggerContainer}
+            initial="initial"
+            animate="animate"
+        >
+            <motion.div variants={fadeInUp} className="mb-8 flex items-center gap-2 rounded-full bg-secondary/70 px-4 py-1.5 text-sm font-medium text-muted-foreground backdrop-blur-sm">
+              <span className="rounded-full bg-primary/20 p-1 text-primary">
+                <Sparkles className="h-4 w-4 fill-primary" />
+              </span>
+              <span className="text-foreground">NOUVEAU</span> Intégration de l'IA pour prédire vos ventes
+            </motion.div>
 
-        <div className="mb-8 flex items-center gap-2 rounded-full bg-secondary/70 px-4 py-1.5 text-sm font-medium text-muted-foreground backdrop-blur-sm">
-          <span className="rounded-full bg-primary/20 p-1 text-primary">
-            <Sparkles className="h-4 w-4 fill-primary" />
-          </span>
-          <span className="text-foreground">NOUVEAU</span> Intégration de l'IA pour prédire vos ventes
-        </div>
+            <motion.h1 variants={fadeInUp} className="text-5xl font-bold tracking-tighter md:text-7xl">
+             Gardez le contrôle <br />
+              <span className="bg-gradient-to-b from-red-500 to-orange-500 bg-clip-text text-transparent">
+                sur tout
+              </span>
+            </motion.h1>
 
-        <h1 className="text-5xl font-bold tracking-tighter md:text-7xl">
-         Gardez le contrôle <br />
-          <span className="bg-gradient-to-b from-red-500 to-orange-500 bg-clip-text text-transparent">
-            sur tout
-          </span>
-        </h1>
+            <motion.p variants={fadeInUp} className="mx-auto mt-6 max-w-xl text-lg text-muted-foreground">
+              Stockify centralise votre inventaire, suit vos commandes, et vous permet de gérer toute votre boutique en un seul endroit.
+            </motion.p>
 
-        <p className="mx-auto mt-6 max-w-xl text-lg text-muted-foreground">
-          Stockify centralise votre inventaire, suit vos commandes, et vous permet de gérer toute votre boutique en un seul endroit.
-        </p>
-
-        <Button size="lg" className="mt-8 rounded-full bg-red-500 px-8 text-lg font-semibold text-white transition-colors hover:bg-red-600">
-          Commencez gratuitement
-        </Button>
+            <motion.div variants={fadeInUp}>
+                <Button size="lg" className="mt-8 rounded-full bg-red-500 px-8 text-lg font-semibold text-white transition-colors hover:bg-red-600">
+                  Commencez gratuitement
+                </Button>
+            </motion.div>
+        </motion.div>
       </main>
 
       <section className="container mx-auto px-4 md:px-6 pb-24">
-        <Image
-          src="https://placehold.co/1200x600.png"
-          alt="Aperçu du SaaS"
-          width={1200}
-          height={600}
-          className="mx-auto rounded-xl shadow-2xl"
-          data-ai-hint="dashboard screenshot"
-        />
+        <AnimatedElement variants={fadeInUp}>
+            <Image
+              src="/bento1.svg"
+              alt="Aperçu du SaaS"
+              width={1200}
+              height={600}
+              className="mx-auto rounded-xl shadow-2xl"
+              data-ai-hint="dashboard screenshot"
+            />
+        </AnimatedElement>
       </section>
       
       <section className="container mx-auto px-4 md:px-6 py-16 md:py-24 relative">
         <div className="absolute inset-0 -z-10 top-1/2 left-1/2 -translate-x-1/2 -translate-y-1/2 w-full h-full max-w-6xl bg-[radial-gradient(ellipse_at_center,rgba(214,40,40,0.1),transparent_80%)]"></div>
-        <div className="text-center mb-12">
-            <Badge variant="secondary" className="text-base px-6 py-2 mb-4">Fonctionnalités</Badge>
-            <h2 className="text-3xl md:text-4xl font-bold tracking-tight">Une plateforme, un <span className="relative inline-block">contrôle<svg className="absolute -bottom-1 left-0 w-full h-3 text-red-500 transform rotate-12 translate-y-3" viewBox="0 0 100 8" preserveAspectRatio="none"><path d="M0.7,7.03c11.53-2.06,23.73-3.3,35.73-4.52c11.4-1.16,22.99-2.25,34.36-3.32c11.48-1.08,23.08-2.09,34.58-3.1" fill="none" stroke="currentColor" strokeWidth="2" strokeLinecap="round"></path></svg></span> total</h2>
-            <p className="mt-4 max-w-2xl mx-auto text-lg text-muted-foreground">
+        <AnimatedElement variants={staggerContainer} className="text-center mb-12">
+            <motion.div variants={fadeInUp}><Badge variant="secondary" className="text-base px-6 py-2 mb-4">Fonctionnalités</Badge></motion.div>
+            <motion.h2 variants={fadeInUp} className="text-3xl md:text-4xl font-bold tracking-tight">Une plateforme, un <span className="relative inline-block">contrôle<svg className="absolute -bottom-1 left-0 w-full h-3 text-red-500 transform rotate-6 translate-y-3 " viewBox="0 0 100 8" preserveAspectRatio="none"><path d="M0.7,7.03c11.53-2.06,23.73-3.3,35.73-4.52c11.4-1.16,22.99-2.25,34.36-3.32c11.48-1.08,23.08-2.09,34.58-3.1" fill="none" stroke="currentColor" strokeWidth="2" strokeLinecap="round"></path></svg></span> total</motion.h2>
+            <motion.p variants={fadeInUp} className="mt-4 max-w-2xl mx-auto text-lg text-muted-foreground">
                 De la gestion de stock au point de vente, en passant par le suivi de commande, tout est conçu pour fonctionner ensemble.
-            </p>
-        </div>
+            </motion.p>
+        </AnimatedElement>
 
-        <div className="grid grid-cols-1 md:grid-cols-3 lg:grid-cols-4 gap-6">
-            <BentoCard className="md:col-span-2 lg:col-span-2 row-span-2">
-                <BentoContent 
-                    title="Vue d'ensemble de votre activité" 
-                    text="Obtenez une vision claire et en temps réel de tous les aspects de votre commerce depuis une interface unique."
-                />
-                <BentoImage src="https://placehold.co/800x600.png" alt="Dashboard" hint="business dashboard"/>
+        <div className="grid grid-cols-1 md:grid-cols-6 gap-6">
+            
+            <BentoCard className="md:col-span-4 lg:col-span-3 row-span-2 flex flex-col">
+                <div className="">
+                    <BentoContent
+                        title="Inventaire Précis"
+                        text="Suivez vos stocks en temps réel pour ne plus jamais manquer une vente."
+                    />
+                </div>
+                <div className="flex-1 relative w-full h-64 mt-4 rounded-lg overflow-hidden">
+                    <Image src="/bento3.svg" alt="Dashboard" layout="fill" className="object-cover" />
+                </div>
             </BentoCard>
-            <BentoCard>
-                <BentoContent
-                    title="Inventaire précis"
-                    text="Suivez vos stocks en temps réel. Ne manquez plus jamais une vente."
-                />
-                <BentoImage src="https://placehold.co/400x300.png" alt="Inventaire" hint="inventory product"/>
-            </BentoCard>
-            <BentoCard>
-                <BentoContent
-                    title="Point de Vente (POS)"
-                    text="Acceptez les paiements en ligne et en magasin. Le tout synchronisé."
-                />
-                <BentoImage src="https://placehold.co/400x300.png" alt="Point de Vente" hint="point of sale"/>
-            </BentoCard>
-             <BentoCard className="md:col-span-2 lg:col-span-2">
-                <BentoContent
-                    title="Préparation optimisée"
-                    text="Organisez votre entrepôt et accélérez la préparation de vos colis grâce à la gestion de cartons."
-                >
-                     <div className="mt-4 flex flex-col gap-2 text-sm text-foreground">
-                        <div className="flex items-center gap-2">
-                            <CheckCircle2 className="h-4 w-4 text-red-500" />
-                            <span>Listes de prélèvement intelligentes</span>
-                        </div>
-                        <div className="flex items-center gap-2">
-                            <CheckCircle2 className="h-4 w-4 text-red-500" />
-                            <span>Emballage rapide et sans erreur</span>
-                        </div>
+
+           
+            <BentoCard className="md:col-span-2 lg:col-span-3 row-span-1 group relative flex flex-col justify-between overflow-hidden transition-all duration-500 ease-in-out transform hover:scale-105">
+            <div className="absolute inset-0 bg-gradient-to-br from-red-500 to-orange-400 opacity-0 group-hover:opacity-100 transition-opacity duration-500 ease-in-out"></div>
+            <div className="relative z-10 p-6 flex flex-col justify-center items-center text-center h-full">
+                <div className="transform transition-all duration-500 ease-in-out group-hover:-translate-y-4 group-hover:scale-110">
+                    <div className="bg-white/20 backdrop-blur-sm p-4 rounded-full mb-4">
+                        <svg className="w-10 h-10 text-white" fill="none" stroke="currentColor" viewBox="0 0 24 24" xmlns="http://www.w3.org/2000/svg"><path strokeLinecap="round" strokeLinejoin="round" strokeWidth="2" d="M13 10V3L4 14h7v7l9-11h-7z"></path></svg>
                     </div>
-                </BentoContent>
-            </BentoCard>
-        </div>
-      </section>
-
-      <section className="py-16 md:py-24 relative">
-        <div className="absolute inset-0 -z-10 bg-[radial-gradient(ellipse_at_top,rgba(214,40,40,0.15),transparent_80%)]"></div>
-        <div className="container mx-auto px-4 md:px-6">
-            <h2 className="text-center text-lg font-semibold text-muted-foreground">
-            Reconnu par les meilleures entreprises du monde
-            </h2>
-            <div className="mt-8 border-y border-border">
-                <div className="flex justify-around items-center">
-                    {logos.map((logo, index) => (
-                        <div key={logo.name} className={cn(
-                            "flex-1 flex justify-center items-center p-8",
-                            index < logos.length - 1 && "border-r border-border"
-                        )}>
-                            <span className="text-2xl font-bold tracking-widest text-white">{logo.name}</span>
-                        </div>
-                    ))}
+                </div>
+                <div className="transform transition-all duration-500 ease-in-out group-hover:opacity-0">
+                    <h3 className="text-xl font-bold text-foreground">Point de Vente Rapide</h3>
+                    <p className="text-muted-foreground mt-2">Encaissez vos clients en un éclair.</p>
+                </div>
+                <div className="absolute bottom-6 left-1/2 -translate-x-1/2 w-full px-6 opacity-0 group-hover:opacity-100 transition-opacity duration-500 ease-in-out transform translate-y-4 group-hover:translate-y-0">
+                    <p className="text-white text-lg mb-4">Transformez chaque interaction en opportunité.</p>
+                    <button className="bg-white text-red-500 font-bold py-2 px-6 rounded-full shadow-lg transform hover:scale-110 transition-transform duration-300">
+                        Découvrir
+                    </button>
                 </div>
             </div>
+        </BentoCard>
+            
+            
+            <BentoCard className="md:col-span-2 lg:col-span-2 row-span-1">
+                 <div className="absolute top-4 right-4 p-2 bg-secondary rounded-full">
+                    <DollarSign className="w-6 h-6 text-red-500" />
+                </div>
+                <div className=" w-full h-40 mt-4 rounded-lg overflow-hidden">
+                    <Image src="/bento4.svg" alt="Inventaire" layout="fill" className="object-cover" />
+                </div>
+            </BentoCard>
+
+            <BentoCard className="md:col-span-4 lg:col-span-1 row-span-1 flex flex-col justify-between">
+                <BentoContent
+                    title="Préparation Optimisée"
+                    text="Accélérez la préparation de vos colis."
+                />
+                 <div className="mt-4 flex flex-col gap-2 text-sm text-foreground">
+                    <div className="flex items-center gap-2">
+                        <CheckCircle2 className="h-4 w-4 text-red-500" />
+                        <span>Listes intelligentes</span>
+                    </div>
+                    <div className="flex items-center gap-2">
+                        <CheckCircle2 className="h-4 w-4 text-red-500" />
+                        <span>Emballage rapide</span>
+                    </div>
+                </div>
+            </BentoCard>
+
         </div>
       </section>
 
+      <section className="py-16 md:py-24 relative overflow-hidden">
+        <div className="absolute inset-0 -z-10 bg-[radial-gradient(ellipse_at_top,rgba(214,40,40,0.15),transparent_80%)]"></div>
+        <div className="container mx-auto px-4 md:px-6">
+            <AnimatedElement variants={fadeInUp} className="text-center text-lg font-semibold text-muted-foreground">
+            Reconnu par les meilleures entreprises du monde
+            </AnimatedElement>
+            <AnimatedElement variants={fadeInUp} amount={0.2} className="mt-8">
+                {/* Première rangée */}
+                <div className="border-y border-border">
+                    <div className="flex justify-around items-center">
+                        {logos.map((logo, index) => (
+                            <div key={`${logo.name}-${index}-1`} className={cn(
+                                "flex-1 flex justify-center items-center p-8",
+                                index < logos.length - 1 && "border-r border-border"
+                            )}>
+                                <span className="text-2xl font-bold tracking-widest text-white">{logo.name}</span>
+                            </div>
+                        ))}
+                    </div>
+                </div>
+             
+                <div className="border-b border-border ml-16">
+                     <div className="flex justify-around items-center">
+                        {[...logos].reverse().map((logo, index) => (
+                            <div key={`${logo.name}-${index}-2`} className={cn(
+                                "flex-1 flex justify-center items-center p-8",
+                                index < logos.length - 1 && "border-r border-border"
+                            )}>
+                                <span className="text-2xl font-bold tracking-widest text-muted-foreground">{logo.name}</span>
+                            </div>
+                        ))}
+                    </div>
+                </div>
+            </AnimatedElement>
+        </div>
+    </section>
+
        <section className="container mx-auto px-4 md:px-6 py-16 md:py-24 space-y-16">
-        <div className="flex flex-col items-center text-center gap-8">
+        <AnimatedElement variants={staggerContainer} className="flex flex-col items-center text-center gap-8">
             <div className="flex flex-col items-center gap-4">
-                <Badge variant="secondary" className="text-base px-6 py-2">Commande</Badge>
-                <h2 className="text-3xl md:text-4xl font-bold tracking-tight">Centralisez toutes vos commandes</h2>
-                <p className="max-w-2xl text-lg text-muted-foreground">
+                <motion.div variants={fadeInUp}><Badge variant="secondary" className="text-base px-6 py-2">Commande</Badge></motion.div>
+                <motion.h2 variants={fadeInUp} className="text-3xl md:text-4xl font-bold tracking-tight">Centralisez toutes vos commandes</motion.h2>
+                <motion.p variants={fadeInUp} className="max-w-2xl text-lg text-muted-foreground">
                     Importez et gérez les commandes de tous vos canaux de vente (e-commerce, magasin, etc.) à partir d'une seule interface unifiée.
-                </p>
+                </motion.p>
             </div>
 
-            <div className="w-full max-w-[1200px] h-[600px] relative overflow-hidden rounded-2xl shadow-xl">
+            <AnimatedElement variants={fadeInUp} className="w-full max-w-[1000px] h-[500px] relative overflow-hidden rounded-2xl shadow-xl">
                  <AnimatePresence>
                     <motion.div
                         key={currentImageIndex}
@@ -380,7 +475,7 @@ export default function Home() {
                         />
                     </motion.div>
                 </AnimatePresence>
-            </div>
+            </AnimatedElement>
             <div className="flex justify-center gap-2 mt-4">
               {carouselImages.map((_, index) => (
                   <div
@@ -392,37 +487,45 @@ export default function Home() {
                   />
               ))}
             </div>
-        </div>
+        </AnimatedElement>
       </section>
 
-      <section ref={sectionRef} className="relative h-[400vh]">
-        <div className="sticky top-0 h-screen flex flex-col items-center justify-start pt-24 overflow-hidden">
-             <div className="absolute inset-0 -z-10 bg-[radial-gradient(ellipse_at_center,rgba(214,40,40,0.15),transparent_80%)]"></div>
-            <h2 className="text-center text-3xl md:text-4xl mb-4 font-bold tracking-tight">
-                Ce que nos clients disent de nous
-            </h2>
-            <div className="relative w-full h-96 flex items-start justify-center pt-8">
-                {testimonials.map((testimonial, index) => (
-                    <TestimonialCard 
-                        key={index} 
-                        testimonial={testimonial} 
-                        index={index} 
-                        scrollYProgress={scrollYProgress}
-                    />
-                ))}
+      <section className="py-16 md:py-32 relative overflow-hidden">
+        <div className="absolute inset-0 -z-10 bg-[radial-gradient(ellipse_at_bottom,rgba(214,40,40,0.1),transparent_80%)]"></div>
+        <div className="container mx-auto px-4 md:px-6">
+            <AnimatedElement variants={staggerContainer} className="text-center mb-12">
+                <motion.h2 variants={fadeInUp} className="text-3xl md:text-4xl font-bold tracking-tight">
+                  Rejoignez une communauté florissante
+                </motion.h2>
+                <motion.p variants={fadeInUp} className="mt-4 max-w-2xl mx-auto text-lg text-muted-foreground">
+                    Nos outils ne font pas que gérer des stocks, ils propulsent des entreprises. Voyez l'impact par vous-même.
+                </motion.p>
+            </AnimatedElement>
+
+            <div className="grid grid-cols-1 lg:grid-cols-2 gap-12 items-center">
+                <div className="grid grid-cols-1 md:grid-cols-3 gap-6">
+                   {stats.map((stat, index) => (
+                       <StatsCard key={index} {...stat} />
+                   ))}
+                </div>
+                <div className="flex flex-col gap-6">
+                    {proofs.map((proof, index) => (
+                        <ProofCard key={index} {...proof} index={index} />
+                    ))}
+                </div>
             </div>
         </div>
       </section>
       
-      <section className="relative w-full py-24 md:py-32 overflow-hidden bg-secondary/30">
-        <div className="container mx-auto px-4 md:px-6 grid md:grid-cols-2 gap-16 items-center">
-            <div className="text-white relative z-10">
-                <h2 className="text-3xl md:text-5xl font-bold tracking-tight">Prêt à transformer votre gestion ?</h2>
-                <p className="mt-4 max-w-xl text-lg text-white/80">
+      <section className="relative w-full py-6 md:py-32 overflow-hidden bg-secondary/30">
+        <div className="container mx-auto px-4 md:px-6 grid md:grid-cols-2 gap-8 items-center">
+            <AnimatedElement variants={staggerContainer} className="relative z-10">
+                <motion.h2 variants={fadeInUp} className="text-3xl md:text-5xl font-bold tracking-tight">Prêt à transformer votre gestion ?</motion.h2>
+                <motion.p variants={fadeInUp} className="mt-4 max-w-xl text-lg text-white/80">
                     Rejoignez des milliers de commerçants qui font confiance à Stockify pour optimiser leur business.
-                </p>
-            </div>
-             <div className="flex justify-center md:justify-end">
+                </motion.p>
+            </AnimatedElement>
+             <AnimatedElement variants={fadeInUp} className="flex justify-center md:justify-end">
                 <Card className="bg-card/80 backdrop-blur-sm border-border/50 text-card-foreground shadow-2xl w-full max-w-md">
                     <CardHeader>
                         <CardTitle className="text-2xl font-bold">Plan Pro</CardTitle>
@@ -451,13 +554,13 @@ export default function Home() {
                         </Button>
                     </CardContent>
                 </Card>
-            </div>
+            </AnimatedElement>
         </div>
       </section>
 
       <footer className="container mx-auto px-4 md:px-6 py-12 border-t border-border">
         <div className="grid gap-12 md:grid-cols-4">
-            <div className="flex flex-col gap-4 items-start">
+            <AnimatedElement variants={fadeInUp} className="flex flex-col gap-4 items-start">
                 <a href="#" className="flex items-center gap-2">
                     <LogoIcon className="h-6 w-6" />
                     <span className="text-xl font-bold">Stockify</span>
@@ -465,9 +568,9 @@ export default function Home() {
                 <p className="text-muted-foreground text-sm">
                     La solution tout-en-un pour votre commerce.
                 </p>
-            </div>
+            </AnimatedElement>
             <div className="grid grid-cols-2 md:grid-cols-3 gap-8 md:col-span-3">
-                <div>
+                <AnimatedElement variants={fadeInUp}>
                     <h3 className="font-semibold mb-4">Fonctionnalités</h3>
                     <ul className="space-y-2 text-sm text-muted-foreground">
                         <li><a href="#" className="hover:text-foreground">Inventaire</a></li>
@@ -475,8 +578,8 @@ export default function Home() {
                         <li><a href="#" className="hover:text-foreground">Commandes</a></li>
                         <li><a href="#" className="hover:text-foreground">Analyses</a></li>
                     </ul>
-                </div>
-                <div>
+                </AnimatedElement>
+                <AnimatedElement variants={fadeInUp}>
                     <h3 className="font-semibold mb-4">Entreprise</h3>
                     <ul className="space-y-2 text-sm text-muted-foreground">
                         <li><a href="#" className="hover:text-foreground">À propos</a></li>
@@ -484,28 +587,27 @@ export default function Home() {
                         <li><a href="#" className="hover:text-foreground">Contact</a></li>
                         <li><a href="#" className="hover:text-foreground">Blog</a></li>
                     </ul>
-                </div>
-                <div>
+                </AnimatedElement>
+                <AnimatedElement variants={fadeInUp}>
                     <h3 className="font-semibold mb-4">Légal</h3>
                     <ul className="space-y-2 text-sm text-muted-foreground">
                         <li><a href="#" className="hover:text-foreground">Conditions d'utilisation</a></li>
                         <li><a href="#" className="hover:text-foreground">Politique de confidentialité</a></li>
                         <li><a href="#" className="hover:text-foreground">Mentions légales</a></li>
                     </ul>
-                </div>
+                </AnimatedElement>
             </div>
         </div>
         <div className="mt-12 pt-8 border-t border-border flex justify-between items-center">
-            <p className="text-sm text-muted-foreground">&copy; {new Date().getFullYear()} Stockify. Tous droits réservés.</p>
+            <p className="text-sm text-muted-foreground">© {new Date().getFullYear()} Stockify. Tous droits réservés.</p>
             <div className="flex gap-4">
-                <a href="#" className="text-muted-foreground hover:text-foreground"><Twitter className="h-5 w-5" /></a>
-                <a href="#" className="text-muted-foreground hover:text-foreground"><Facebook className="h-5 w-5" /></a>
-                <a href="#" className="text-muted-foreground hover:text-foreground"><Linkedin className="h-5 w-5" /></a>
+                <motion.a whileHover={{ scale: 1.2, color: 'white' }} href="#" className="text-muted-foreground"><Twitter className="h-5 w-5" /></motion.a>
+                <motion.a whileHover={{ scale: 1.2, color: 'white' }} href="#" className="text-muted-foreground"><Facebook className="h-5 w-5" /></motion.a>
+                <motion.a whileHover={{ scale: 1.2, color: 'white' }} href="#" className="text-muted-foreground"><Linkedin className="h-5 w-5" /></motion.a>
             </div>
         </div>
       </footer>
 
     </div>
   );
-
-    
+}
