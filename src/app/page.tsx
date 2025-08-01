@@ -385,8 +385,8 @@ export default function Home() {
                         text="Suivez vos stocks en temps réel pour ne plus jamais manquer une vente."
                     />
                 </div>
-                <div className="flex-1 relative w-full h-64 mt-4 rounded-lg overflow-hidden">
-                    <Image src="/bento3.svg" alt="Dashboard" layout="fill" className="object-cover" />
+                <div className="flex-1 overflow-hidden relative w-full h-64 mt-4 rounded-lg overflow-hidden">
+                    <Image src="/bento3.svg" alt="Dashboard" layout="fill" className="object-cover transition-transform duration-300 ease-in-out transform hover:scale-110" />
                 </div>
             </BentoCard>
 
@@ -417,8 +417,8 @@ export default function Home() {
                  <div className="absolute top-4 right-4 p-2 bg-secondary rounded-full">
                     <DollarSign className="w-6 h-6 text-red-500" />
                 </div>
-                <div className=" w-full h-40 mt-4 rounded-lg overflow-hidden">
-                    <Image src="/bento4.svg" alt="Inventaire" layout="fill" className="object-cover" />
+                <div className=" w-full h-40 mt-4   overflow-hidden rounded-lg overflow-hidden">
+                    <Image src="/bento4.svg" alt="Inventaire" layout="fill" className="object-cover transition-transform duration-300 ease-in-out transform hover:scale-110" />
                 </div>
             </BentoCard>
 
