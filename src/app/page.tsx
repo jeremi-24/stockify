@@ -224,7 +224,8 @@ export default function Home() {
         </div>
       </header>
 
-      <main className="container mx-auto flex flex-col items-center justify-center px-4 pt-24 pb-12 text-center md:px-6 md:pt-32 md:pb-16">
+      <main className="container mx-auto flex flex-col items-center justify-center px-4 pt-24 pb-12 text-center md:px-6 md:pt-32 md:pb-16 relative">
+        <div className="absolute inset-x-0 top-1/2 -translate-y-1/2 -z-10 bg-[radial-gradient(ellipse_at_center,rgba(214,40,40,0.15),transparent_60%)] h-64"></div>
         <div className="mb-8 flex items-center gap-2 rounded-full bg-secondary/70 px-4 py-1.5 text-sm font-medium text-muted-foreground backdrop-blur-sm">
           <span className="rounded-full bg-primary/20 p-1 text-primary">
             <Sparkles className="h-4 w-4 fill-primary" />
@@ -259,7 +260,8 @@ export default function Home() {
         />
       </section>
       
-      <section className="container mx-auto px-4 md:px-6 py-16 md:py-24">
+      <section className="container mx-auto px-4 md:px-6 py-16 md:py-24 relative">
+        <div className="absolute inset-0 -z-10 bg-[radial-gradient(ellipse_at_center,rgba(214,40,40,0.15),transparent_80%)]"></div>
         <div className="text-center mb-12">
             <Badge variant="secondary" className="text-base px-6 py-2 mb-4">Fonctionnalités</Badge>
             <h2 className="text-3xl md:text-4xl font-bold tracking-tight">Une plateforme, un contrôle total</h2>
@@ -317,7 +319,8 @@ export default function Home() {
         </div>
       </section>
 
-      <section className="py-16 md:py-24">
+      <section className="py-16 md:py-24 relative">
+        <div className="absolute inset-0 -z-10 bg-[radial-gradient(ellipse_at_top,rgba(214,40,40,0.15),transparent_80%)]"></div>
         <div className="container mx-auto px-4 md:px-6">
             <h2 className="text-center text-lg font-semibold text-muted-foreground">
             Reconnu par les meilleures entreprises du monde
@@ -385,7 +388,7 @@ export default function Home() {
       <section ref={sectionRef} className="relative h-[400vh]">
         <div className="sticky top-0 h-screen flex flex-col items-center justify-start pt-24 overflow-hidden">
              <div className="absolute inset-0 -z-10 bg-[radial-gradient(ellipse_at_center,rgba(214,40,40,0.15),transparent_80%)]"></div>
-            <h2 className="text-center text-3xl md:text-4xl mb-12 font-bold tracking-tight">
+            <h2 className="text-center text-3xl md:text-4xl mb-4 font-bold tracking-tight">
                 Ce que nos clients disent de nous
             </h2>
             <div className="relative w-full h-96 flex items-start justify-center pt-8">
@@ -494,5 +497,7 @@ export default function Home() {
 
     </div>
   );
+
+    
 
     
